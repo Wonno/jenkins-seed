@@ -10,7 +10,7 @@ job('release-heroku') {
   wrappers {
     preBuildCleanup()
     colorizeOutput()
-    buildName('#${BUILD_NUMBER} ${APP_NAME}')
+    buildName('#${BUILD_NUMBER} ${ENV,var="APP_NAME"}')
   }
 
   steps {
