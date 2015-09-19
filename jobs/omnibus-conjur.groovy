@@ -39,7 +39,7 @@ buildFlowJob('omnibus-conjur') {
 
     steps {
       shell("""
-        if [ \"${BUILD_VERSION}\" == \"LATEST\" ]; then
+        if [ \"\${BUILD_VERSION}\" == \"LATEST\" ]; then
           export BUILD_VERSION=\$(gem query -r -n conjur-cli | grep -oE \"[0-9]{1,2}.[0-9]{1,2}.[0-9]{1,2}\")
         fi
 
