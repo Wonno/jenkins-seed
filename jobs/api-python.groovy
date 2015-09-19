@@ -1,4 +1,4 @@
-job('api-python-dsl') {
+job('api-python') {
   description('Test the Conjur Python client library')
   label('docker && slave')
   logRotator(30, -1, -1, 5)
