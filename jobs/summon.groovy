@@ -39,10 +39,10 @@ job('summon') {
       shell('./test.sh')
         shell('./build.sh')
         shell('''
-        if [ -d "acceptance" ]; then
-          cp ${WORKSPACE}/pkg/linux_amd64/summon .
-          cd acceptance && make
-        fi
+          if [ -d "acceptance" ]; then
+            cp ${WORKSPACE}/pkg/linux_amd64/summon .
+            cd acceptance && make
+          fi
         '''.stripIndent())
         shell('sudo chmod -R 777 pkg/ && ./package.sh')
       }
