@@ -20,3 +20,4 @@ job('appliance-docker-ami') {
   steps {
     shell('./jenkins.sh')
   }
+}
