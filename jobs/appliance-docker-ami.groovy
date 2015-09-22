@@ -20,4 +20,13 @@ job('appliance-docker-ami') {
   steps {
     shell('./jenkins.sh')
   }
+
+  publishers {
+    slackNotifications {
+      projectChannel('#jenkins')
+      notifyFailure()
+      notifyUnstable()
+      notifyBackToNormal()
+    }
+  }
 }
