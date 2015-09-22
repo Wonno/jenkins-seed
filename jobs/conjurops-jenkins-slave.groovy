@@ -51,17 +51,18 @@ job('conjurops-jenkins-slave-image') {
     preBuildCleanup()
     colorizeOutput()
     buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
+    sshAgent('jenkins (Read only access to all conjur repos)')
   }
 
   steps {
     shell('''
       export PATH=/opt/conjur/bin:$PATH
 
-      summon -f secrets.ci.yml ./vagrant.sh 2>&1 | tee vagrant.out
+      summon -f secrets.ci.yml ./vagrant.sh
     '''.stripIndent())
   }
 
   publishers {
-    archiveArtifacts('vagrant.out')
+    archiveArtifacts('*.log')
   }
 }
