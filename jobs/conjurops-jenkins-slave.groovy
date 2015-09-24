@@ -51,7 +51,12 @@ job('conjurops-jenkins-slave-image') {
     preBuildCleanup()
     colorizeOutput()
     buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
-    sshAgent('jenkins (Read only access to all conjur repos)')
+    
+    // Need to pass the credential's UID to sshAgent, rather than the
+    // name.  The UID can be found in the Advanced settings for the
+    // credentials.
+    // sshAgent('jenkins (Read only access to all conjur repos)')
+    sshAgent('6ba81099-89ef-4cf6-b438-1511e4002530')
   }
 
   steps {
