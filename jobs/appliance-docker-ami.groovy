@@ -8,7 +8,8 @@ job('appliance-docker-ami') {
   }
 
   parameters {
-    stringParam('IMAGE_TAG', 'latest', 'Appliance image tag to test. Required.')
+    stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')
+    stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
   }
 
   wrappers {
@@ -18,7 +19,7 @@ job('appliance-docker-ami') {
   }
 
   steps {
-    shell('./jenkins.sh')
+    shell('./jenkins.sh $APPLIANCE_IMAGE $APPLIANCE_IMAGE_TAG')
   }
 
   publishers {
