@@ -2,6 +2,7 @@
 buildFlowJob('appliance-docker-flow') {
   description('Builds Docker image, tests it and creates an AMI')
   logRotator(30, -1, -1, 5)
+  concurrentBuild()
 
   parameters {
     stringParam('BRANCH', '', 'Git branch or SHA of the appliance repo to build. Not required.')
@@ -26,8 +27,8 @@ buildFlowJob('appliance-docker-flow') {
     def imageTag = "jenkins-appliance-docker-build-\${b.build.id}"
 
     parallel(
-      {build("appliance-docker-api-acceptance", APPLIANCE_IMAGE_TAG: imageTag) },
-      {build("appliance-docker-ha-acceptance", APPLIANCE_IMAGE_TAG: imageTag) }
+      { build("appliance-docker-api-acceptance", APPLIANCE_IMAGE_TAG: imageTag) },
+      { build("appliance-docker-ha-acceptance", APPLIANCE_IMAGE_TAG: imageTag) }
     )
 
     //build("appliance-docker-ami", APPLIANCE_IMAGE_TAG: imageTag)

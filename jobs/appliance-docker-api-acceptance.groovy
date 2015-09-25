@@ -2,6 +2,7 @@ job('appliance-docker-api-acceptance') {
   description('Run API acceptance tests on Docker Conjur')
   label('docker && slave')
   logRotator(30, -1, -1, 5)
+  concurrentBuild()
 
   parameters {
     stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')

@@ -3,6 +3,7 @@ job('appliance-docker-build') {
   description('Build the Conjur Docker container')
   label('docker && slave')
   logRotator(-1, 30, -1, 30)
+  concurrentBuild()
 
   parameters {
     stringParam('BRANCH', '', 'Git branch or SHA to build. Not required.')

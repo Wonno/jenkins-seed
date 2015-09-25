@@ -2,6 +2,7 @@ job('appliance-docker-ami') {
   description('Build an AMI that contains Docker Conjur')
   label('docker && slave')
   logRotator(30, -1, -1, 30)
+  concurrentBuild()
 
   scm {
     git('git@github.com:conjurinc/appliance-docker.git')
