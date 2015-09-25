@@ -28,4 +28,4 @@ Conjur.createStandardJob(
       }
     }
   }
-}
+})
