@@ -1,21 +1,27 @@
-job('appliance-docker-ha-acceptance') {
-  description('Run HA acceptance tests on Docker Conjur')
+job('appliance-docker-api-acceptance') {
+  description('Run API acceptance tests on Docker Conjur')
   label('docker && slave')
   logRotator(30, -1, -1, 5)
-
-  scm {
-    git('git@github.com:conjurinc/appliance.git')
-  }
 
   parameters {
     stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')
     stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
+    stringParam('BRANCH', 'docker', 'Git branch or SHA to build.')
+  }
+
+  scm {
+    git {
+      remote {
+        url('git@github.com:conjurinc/appliance.git')
+      }
+      branch('$BRANCH')
+    }
   }
 
   wrappers {
     preBuildCleanup()
     colorizeOutput()
-    rvm('2.1.5@appliance-docker-ha-acceptance')
+    rvm('2.1.5@appliance-docker-api-acceptance')
     buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
   }
 
@@ -25,17 +31,12 @@ job('appliance-docker-ha-acceptance') {
 
       bundle install
 
-      bootstrap_id=$(./ci/bin/ha-bootstrap --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_TAG)
-      fixtures_id=$(./ci/bin/ha-fixtures --log-level debug $bootstrap_id)
-      echo "Bootstrap id: $bootstrap_id"
-      echo "Fixtures id:  $fixtures_id"
-      rm -f ci/output/ha-acceptance/*
-      ./ci/bin/ha-acceptance -l --log-level debug "$fixtures_id"
+      ./ci/bin/api-acceptance --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG
     '''.stripIndent())
   }
 
   publishers {
-    archiveJunit('ci/output/report/ha-acceptance/*.xml')
+    archiveJunit('ci/output/report/api-acceptance/*.xml')
     archiveArtifacts('ci/output/**')
     slackNotifications {
       projectChannel('#jenkins')
