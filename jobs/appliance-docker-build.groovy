@@ -34,40 +34,11 @@ job('appliance-docker-build') {
 
   publishers {
     archiveArtifacts('ci/output/*')
-    downstreamParameterized {
-      trigger('appliance-docker-api-acceptance') {
-        condition('SUCCESS')
-        parameters {
-          gitRevision()
-        }
-      }
-      trigger('appliance-docker-ha-acceptance') {
-        condition('SUCCESS')
-        parameters {
-          predefinedProp('APPLIANCE_IMAGE', '$CONJUR_DOCKER_REGISTRY/conjur-appliance')
-          predefinedProp('APPLIANCE_IMAGE_TAG','$BUILD_TAG')
-          gitRevision()
-        }
-      }
-    }
     slackNotifications {
       projectChannel('#jenkins')
       notifyFailure()
       notifyUnstable()
       notifyBackToNormal()
-    }
-  }
-
-  properties {
-    promotions {
-      promotion {
-        name('Acceptance')
-        icon('star-green')
-        conditions {
-          // def downstream(Boolean evenIfUnstable, String jobs)
-          downstream(false, 'appliance-docker-ha-acceptance,appliance-docker-api-acceptance')
-        }
-      }
     }
   }
 }

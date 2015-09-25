@@ -3,13 +3,19 @@ job('appliance-docker-ha-acceptance') {
   label('docker && slave')
   logRotator(30, -1, -1, 5)
 
-  scm {
-    git('git@github.com:conjurinc/appliance.git')
-  }
-
   parameters {
     stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')
     stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
+    stringParam('BRANCH', '', 'Git branch or SHA to build. Not required.')
+  }
+
+  scm {
+    git {
+      remote {
+        url('git@github.com:conjurinc/appliance.git')
+      }
+      branch('$BRANCH')
+    }
   }
 
   wrappers {
