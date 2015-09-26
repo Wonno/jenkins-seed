@@ -46,35 +46,4 @@ class Utilities {
       }
     }
   }
-
-  static void addManualPromotion(def job, def _name, def triggeredJob, def propName, def propVal) {
-    job.with {
-      properties {
-        promotions {
-          promotion {
-            name(_name)
-            icon("star-gold")
-            conditions {
-              manual('')
-            }
-            actions {
-              downstreamParameterized {
-                trigger(triggeredJob) {
-                  condition('SUCCESS')
-                  block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                  }
-                  parameters {
-                    predefinedProp(propName, propVal)
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
 }

@@ -11,8 +11,31 @@ job.with {
   publishers {
     archiveJunit('report/xunit.xml')
   }
-}
 
-Utilities.addManualPromotion(
-  job, 'Release to NPM', 'release-npm', 'PACKAGE_NAME', 'conjur-api'
-)
+  properties {
+    promotions {
+      promotion {
+        name("Release to NPM")
+        icon("star-gold")
+        conditions {
+          manual('')
+        }
+        actions {
+          downstreamParameterized {
+            trigger('release-npm') {
+              condition('SUCCESS')
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                predefinedProp('PACKAGE_NAME', 'conjur-api')
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -22,8 +22,31 @@ job.with {
   publishers {
     archiveJunit('spec/reports/*.xml')
   }
-}
 
-Utilities.addManualPromotion(
-  job, 'Release to Rubygems', 'release-rubygems', 'GEM_NAME', 'conjur-api'
-)
+  properties {
+    promotions {
+      promotion {
+        name("Release to Rubygems")
+        icon("star-gold")
+        conditions {
+          manual('')
+        }
+        actions {
+          downstreamParameterized {
+            trigger('release-rubygems') {
+              condition('SUCCESS')
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                predefinedProp('GEM_NAME', 'conjur-api')
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
