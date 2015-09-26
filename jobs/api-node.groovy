@@ -1,6 +1,6 @@
-import utilities.Conjur
+import utilities.Utilities
 
-def job = Conjur.createStandardJob(
+def job = Utilities.createStandardJob(
   this,
   'api-node',
   'Test the Conjur Node.js client library',
@@ -11,23 +11,8 @@ job.with {
   publishers {
     archiveJunit('report/xunit.xml')
   }
-
-  properties {
-    promotions {
-      promotion {
-        name("Release to NPM")
-        icon("star-gold")
-        conditions {
-          manual('')
-        }
-        actions {
-          downstreamParameterized {
-            trigger("release-npm", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-              predefinedProp("PACKAGE_NAME","conjur-api")
-            }
-          }
-        }
-      }
-    }
-  }
 }
+
+Utilities.addManualPromotion(
+  job, 'Release to NPM', 'release-npm', 'PACKAGE_NAME', 'conjur-api'
+)
