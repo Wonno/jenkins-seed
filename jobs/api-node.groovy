@@ -1,26 +1,13 @@
-job('api-node') {
-  description('Test the Conjur Node.js client library')
-  label('docker && slave')
-  logRotator(30, -1, -1, 5)
+import utilities.Conjur
 
-  scm {
-    git('git@github.com:conjurinc/api-node.git')
-  }
+def job = Conjur.createStandardJob(
+  this,
+  'api-node',
+  'Test the Conjur Node.js client library',
+  'git@github.com:conjurinc/api-node.git'
+)
 
-  triggers {
-    githubPush()
-  }
-
-  wrappers {
-    preBuildCleanup()
-    colorizeOutput()
-    buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
-  }
-
-  steps {
-    shell('./jenkins.sh')
-  }
-
+job.with {
   publishers {
     archiveJunit('report/xunit.xml')
   }
