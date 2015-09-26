@@ -1,6 +1,6 @@
 package utilities
 
-import hudson.model.Job
+import javaposse.jobdsl.dsl.Job
 
 class Utilities {
   static Job createStandardJob(def jobFactory, def name, def _description, def repoName) {
