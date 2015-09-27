@@ -1,29 +1,16 @@
-job('appliance-docker-ha-acceptance') {
+import utilities.Config
+
+def job = job('appliance-docker-ha-acceptance') {
   description('Run HA acceptance tests on Docker Conjur')
-  label('docker && slave')
-  logRotator(30, -1, -1, 5)
   concurrentBuild()
 
   parameters {
     stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')
     stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
-    stringParam('BRANCH', '', 'Git branch or SHA to build. Not required.')
-  }
-
-  scm {
-    git {
-      remote {
-        url('git@github.com:conjurinc/appliance.git')
-      }
-      branch('$BRANCH')
-    }
   }
 
   wrappers {
-    preBuildCleanup()
-    colorizeOutput()
     rvm('2.1.5@appliance-docker-ha-acceptance')
-    buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
   }
 
   steps {
@@ -40,15 +27,7 @@ job('appliance-docker-ha-acceptance') {
       ./ci/bin/ha-acceptance -l --log-level debug "$fixtures_id"
     '''.stripIndent())
   }
-
-  publishers {
-    archiveJunit('ci/output/report/ha-acceptance/*.xml')
-    archiveArtifacts('ci/output/**')
-    slackNotifications {
-      projectChannel('#jenkins')
-      notifyFailure()
-      notifyUnstable()
-      notifyBackToNormal()
-    }
-  }
 }
+
+Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git', false)
+Config.applyCommonConfig(job)
