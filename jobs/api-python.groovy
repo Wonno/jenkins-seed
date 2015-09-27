@@ -1,13 +1,12 @@
-import utilities.Utilities
+import utilities.Config
 
-def job = Utilities.createStandardJob(
-  this,
-  'api-python',
-  'Test the Conjur Python client library',
-  'git@github.com:conjurinc/api-python.git'
-)
+def job = job('api-python') {
+  description('Test the Conjur Python client library')
 
-job.with {
+  steps {
+    shell('./jenkins.sh')
+  }
+
   publishers {
     archiveJunit('artifacts/pytest.xml')
     cobertura('artifacts/coverage.xml')
@@ -21,3 +20,6 @@ job.with {
     }
   }
 }
+
+Config.addGitRepo(job, 'git@github.com:conjurinc/api-python.git')
+Config.applyCommonConfig(job)

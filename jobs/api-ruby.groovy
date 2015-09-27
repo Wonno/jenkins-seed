@@ -1,13 +1,8 @@
-import utilities.Utilities
+import utilities.Config
 
-def job = Utilities.createStandardJob(
-  this,
-  'api-ruby',
-  'Test the Conjur Ruby client library',
-  'git@github.com:conjurinc/api-ruby.git'
-)
+def job = job('api-ruby') {
+  description('Test the Conjur Ruby client library')
 
-job.with {
   wrappers {
     rvm('1.9.3@conjur-api')
   }
@@ -33,16 +28,8 @@ job.with {
         }
         actions {
           downstreamParameterized {
-            trigger('release-rubygems') {
-              condition('SUCCESS')
-              block {
-                buildStepFailure('FAILURE')
-                failure('FAILURE')
-                unstable('UNSTABLE')
-              }
-              parameters {
-                predefinedProp('GEM_NAME', 'conjur-api')
-              }
+            trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+              predefinedProp("GEM_NAME","conjur-api")
             }
           }
         }
@@ -50,3 +37,6 @@ job.with {
     }
   }
 }
+
+Config.addGitRepo(job, 'git@github.com:conjurinc/api-ruby.git')
+Config.applyCommonConfig(job)

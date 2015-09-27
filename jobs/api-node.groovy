@@ -1,13 +1,12 @@
-import utilities.Utilities
+import utilities.Config
 
-def job = Utilities.createStandardJob(
-  this,
-  'api-node',
-  'Test the Conjur Node.js client library',
-  'git@github.com:conjurinc/api-node.git'
-)
+def job = job('api-node') {
+  description('Test the Conjur Node.js client library')
 
-job.with {
+  steps {
+    shell('./jenkins.sh')
+  }
+
   publishers {
     archiveJunit('report/xunit.xml')
   }
@@ -22,16 +21,8 @@ job.with {
         }
         actions {
           downstreamParameterized {
-            trigger('release-npm') {
-              condition('SUCCESS')
-              block {
-                buildStepFailure('FAILURE')
-                failure('FAILURE')
-                unstable('UNSTABLE')
-              }
-              parameters {
-                predefinedProp('PACKAGE_NAME', 'conjur-api')
-              }
+            trigger("release-npm", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+              predefinedProp("PACKAGE_NAME","conjur-api")
             }
           }
         }
@@ -39,3 +30,6 @@ job.with {
     }
   }
 }
+
+Config.addGitRepo(job, 'git@github.com:conjurinc/api-node.git')
+Config.applyCommonConfig(job)
