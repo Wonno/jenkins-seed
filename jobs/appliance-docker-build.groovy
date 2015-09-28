@@ -19,15 +19,13 @@ def job = job('appliance-docker-build') {
   publishers {
     archiveArtifacts('ci/output/*')
     downstreamParameterized {
-      trigger('appliance-docker-api-acceptance') {
+      trigger('appliance-docker-api-acceptance, appliance-docker-ha-acceptance') {
         condition('SUCCESS')
-        parameters {
-          currentBuild()
-          gitRevision()
+        block {
+            buildStepFailure('FAILURE')
+            failure('FAILURE')
+            unstable('UNSTABLE')
         }
-      }
-      trigger('appliance-docker-ha-acceptance') {
-        condition('SUCCESS')
         parameters {
           currentBuild()
           gitRevision()
