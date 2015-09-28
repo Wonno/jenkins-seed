@@ -18,8 +18,24 @@ def job = job('appliance-docker-build') {
 
   publishers {
     archiveArtifacts('ci/output/*')
+    downstreamParameterized {
+      trigger('appliance-docker-api-acceptance') {
+        condition('SUCCESS')
+        parameters {
+          currentBuild()
+          gitRevision()
+        }
+      }
+      trigger('appliance-docker-ha-acceptance') {
+        condition('SUCCESS')
+        parameters {
+          currentBuild()
+          gitRevision()
+        }
+      }
+    }
   }
 }
 
-Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git', false)
+Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git')
 Config.applyCommonConfig(job)
