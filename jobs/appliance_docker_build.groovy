@@ -1,6 +1,6 @@
 import utilities.Config
 
-def job = job('appliance-docker-build') {
+def job = job('appliance_docker_build') {
   description('Build the Conjur Docker container')
   concurrentBuild()
 
