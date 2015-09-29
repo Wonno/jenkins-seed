@@ -21,9 +21,30 @@ def job = job('appliance-docker-build') {
     downstreamParameterized {
       trigger('appliance-docker-api-acceptance, appliance-docker-ha-acceptance') {
         condition('SUCCESS')
+        block {
+          buildStepFailure('FAILURE')
+          failure('FAILURE')
+          unstable('UNSTABLE')
+        }
         parameters {
           currentBuild()
           gitRevision()
+        }
+      }
+    }
+  }
+
+  def testJobs = ['appliance-docker-api-acceptance', 'appliance-docker-ha-acceptance']
+
+  properties {
+    promotions {
+      testJobs.each { -> testJob
+        promotion {
+          name("PASSED ${testJob}")
+          icon("star-green")
+          conditions {
+            downstream(false, testJobs.join(','))
+          }
         }
       }
     }
