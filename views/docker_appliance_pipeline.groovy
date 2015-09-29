@@ -6,4 +6,5 @@ buildPipelineView('Docker Appliance Pipeline') {
   displayedBuilds(5)
   selectedJob('appliance_docker_build')
   refreshFrequency(5)
+  showPipelineParameters()
 }
