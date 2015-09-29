@@ -42,6 +42,20 @@ def job = job('appliance-docker-build') {
           }
         }
       }
+      promotion {
+        name("Create AMI")
+        icon("star-gold")
+        conditions {
+          manual('')
+        }
+        actions {
+          downstreamParameterized {
+            trigger("appliance-docker-ami", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+              predefinedProp('APPLIANCE_IMAGE_TAG', '$BUILD_TAG')
+            }
+          }
+        }
+      }
     }
   }
 }
