@@ -21,11 +21,6 @@ def job = job('appliance-docker-build') {
     downstreamParameterized {
       trigger('appliance-docker-api-acceptance, appliance-docker-ha-acceptance') {
         condition('SUCCESS')
-        block {
-          buildStepFailure('FAILURE')
-          failure('FAILURE')
-          unstable('UNSTABLE')
-        }
         parameters {
           currentBuild()
           gitRevision()
