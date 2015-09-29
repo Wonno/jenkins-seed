@@ -24,6 +24,7 @@ def job = job('appliance_docker_build') {
         parameters {
           currentBuild()
           gitRevision()
+          predefinedProp('APPLIANCE_IMAGE_TAG', '$BUILD_TAG')
         }
       }
     }
