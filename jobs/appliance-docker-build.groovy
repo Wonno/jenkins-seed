@@ -38,7 +38,7 @@ def job = job('appliance-docker-build') {
           name("PASSED ${testJob}")
           icon("star-green")
           conditions {
-            downstream(false, testJobs.join(','))
+            downstream(false, testJob)
           }
         }
       }
