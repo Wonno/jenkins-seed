@@ -33,7 +33,7 @@ def job = job('appliance-docker-build') {
 
   properties {
     promotions {
-      testJobs.each { -> testJob
+      testJobs.each { testJob ->
         promotion {
           name("PASSED ${testJob}")
           icon("star-green")
