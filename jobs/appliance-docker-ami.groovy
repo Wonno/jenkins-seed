@@ -5,7 +5,7 @@ def job = job('appliance-docker-ami') {
   concurrentBuild()
 
   parameters {
-    stringParam('APPLIANCE_IMAGE', 'registry.tld:80/conjur-appliance', 'Appliance image id to test. Required.')
+    stringParam('APPLIANCE_IMAGE', 'registry.tld/conjur-appliance', 'Appliance image id to test. Required.')
     stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
   }
 
