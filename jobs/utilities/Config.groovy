@@ -4,7 +4,7 @@ class Config {
   static void applyCommonConfig(def job) {
     job.with {
       label('docker && slave')
-      logRotator(-1, 20, -1, 20)
+      logRotator(-1, 30, -1, 30)
 
       wrappers {
         preBuildCleanup()
