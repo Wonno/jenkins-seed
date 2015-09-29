@@ -30,28 +30,32 @@ def job = job('appliance_docker_build') {
     }
   }
 
-  def testJobs = ['appliance-docker-api-acceptance', 'appliance-docker-ha-acceptance']
+  def downstreamJobs = [
+    'appliance-docker-api-acceptance',
+    'appliance-docker-ha-acceptance',
+    'appliance-docker-ami'
+  ]
 
   properties {
     promotions {
-      testJobs.each { testJob ->
+      downstreamJobs.each { downstreamJob ->
         promotion {
-          name("PASSED ${testJob}")
-          icon("star-green")
+          name("PASSED ${downstreamJob}")
+          icon('star-green')
           conditions {
-            downstream(false, testJob)
+            downstream(false, downstreamJob)
           }
         }
       }
       promotion {
-        name("Create AMI")
-        icon("star-gold")
+        name('Create AMI')
+        icon('star-gold')
         conditions {
           manual('')
         }
         actions {
           downstreamParameterized {
-            trigger("appliance-docker-ami") {
+            trigger('appliance-docker-ami') {
               predefinedProp('APPLIANCE_IMAGE_TAG', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
             }
           }
