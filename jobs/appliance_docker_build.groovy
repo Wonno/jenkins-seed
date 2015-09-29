@@ -51,7 +51,7 @@ def job = job('appliance_docker_build') {
         actions {
           downstreamParameterized {
             trigger("appliance-docker-ami", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-              predefinedProp('APPLIANCE_IMAGE_TAG', '$BUILD_TAG')
+              predefinedProp('APPLIANCE_IMAGE_TAG', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
             }
           }
         }
