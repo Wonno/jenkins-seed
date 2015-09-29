@@ -1,10 +1,9 @@
 // Conjur appliance build pipeline view
 
-buildPipelineView('Conjur Docker Pipeline') {
+buildPipelineView('Docker Appliance Pipeline') {
   title('Conjur Docker Appliance build pipeline')
   filterExecutors()
-  displayedBuilds(10)
-  selectedJob('appliance-docker-build')
-  showPipelineParameters()
+  displayedBuilds(5)
+  selectedJob('appliance_docker_build')
   refreshFrequency(5)
 }
