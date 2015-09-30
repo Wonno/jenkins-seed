@@ -30,27 +30,13 @@ def job = job('appliance_docker_build') {
     }
   }
 
-  def downstreamJobs = [
-    'appliance-docker-api-acceptance',
-    'appliance-docker-ha-acceptance'
-  ]
-
   properties {
     promotions {
-      downstreamJobs.each { downstreamJob ->
-        promotion {
-          name("PASSED ${downstreamJob}")
-          icon('star-green')
-          conditions {
-            downstream(false, downstreamJob)
-          }
-        }
-      }
       promotion {
-        name('Release')
-        icon('star-gold')
+        name("Tests passed")
+        icon('star-green')
         conditions {
-          manual('')
+          downstream(false, 'appliance-docker-api-acceptance, appliance-docker-ha-acceptance')
         }
         actions {
           downstreamParameterized {
@@ -58,7 +44,6 @@ def job = job('appliance_docker_build') {
               predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
               predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
               predefinedProp('IMAGE_TAG_NEW', '4.5.rc$PROMOTED_NUMBER')
-              predefinedProp('RELEASE_AMI', '1')
             }
           }
         }
