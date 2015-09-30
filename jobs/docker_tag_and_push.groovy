@@ -12,7 +12,7 @@ def job = job('docker_tag_and_push') {
 
   steps {
     shell('''
-      docker tag $IMAGE_NAME:$IMAGE_TAG_CURRENT $IMAGE_NAME:$IMAGE_TAG_NEW
+      docker tag -f $IMAGE_NAME:$IMAGE_TAG_CURRENT $IMAGE_NAME:$IMAGE_TAG_NEW
       docker push $IMAGE_NAME:$IMAGE_TAG_NEW
     '''.stripIndent())
   }
