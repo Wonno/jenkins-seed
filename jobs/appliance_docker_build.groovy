@@ -45,9 +45,12 @@ def job = job('appliance_docker_build') {
         actions {
           downstreamParameterized {
             trigger('docker_tag_and_push') {
-              predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
-              predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
-              predefinedProp('IMAGE_TAG_NEW', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+              parameters {
+                currentBuild()
+                predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
+                predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
+                predefinedProp('IMAGE_TAG_NEW', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+              }
             }
           }
         }
@@ -61,7 +64,10 @@ def job = job('appliance_docker_build') {
         actions {
           downstreamParameterized {
             trigger('appliance-docker-ami') {
-              predefinedProp('APPLIANCE_IMAGE_TAG', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+              parameters {
+                currentBuild()
+                predefinedProp('APPLIANCE_IMAGE_TAG', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+              }
             }
           }
         }
