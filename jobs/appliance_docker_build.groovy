@@ -72,4 +72,4 @@ def job = job('appliance_docker_build') {
 
 Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git')
 Config.applyCommonConfig(job)
-Config.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: $APPLIANCE_VERSION-$BUILD_NUMBER')
+Config.setBuildName(job, '#${BUILD_NUMBER} ${GIT_BRANCH}: $APPLIANCE_VERSION-$BUILD_NUMBER')
