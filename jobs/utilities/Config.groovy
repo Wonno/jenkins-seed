@@ -45,4 +45,12 @@ class Config {
       }
     }
   }
+
+  static void setBuildName(def job, def name) {
+    job.with {
+      wrappers {
+        buildName(name)
+      }
+    }
+  }
 }
