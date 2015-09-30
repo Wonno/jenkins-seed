@@ -58,7 +58,7 @@ def job = job('appliance_docker_build') {
               predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
               predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
               predefinedProp('IMAGE_TAG_NEW', '4.5.rc$PROMOTED_NUMBER')
-              predefinedProp('CREATE_AMI', true)
+              predefinedProp('CREATE_AMI', '1')
             }
           }
         }
