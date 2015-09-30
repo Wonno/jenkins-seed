@@ -38,7 +38,7 @@ def job = job('appliance_docker_build') {
     promotions {
       promotion {
         name("Tests passed")
-        icon('star-green')
+        icon('star-blue')
         conditions {
           downstream(false, 'appliance-docker-api-acceptance, appliance-docker-ha-acceptance')
         }
@@ -54,7 +54,7 @@ def job = job('appliance_docker_build') {
       }
       promotion {
         name('Release AMI')
-        icon('star-gold')
+        icon('star-green')
         conditions {
           manual('')
         }
