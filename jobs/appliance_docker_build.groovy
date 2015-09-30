@@ -32,8 +32,7 @@ def job = job('appliance_docker_build') {
 
   def downstreamJobs = [
     'appliance-docker-api-acceptance',
-    'appliance-docker-ha-acceptance',
-    'appliance-docker-ami'
+    'appliance-docker-ha-acceptance'
   ]
 
   properties {
@@ -48,15 +47,18 @@ def job = job('appliance_docker_build') {
         }
       }
       promotion {
-        name('Create AMI')
+        name('Release')
         icon('star-gold')
         conditions {
           manual('')
         }
         actions {
           downstreamParameterized {
-            trigger('appliance-docker-ami') {
-              predefinedProp('APPLIANCE_IMAGE_TAG', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
+            trigger('docker_tag_and_push') {
+              predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
+              predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
+              predefinedProp('IMAGE_TAG_NEW', '4.5.rc$PROMOTED_NUMBER')
+              predefinedProp('CREATE_AMI', true)
             }
           }
         }
