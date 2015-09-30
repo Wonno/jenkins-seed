@@ -1,10 +1,14 @@
-// Conjur appliance build pipeline view
+// Conjur Docker appliance delivery pipeline view
+deliveryPipelineView('Docker Appliance Pipeline') {
+  allowPipelineStart()
+  updateInterval(5)
+  pipelineInstances(10)
 
-buildPipelineView('Docker Appliance Pipeline') {
-  title('Docker Appliance')
-  filterExecutors()
-  displayedBuilds(5)
-  selectedJob('appliance_docker_build')
-  refreshFrequency(5)
-  showPipelineParameters()
+  showChangeLog()
+  showPromotions()
+  showTotalBuildTime()
+
+  pipelines {
+    component('Docker Appliance Pipeline', 'appliance_docker_build')
+  }
 }
