@@ -19,7 +19,7 @@ def job = job('appliance-docker-ha-acceptance') {
 
       bundle install
 
-      bootstrap_id=$(./ci/bin/ha-bootstrap --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_TAG)
+      bootstrap_id=$(./ci/bin/ha-bootstrap --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG)
       fixtures_id=$(./ci/bin/ha-fixtures --log-level debug $bootstrap_id)
       echo "Bootstrap id: $bootstrap_id"
       echo "Fixtures id:  $fixtures_id"
