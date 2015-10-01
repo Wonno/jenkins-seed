@@ -31,3 +31,4 @@ def job = job('appliance-docker-ha-acceptance') {
 
 Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git', false)
 Config.applyCommonConfig(job)
+Config.setBuildName(job, '#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
