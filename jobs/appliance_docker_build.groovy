@@ -3,7 +3,25 @@ import utilities.Config
 def applianceVersion = '4.5.0'
 
 def job = job('appliance_docker_build') {
-  description('Build the Conjur Docker container')
+  description('''
+    Starter job for the
+    <a href="/view/Docker%20Appliance%20Pipeline/">
+      Conjur Docker appliance pipeline
+    </a>
+
+    <hr>
+    <strong>Promotion</strong>
+      <ul>
+        <li>
+          Autopromotion happens when downstream tests pass.
+          <br>This is signified by a blue star.
+        </li>
+        <li>
+          To create an AMI, click on a build with a blue star, go to Promotion Status, and Approve "Release AMI".
+          <br>This is signified by a green star.
+        </li>
+    </ul>
+  '''.stripIndent())
   concurrentBuild()
 
   wrappers {
