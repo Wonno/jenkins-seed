@@ -12,7 +12,12 @@ def job = job('appliance-docker-ami') {
   steps {
     shell('./jenkins.sh $APPLIANCE_IMAGE $APPLIANCE_IMAGE_TAG')
   }
+
+  publishers {
+    archiveArtifacts('ami-*')
+  }
 }
 
 Config.addGitRepo(job, 'git@github.com:conjurinc/appliance-docker.git', false)
 Config.applyCommonConfig(job)
+Config.setBuildName(job, '#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
