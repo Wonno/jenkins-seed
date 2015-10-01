@@ -63,7 +63,6 @@ def job = job('appliance_docker_build') {
           downstreamParameterized {
             trigger('appliance-docker-ami') {
               parameters {
-                currentBuild()
                 predefinedProp('APPLIANCE_IMAGE_TAG', "${applianceVersion}-\$PROMOTED_NUMBER")
               }
             }
