@@ -1,12 +1,10 @@
 import utilities.Config
 
+def applianceVersion = '4.5.0'
+
 def job = job('appliance_docker_build') {
   description('Build the Conjur Docker container')
   concurrentBuild()
-
-  parameters {
-    stringParam('APPLIANCE_VERSION', '4.5.0', 'Conjur appliance version')
-  }
 
   wrappers {
     rvm('2.1.5@appliance-docker-build')
@@ -49,7 +47,7 @@ def job = job('appliance_docker_build') {
                 currentBuild()
                 predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
                 predefinedProp('IMAGE_TAG_CURRENT', 'jenkins-$PROMOTED_JOB_NAME-$PROMOTED_NUMBER')
-                predefinedProp('IMAGE_TAG_NEW', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+                predefinedProp('IMAGE_TAG_NEW', "${applianceVersion}-\$PROMOTED_NUMBER")
               }
             }
           }
@@ -66,7 +64,7 @@ def job = job('appliance_docker_build') {
             trigger('appliance-docker-ami') {
               parameters {
                 currentBuild()
-                predefinedProp('APPLIANCE_IMAGE_TAG', '$APPLIANCE_VERSION-$PROMOTED_NUMBER')
+                predefinedProp('APPLIANCE_IMAGE_TAG', "${applianceVersion}-\$PROMOTED_NUMBER")
               }
             }
           }
@@ -78,4 +76,4 @@ def job = job('appliance_docker_build') {
 
 Config.addGitRepo(job, 'git@github.com:conjurinc/appliance.git')
 Config.applyCommonConfig(job)
-Config.setBuildName(job, '#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_VERSION"}-${BUILD_NUMBER}')
+Config.setBuildName(job, '#${BUILD_NUMBER} ${GIT_BRANCH}:' + applianceVersion + '-${BUILD_NUMBER}')
