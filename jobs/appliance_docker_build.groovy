@@ -24,11 +24,29 @@ def job = job('appliance_docker_build') {
   '''.stripIndent())
   concurrentBuild()
 
+  parameters {
+    stringParam('SERVICE_BRANCH', 'integration', 'Branch of core services to pull in.')
+  }
+
   wrappers {
     rvm('2.1.5@appliance-docker-build')
   }
 
   steps {
+    shell('''
+      cat << PARAMS > roles/build-parameters.json
+        {
+          "name": "build-parameters",
+          "chef_type": "role",
+          "json_class": "Chef::Role",
+          "override_attributes": {
+            "conjur": {
+              "branch": \"${SERVICE_BRANCH}\"
+            }
+          }
+        }
+      PARAMS
+    '''.stripIndent())
     shell('''
       #!/bin/bash -e
       bundle install
