@@ -26,6 +26,7 @@ def job = job('appliance_docker_build') {
 
   parameters {
     stringParam('SERVICE_BRANCH', 'integration', 'Branch of core services to pull in.')
+    stringParam('EVOKE_BRANCH', 'master', 'Branch of evoke to pull in.')
   }
 
   wrappers {
@@ -42,6 +43,9 @@ def job = job('appliance_docker_build') {
           "override_attributes": {
             "conjur": {
               "branch": \"${SERVICE_BRANCH}\"
+            },
+            "evoke": {
+              "branch": \"${EVOKE_BRANCH}\"
             }
           }
         }
