@@ -11,12 +11,14 @@ def testJobs = [
 ]
 
 def mainJob = job(mainJobName) {
-  downstreamParameterized {
-    trigger(testJobs.join(',')) {
-      condition('SUCCESS')
-      parameters {
-        currentBuild()
-        gitRevision()
+  publishers {
+    downstreamParameterized {
+      trigger(testJobs.join(',')) {
+        condition('SUCCESS')
+        parameters {
+          currentBuild()
+          gitRevision()
+        }
       }
     }
   }
