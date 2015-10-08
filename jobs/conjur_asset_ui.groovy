@@ -15,21 +15,6 @@ def testJobNames = ['name'].collect{testJobs[it]}[0].join(',')
 def mainJob = job(mainJobName) {
   concurrentBuild()
 
-  properties {
-    promotions {
-      promotion {
-        name("Tests passed")
-        icon('star-blue')
-        conditions {
-          downstream(false, testJobNames)
-        }
-        actions {
-          //TODO: push to dev Docker registry here
-        }
-      }
-    }
-  }
-
   steps {
     downstreamParameterized {
       trigger(testJobNames) {
