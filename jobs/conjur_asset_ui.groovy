@@ -30,10 +30,14 @@ def mainJob = job(mainJobName) {
     }
   }
 
-  publishers {
+  steps {
     downstreamParameterized {
       trigger(testJobNames) {
-        condition('SUCCESS')
+        block {
+          buildStepFailure('FAILURE')
+          failure('FAILURE')
+          unstable('UNSTABLE')
+        }
         parameters {
           currentBuild()
           gitRevision()
