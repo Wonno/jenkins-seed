@@ -1,18 +1,33 @@
 // Sets up the main job and downstream test jobs for the Conjur UI
 import utilities.Config
 
-def testJobs = ['test_frontend', 'test_backend', 'test_acceptance']
+def mainJobName = 'conjur_asset_ui'
+def repoUrl = 'git@github.com:conjurinc/conjur-asset-ui.git'
 
-def mainJob = job('conjur_asset_ui') {
+def testJobs = [
+  "${mainJobName}_test_frontend",
+  "${mainJobName}_test_backend",
+  "${mainJobName}_test_acceptance"
+]
 
+def mainJob = job(mainJobName) {
+  downstreamParameterized {
+    trigger(testJobs.join(',')) {
+      condition('SUCCESS')
+      parameters {
+        currentBuild()
+        gitRevision()
+      }
+    }
+  }
 }
-Config.addGitRepo(mainJob, 'git@github.com:conjurinc/conjur-asset-ui.git')
+Config.addGitRepo(mainJob, repoUrl)
 Config.applyCommonConfig(mainJob)
 
 testJobs.each { testJob ->
-  def j = job("conjur_asset_ui_${testJob}") {
+  def j = job(testJob) {
 
   }
-  Config.addGitRepo(j, 'git@github.com:conjurinc/conjur-asset-ui.git', false)
+  Config.addGitRepo(j, repoUrl, false)
   Config.applyCommonConfig(j)
 }
