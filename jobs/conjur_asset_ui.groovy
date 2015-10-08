@@ -13,6 +13,18 @@ def testJobs = [
 def testJobNames = ['name'].collect{testJobs[it]}[0].join(',')
 
 def mainJob = job(mainJobName) {
+  description('''
+    Starter job for the
+    <a href="/view/UI%20Pipeline/">
+      UI pipeline
+    </a>
+
+    <hr>
+    <strong>Promotion</strong>
+    <ul>
+      <li>TODO</li>
+    </ul>
+  '''.stripIndent())
   concurrentBuild()
 
   steps {
@@ -36,6 +48,7 @@ Config.applyCommonConfig(mainJob)
 
 testJobs.each { testJob ->
   def j = job(testJob['name']) {
+    description("Runs ${testJob['script']}")
     concurrentBuild()
 
     steps {
