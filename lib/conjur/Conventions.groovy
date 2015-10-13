@@ -1,3 +1,5 @@
+package conjur
+
 import javaposse.jobdsl.dsl.Job
 
 class Conventions {
