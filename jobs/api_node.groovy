@@ -1,6 +1,6 @@
-import conjur
+import conjur.Conventions
 
-use(conjur.Conventions) {
+use(Conventions) {
   def job = job('api_node') {
     description('Test the Conjur Node.js client library')
 
