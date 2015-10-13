@@ -1,4 +1,4 @@
-import conjur.Conventions
+import lib.conjur.Conventions
 
 use(Conventions) {
   def job = job('api_node') {
