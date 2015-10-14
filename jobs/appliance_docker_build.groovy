@@ -120,7 +120,7 @@ use(conjur.Conventions) {
   job.setBuildName([
     '#${BUILD_NUMBER} ${GIT_BRANCH}: ',
     applianceVersion,
-    'c-${BUILD_NUMBER}',
+    '-c${BUILD_NUMBER}',
     ', services: ${ENV,var="SERVICE_BRANCH"}',
     ', evoke: ${ENV,var="EVOKE_BRANCH"}'
   ].join())
