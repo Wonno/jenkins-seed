@@ -105,7 +105,7 @@ use(conjur.Conventions) {
             downstreamParameterized {
               trigger('appliance-docker-ami') {
                 parameters {
-                  predefinedProp('APPLIANCE_IMAGE_TAG', "${applianceVersion}-\$PROMOTED_NUMBER")
+                  predefinedProp('APPLIANCE_IMAGE_TAG', "${applianceVersion}-c\$PROMOTED_NUMBER")
                 }
               }
             }
