@@ -16,4 +16,5 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
+  job.setBuildName('#${BUILD_NUMBER} ${ENV,var="APP_NAME"}')
 }
