@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('api_node') {
+  def job = job('api-node') {
     description('Test the Conjur Node.js client library')
 
     steps {

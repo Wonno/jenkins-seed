@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = mavenJob('api_java') {
+  def job = mavenJob('api-java') {
     description('Test the Conjur Java client library')
 
     preBuildSteps {
