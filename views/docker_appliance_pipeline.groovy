@@ -9,6 +9,6 @@ deliveryPipelineView('Docker Appliance Pipeline') {
   showTotalBuildTime()
 
   pipelines {
-    component('Docker Appliance Pipeline', 'appliance_docker_build')
+    component('Docker Appliance Pipeline', 'appliance-docker-build')
   }
 }
