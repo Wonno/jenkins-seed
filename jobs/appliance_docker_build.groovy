@@ -122,6 +122,6 @@ use(conjur.Conventions) {
     applianceVersion,
     '-${BUILD_NUMBER}',
     ', services: ${ENV,var="SERVICE_BRANCH"}',
-    ', evoke: {ENV,var="EVOKE_BRANCH"}'
+    ', evoke: ${ENV,var="EVOKE_BRANCH"}'
   ].join())
 }
