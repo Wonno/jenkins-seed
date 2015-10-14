@@ -121,6 +121,7 @@ use(conjur.Conventions) {
     '#${BUILD_NUMBER} ${GIT_BRANCH}: ',
     applianceVersion,
     '-${BUILD_NUMBER}',
-    ', services: ${ENV,var="SERVICE_BRANCH"}'
+    ', services: ${ENV,var="SERVICE_BRANCH"}',
+    ', evoke: {ENV,var="EVOKE_BRANCH"}'
   ].join())
 }
