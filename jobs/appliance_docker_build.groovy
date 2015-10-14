@@ -83,7 +83,7 @@ use(conjur.Conventions) {
             currentBuild()
             predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
             predefinedProp('IMAGE_TAG_CURRENT', '$BUILD_TAG')
-            predefinedProp('IMAGE_TAG_NEW', "${applianceVersion}-\$BUILD_NUMBER")
+            predefinedProp('IMAGE_TAG_NEW', "${applianceVersion}-c\$BUILD_NUMBER")
           }
         }
       }
