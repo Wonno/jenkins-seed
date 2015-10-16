@@ -1,5 +1,7 @@
 use(conjur.Conventions) {
   def job = job('zendesk_report') {
+    description('Emails a Zendesk status report at 5am ET every day')
+
     triggers {
         cron('00 9 * * *')
     }
