@@ -8,6 +8,8 @@ Jobs are written as Groovy files and placed in the `jobs` folder.
 To make it easier to write jobs use the conventions defined in `lib/conjur/Conventions.groovy`.
 Browse the other jobs to see how the conventions are applied.
 
+Use the [style guide](STYLEGUIDE.md) when writing DSL jobs.
+
 The Jenkins job [_dsl_seed](https://jenkins.conjur.net/job/_dsl_seed) will run whenever this repo is updated.
 
 Use the [_dsl_seed_sandbox](https://jenkins.conjur.net/job/_dsl_seed_sandbox) job as a
