@@ -42,7 +42,7 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Push to DockerHub conjurinc/conjur-ui")
+          name("Push to DockerHub prod")
           icon("star-gold")
           conditions {
             manual('')
