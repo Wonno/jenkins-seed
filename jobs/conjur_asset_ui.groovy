@@ -38,6 +38,26 @@ use(conjur.Conventions) {
         }
       }
     }
+
+    properties {
+      promotions {
+        promotion {
+          name("Push to DockerHub: conjurinc/conjur-ui")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            downstreamParameterized {
+              trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+                predefinedProp('DOCKER_IMAGE', 'conjurinc/conjur-ui')
+                predefinedProp('DOCKER_TAG', '$PROMOTED_NUMBER')
+              }
+            }
+          }
+        }
+      }
+    }
   }
   mainJob.applyCommonConfig()
   mainJob.addGitRepo(repoUrl)
