@@ -18,7 +18,7 @@ use(conjur.Conventions) {
       <hr>
       <strong>Promotion</strong>
       <ul>
-        <li>TODO</li>
+        <li>Manually promote to DockerHub with "Push to DockerHub prod" promotion</li>
       </ul>
     '''.stripIndent())
     concurrentBuild()
