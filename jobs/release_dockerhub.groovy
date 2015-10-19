@@ -7,6 +7,10 @@ use(conjur.Conventions) {
       stringParam('DOCKER_TAG', '', 'The tag to apply to the image.')
     }
 
+    environmentVariables {
+      env('RELEASE_SLAVE', 'release-slave.itci.conjur.net')
+    }
+
     steps {
       shell('''
         env LOCAL_REGISTRY=$CONJUR_DOCKER_REGISTRY LOCAL_REGISTRY_USER=conjurinc \
