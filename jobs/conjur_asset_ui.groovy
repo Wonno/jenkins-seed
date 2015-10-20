@@ -18,7 +18,15 @@ use(conjur.Conventions) {
       <hr>
       <strong>Promotion</strong>
       <ul>
-        <li>Manually promote to DockerHub with "Push to DockerHub prod" promotion</li>
+        <li>
+          When tests pass, image is automatically pushed to DockerHub
+          <a href="https://hub.docker.com/r/conjurinc/conjur-ui-dev/">conjur-ui-dev</a>.
+        </li>
+        <li>
+          Manually push to DockerHub
+          <a href="https://hub.docker.com/r/conjurinc/conjur-ui/">conjur-ui</a>
+          with "Push to DockerHub prod" promotion
+        </li>
       </ul>
     '''.stripIndent())
     concurrentBuild()
