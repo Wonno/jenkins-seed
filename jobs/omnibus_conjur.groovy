@@ -77,7 +77,15 @@ use(conjur.Conventions) {
   }
   osxJob.applyCommonConfig()
   osxJob.with {
+    scm {
+      git {
+        remote {
+          url('git@github.com:conjurinc/omnibus-conjur.git')
+          credentials('jenkins (macstadium)')
+        }
+        branch('$BRANCH')
+      }
+    }
     label('osx && slave')
   }
-  osxJob.addGitRepo('git@github.com:conjurinc/omnibus-conjur.git', false)
 }
