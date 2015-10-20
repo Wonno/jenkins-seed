@@ -76,5 +76,8 @@ use(conjur.Conventions) {
     }
   }
   osxJob.applyCommonConfig()
+  osxJob.with {
+    label('osx && slave')
+  }
   osxJob.addGitRepo('git@github.com:conjurinc/omnibus-conjur.git', false)
 }
