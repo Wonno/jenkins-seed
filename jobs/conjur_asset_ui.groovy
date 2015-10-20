@@ -58,6 +58,10 @@ use(conjur.Conventions) {
       }
     }
 
+    publishers {
+      archiveArtifacts('env.properties')
+    }
+
     properties {
       promotions {
         promotion {
