@@ -51,8 +51,9 @@ use(conjur.Conventions) {
           parameters {
             propertiesFile('env.properties')
             predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-            predefinedProp('DOCKER_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+            predefinedProp('DOCKER_LOCAL_TAG', '$BUILD_NUMBER')
             predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui-dev')
+            predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
           }
         }
       }
@@ -75,8 +76,9 @@ use(conjur.Conventions) {
               trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
                 propertiesFile('env.properties')
                 predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_TAG', '$APP_VERSION')
+                predefinedProp('DOCKER_LOCAL_TAG', '$BUILD_NUMBER')
                 predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui')
+                predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION')
               }
             }
           }
