@@ -24,6 +24,10 @@ use(conjur.Conventions) {
     concurrentBuild()
 
     steps {
+      shell('echo "APP_VERSION:$(cat app/package.json | jsonfield version)" > env.properties')
+      environmentVariables {
+        propertiesFile('env.properties')
+      }
       downstreamParameterized {
         trigger(testJobNames) {
           block {
@@ -50,8 +54,9 @@ use(conjur.Conventions) {
           actions {
             downstreamParameterized {
               trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+                propertiesFile('env.properties')
                 predefinedProp('DOCKER_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_TAG', '$PROMOTED_NUMBER')
+                predefinedProp('DOCKER_TAG', '$APP_VERSION')
               }
             }
           }
