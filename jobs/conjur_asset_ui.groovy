@@ -65,6 +65,7 @@ use(conjur.Conventions) {
           }
         }
       }
+      shell('cd deploy && ./deploy.sh $APP_VERSION')
     }
 
     publishers {
