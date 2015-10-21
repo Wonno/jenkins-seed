@@ -49,23 +49,31 @@ use(conjur.Conventions) {
           }
         }
       }
-      downstreamParameterized {
-        trigger('release_dockerhub') {
-          block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
-            unstable('UNSTABLE')
+      conditionalSteps {
+        condition {
+          stringsMatch('${ENV, var="GIT_BRANCH"}', 'origin/master', false)
+        }
+        runner('Run')
+        steps {
+          downstreamParameterized {
+            trigger('release_dockerhub') {
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                propertiesFile('env.properties')
+                predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
+                predefinedProp('DOCKER_LOCAL_TAG', '$BUILD_NUMBER')
+                predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui-dev')
+                predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+              }
+            }
           }
-          parameters {
-            propertiesFile('env.properties')
-            predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-            predefinedProp('DOCKER_LOCAL_TAG', '$BUILD_NUMBER')
-            predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui-dev')
-            predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
-          }
+          shell('cd deploy && ./deploy.sh $APP_VERSION-rc$BUILD_NUMBER')
         }
       }
-      shell('cd deploy && ./deploy.sh $APP_VERSION-rc$BUILD_NUMBER')
     }
 
     publishers {
