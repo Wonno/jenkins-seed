@@ -12,6 +12,7 @@ class Conventions {
       wrappers {
         preBuildCleanup()
         colorizeOutput()
+        timestamps()
         buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
       }
 
