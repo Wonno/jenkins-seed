@@ -32,7 +32,10 @@ use(conjur.Conventions) {
     concurrentBuild()
 
     steps {
-      shell('echo "APP_VERSION:$(cat app/package.json | jsonfield version)" > env.properties')
+      shell('''
+        echo "APP_VERSION:$(cat app/package.json | jsonfield version)" > env.properties
+        echo "BUILD_NUMBER:\$BUILD_NUMBER" >> env.properties
+      '''.stripIndent())
       environmentVariables {
         propertiesFile('env.properties')
       }
@@ -44,6 +47,7 @@ use(conjur.Conventions) {
             unstable('UNSTABLE')
           }
           parameters {
+            propertiesFile('env.properties')
             currentBuild()
             gitRevision()
           }
