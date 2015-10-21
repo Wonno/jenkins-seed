@@ -65,7 +65,7 @@ use(conjur.Conventions) {
           }
         }
       }
-      shell('cd deploy && ./deploy.sh $APP_VERSION')
+      shell('cd deploy && ./deploy.sh $APP_VERSION-rc$BUILD_NUMBER')
     }
 
     publishers {
