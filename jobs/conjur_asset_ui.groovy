@@ -129,7 +129,7 @@ use(conjur.Conventions) {
     j.applyCommonConfig()
   }
 
-  def pushJob = job("${mainJobName}_deploy") {
+  def deployJob = job("${mainJobName}_deploy") {
     description('Deploy the Conjur UI to Elastic Beanstack env')
 
     parameters {
@@ -140,7 +140,7 @@ use(conjur.Conventions) {
       shell('cd deploy && ./deploy.sh $IMAGE_TAG')
     }
   }
-  pushJob.applyCommonConfig()
-  pushJob.addGitRepo(repoUrl, false)
-  pushJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="IMAGE_TAG"}')
+  deployJob.applyCommonConfig()
+  deployJob.addGitRepo(repoUrl, false)
+  deployJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="IMAGE_TAG"}')
 }
