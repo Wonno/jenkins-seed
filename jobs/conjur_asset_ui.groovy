@@ -71,7 +71,17 @@ use(conjur.Conventions) {
               }
             }
           }
-          shell('cd deploy && ./deploy.sh $APP_VERSION-rc$BUILD_NUMBER')
+          trigger("${mainJobName}_deploy") {
+            block {
+              buildStepFailure('FAILURE')
+              failure('FAILURE')
+              unstable('UNSTABLE')
+            }
+            parameters {
+              propertiesFile('env.properties')
+              predefinedProp('IMAGE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+            }
+          }
         }
       }
     }
@@ -118,4 +128,19 @@ use(conjur.Conventions) {
     j.addGitRepo(repoUrl, false)
     j.applyCommonConfig()
   }
+
+  def pushJob = job("${mainJobName}_deploy") {
+    description('Deploy the Conjur UI to Elastic Beanstack env')
+
+    parameters {
+      stringParam('IMAGE_TAG', '', 'Tag of the UI to deploy')
+    }
+
+    steps {
+      shell('cd deploy && ./deploy.sh $IMAGE_TAG')
+    }
+  }
+  pushJob.applyCommonConfig()
+  pushJob.addGitRepo(repoUrl, false)
+  pushJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="IMAGE_TAG"}')
 }
