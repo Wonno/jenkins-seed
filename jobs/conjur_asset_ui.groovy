@@ -71,15 +71,17 @@ use(conjur.Conventions) {
               }
             }
           }
-          trigger("${mainJobName}_deploy") {
-            block {
-              buildStepFailure('FAILURE')
-              failure('FAILURE')
-              unstable('UNSTABLE')
-            }
-            parameters {
-              propertiesFile('env.properties')
-              predefinedProp('IMAGE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+          downstreamParameterized {
+            trigger("${mainJobName}_deploy") {
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                propertiesFile('env.properties')
+                predefinedProp('IMAGE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+              }
             }
           }
         }
