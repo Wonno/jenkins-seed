@@ -85,6 +85,8 @@ use(conjur.Conventions) {
               parameters {
                 propertiesFile('env.properties')
                 predefinedProp('IMAGE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+                currentBuild()
+                gitRevision()
               }
             }
           }
