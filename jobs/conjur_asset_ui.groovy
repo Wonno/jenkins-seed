@@ -19,8 +19,10 @@ use(conjur.Conventions) {
       <strong>Promotion</strong>
       <ul>
         <li>
-          When tests pass, image is automatically pushed to DockerHub
-          <a href="https://hub.docker.com/r/conjurinc/conjur-ui-dev/">conjur-ui-dev</a>.
+          When tests pass on master, the image is automatically pushed to DockerHub
+          <a href="https://hub.docker.com/r/conjurinc/conjur-ui-dev/">conjur-ui-dev</a>
+          and deployed to
+          <a href="https://conjur-ui.itci.conjur.net">https://conjur-ui.itci.conjur.net</a>.
         </li>
         <li>
           Manually push to DockerHub
