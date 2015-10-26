@@ -5,10 +5,6 @@ use(conjur.Conventions) {
     steps {
       shell('./jenkins.sh')
     }
-
-    publishers {
-      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
-    }
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurdemos/enterprise-example.git')
