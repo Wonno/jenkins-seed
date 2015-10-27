@@ -81,9 +81,8 @@ use(conjur.Conventions) {
       git {
         remote {
           url('git@github.com:conjurinc/omnibus-conjur.git')
-          credentials('jenkins (macstadium)')
+          credentials('macstadium')
         }
-        branch('$BRANCH')
       }
     }
     label('osx && slave')

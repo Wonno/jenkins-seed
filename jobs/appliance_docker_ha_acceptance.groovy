@@ -26,6 +26,11 @@ use(conjur.Conventions) {
         ./ci/bin/ha-acceptance -l --log-level debug "$fixtures_id"
       '''.stripIndent())
     }
+
+    publishers {
+      archiveJunit('ci/output/report/ha-acceptance/*.xml')
+      archiveArtifacts('ci/output/**')
+    }
   }
 
   job.addGitRepo('git@github.com:conjurinc/appliance.git', false)
