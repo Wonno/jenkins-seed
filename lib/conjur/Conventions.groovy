@@ -69,7 +69,8 @@ class Conventions {
             artifactoryName('-1280243840@1442969665256')
             artifactoryUrl('https://conjurinc.artifactoryonline.com/conjurinc')
             deployReleaseRepository {
-              keyFromText(targetRepo)
+              keyFromSelect(targetRepo)
+              dynamicMode(false)
             }
           }
           deployPattern(artifactRegex)
