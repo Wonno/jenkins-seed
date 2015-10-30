@@ -59,4 +59,27 @@ class Conventions {
       }
     }
   }
+
+  // Publish build artifacts to Artifactory
+  static void publishToArtifactory(Job job, String targetRepo, String artifactRegex, String deploymentProperties) {
+    job.with {
+      configure { project ->
+        project / buildWrappers << 'org.jfrog.hudson.generic.ArtifactoryGenericConfigurator' {
+          details {
+            artifactoryName('-1280243840@1442969665256')
+            artifactoryUrl('https://conjurinc.artifactoryonline.com/conjurinc')
+            deployReleaseRepository {
+              keyFromText(targetRepo)
+            }
+          }
+          deployPattern(artifactRegex)
+          matrixParams(deploymentProperties)
+          deployBuildInfo(true)
+          includeEnvVars(false)
+          discardOldBuilds(false)
+          discardBuildArtifacts(false)
+        }
+      }
+    }
+  }
 }
