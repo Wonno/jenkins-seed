@@ -9,7 +9,12 @@ use(conjur.Conventions) {
     '''.stripIndent())
 
     steps {
-      shell('./jenkins.sh')
+      shell('''
+        ./jenkins.sh
+
+        # Remove these, no longer needed after tests have run
+        rm -f conjur-authn-ldap-appliance_latest_amd64.deb
+      '''.stripIndent())
     }
 
     publishers {
@@ -17,7 +22,10 @@ use(conjur.Conventions) {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
     }
   }
-
-  job.addGitRepo('git@github.com:conjurinc/authn-ldap.git')
   job.applyCommonConfig()
+  job.addGitRepo('git@github.com:conjurinc/authn-ldap.git')
+  job.publishToArtifactory(
+    'debian-local', '*.deb',
+    'deb.distribution=trusty;deb.component=main;deb.architecture=amd64'
+  )
 }
