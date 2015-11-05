@@ -1,4 +1,4 @@
-def applianceVersion = '4.5.0'
+def applianceVersion = '4.5.1'
 
 use(conjur.Conventions) {
   def job = job('appliance-docker-build') {
@@ -23,34 +23,11 @@ use(conjur.Conventions) {
     '''.stripIndent())
     concurrentBuild()
 
-    parameters {
-      stringParam('SERVICE_BRANCH', 'integration', 'Branch of core services to pull in.')
-      stringParam('EVOKE_BRANCH', 'master', 'Branch of evoke to pull in.')
-    }
-
     wrappers {
       rvm('2.1.5@appliance-docker-build')
     }
 
     steps {
-      shell('''
-        cat << PARAMS > roles/build-parameters.json
-          {
-            "name": "build-parameters",
-            "chef_type": "role",
-            "json_class": "Chef::Role",
-            "override_attributes": {
-              "conjur": {
-                "branch": \"${SERVICE_BRANCH}\"
-              },
-              "evoke": {
-                "branch": \"${EVOKE_BRANCH}\"
-              }
-            }
-          }
-        PARAMS
-      '''.stripIndent())
-
       shell('''
         #!/bin/bash -e
         bundle install
@@ -120,8 +97,6 @@ use(conjur.Conventions) {
   job.setBuildName([
     '#${BUILD_NUMBER} ${GIT_BRANCH}: ',
     applianceVersion,
-    '-c${BUILD_NUMBER}',
-    ', services: ${ENV,var="SERVICE_BRANCH"}',
-    ', evoke: ${ENV,var="EVOKE_BRANCH"}'
+    '-c${BUILD_NUMBER}'
   ].join())
 }
