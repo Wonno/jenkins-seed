@@ -8,6 +8,7 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('report.xml')
+      archiveArtifacts('report.html')
     }
   }
   job.applyCommonConfig()
