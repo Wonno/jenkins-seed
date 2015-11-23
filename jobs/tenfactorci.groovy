@@ -16,5 +16,5 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
-  job.addGitRepo('git@github.com:conjurinc/10factorci.git', true, '*/master')
+  job.addGitRepo('git@github.com:conjurinc/tenfactorci.git', true, '*/master')
 }
