@@ -2,7 +2,7 @@ use(conjur.Conventions) {
   def job = job('tenfactorci') {
     steps {
       downstreamParameterized {
-        trigger('release_heroku') {
+        trigger('release-heroku') {
           block {
             buildStepFailure('FAILURE')
             failure('FAILURE')
