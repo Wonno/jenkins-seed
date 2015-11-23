@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('10factorci') {
+  def job = job('tenfactorci') {
     steps {
       downstreamParameterized {
         trigger('release_heroku') {
