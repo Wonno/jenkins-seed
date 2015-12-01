@@ -1,45 +1,21 @@
-def repoUrl = 'git@github.com:conjurinc/logshipper.git'
-def projectName = 'logshipper'
-def platforms = ['el6', 'el7', 'precise', 'trusty']
-
-def platformJobs = platforms.collect{"${projectName}_${it}"}
-
 use(conjur.Conventions) {
-  def mainJob = job(projectName) {
-    description('Builds and tests logshipper packages'.stripIndent())
+  def job = matrixJob('logshipper') {
+    description('Build and test logshipper for several platforms')
+
+    axes {
+      label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
+      text('PLATFORM', 'el6', 'el7', 'precise', 'trusty')
+    }
+
     steps {
-      downstreamParameterized {
-        trigger(platformJobs.join(',')) {
-          block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
-            unstable('UNSTABLE')
-          }
-          parameters {
-            currentBuild()
-            gitRevision()
-          }
-        }
-      }
+      shell('./jenkins.sh ${PLATFORM}')
+    }
+
+    publishers {
+      archiveArtifacts('pkg/*')
+      archiveJunit('reports/*/*')
     }
   }
-
-  mainJob.applyCommonConfig()
-  mainJob.addGitRepo(repoUrl)
-
-  platforms.each { platform ->
-    def jobName = "${projectName}_${platform}"
-    def job = job(jobName) {
-      description("Builds and tests logshipper packages for ${platform}".stripIndent())
-      steps {
-        shell("./jenkins.sh ${platform}")
-      }
-      publishers {
-        archiveJunit('reports/*/*')
-        archiveArtifacts('pkg/*')
-      }
-    }
-    job.applyCommonConfig()
-    job.addGitRepo(repoUrl, false)
-  }
+  job.applyCommonConfig()
+  job.addGitRepo('git@github.com:conjurinc/logshipper.git')
 }
