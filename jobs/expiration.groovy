@@ -11,9 +11,6 @@ use(conjur.Conventions) {
     steps {
       shell('''
         ./jenkins.sh
-
-        # Remove these, no longer needed after tests have run
-        rm -f conjur-core-expire-appliance_latest_amd64.deb
       '''.stripIndent())
     }
 
