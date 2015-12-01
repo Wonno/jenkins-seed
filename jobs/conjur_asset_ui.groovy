@@ -22,7 +22,7 @@ use(conjur.Conventions) {
           When tests pass on master, the image is automatically pushed to DockerHub
           <a href="https://hub.docker.com/r/conjurinc/conjur-ui-dev/">conjur-ui-dev</a>
           and deployed to
-          <a href="https://conjur-ui.itci.conjur.net">https://conjur-ui.itci.conjur.net</a>.
+          <a href="https://conjur-ui.itci.conjur.net/ui">https://conjur-ui.itci.conjur.net/ui</a>.
         </li>
         <li>
           Manually push to DockerHub
