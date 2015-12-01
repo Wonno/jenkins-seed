@@ -53,6 +53,7 @@ use(conjur.Conventions) {
     steps {
       downstreamParameterized {
         trigger(testSuites.join(',')) {
+          # note these two need to go into trigger
           block {
             buildStepFailure('FAILURE')
             failure('FAILURE')
@@ -71,7 +72,7 @@ use(conjur.Conventions) {
   job.applyCommonConfig()
   job.addGitRepo(projectRepo)
   
-  testSuites.each { -> suite
+  testSuites.each { suite ->
     def jobName = "${projectName}_test_${suite}"
     def job = job(jobName) {
       ... // description, wrappers, etc
