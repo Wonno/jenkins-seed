@@ -13,11 +13,7 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('''
-        bundle update
-        bundle exec rake jenkins
-        bundle exec rake build
-      '''.stripIndent())
+      shell('./jenkins.sh')
     }
 
     publishers {
