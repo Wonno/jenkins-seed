@@ -1,4 +1,4 @@
-def applianceVersion = '4.5.1'
+def applianceVersion = '4.6.0'
 
 use(conjur.Conventions) {
   def job = job('appliance-docker-build') {
