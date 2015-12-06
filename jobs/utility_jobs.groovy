@@ -21,6 +21,10 @@ job("${folderName}/cleanup_docker") {
 
   steps {
     shell('''
+    df -h
+
+    echo '----------'
+
     # Remove exited containers
     docker rm -f -v $(docker ps -a -q -f status=exited) || true
 
@@ -29,6 +33,10 @@ job("${folderName}/cleanup_docker") {
 
     # Remove old conjur-ui images, they're not cleaned up well by their jobs
     docker rmi -f $(docker images | grep -E 'conjurinc.*ui.*[23456] weeks ago' | tr -s ' ' | cut -d' ' -f3) || true
+
+    echo '----------'
+
+    df -h
     '''.stripIndent())
   }
 }
