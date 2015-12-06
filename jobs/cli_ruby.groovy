@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('cli-ruby') {
+  def job = matrixJob('cli-ruby') {
     description('''
       Builds the ruby conjur CLI.
       <hr>
@@ -8,12 +8,13 @@ use(conjur.Conventions) {
       <img src="http://i.imgur.com/KON4hh6.png"/>
     '''.stripIndent())
 
-    wrappers {
-      rvm('1.9.3@conjur-cli')
+    axes {
+      label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
+      text('RUBY', '1.9', '2.0', '2.1', '2.2')
     }
 
     steps {
-      shell('./jenkins.sh')
+      shell('./jenkins.sh $RUBY')
     }
 
     publishers {
