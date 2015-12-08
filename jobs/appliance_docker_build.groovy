@@ -21,7 +21,6 @@ use(conjur.Conventions) {
           </li>
       </ul>
     '''.stripIndent())
-    concurrentBuild()
 
     wrappers {
       rvm('2.1.5@appliance-docker-build')

@@ -1,7 +1,6 @@
 use(conjur.Conventions) {
   def job = job('appliance-docker-ami') {
     description('Build an AMI that contains Docker Conjur')
-    concurrentBuild()
 
     parameters {
       stringParam('APPLIANCE_IMAGE', 'registry.tld/conjur-appliance', 'Appliance image id to test. Required.')

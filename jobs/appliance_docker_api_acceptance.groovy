@@ -1,7 +1,6 @@
 use(conjur.Conventions) {
   def job = job('appliance-docker-api-acceptance') {
     description('Run API acceptance tests on Docker Conjur')
-    concurrentBuild()
 
     parameters {
       stringParam('APPLIANCE_IMAGE', 'registry.tld/conjur-appliance', 'Appliance image id to test. Required.')
