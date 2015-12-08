@@ -134,6 +134,12 @@ use(conjur.Conventions) {
       steps {
         shell(testJob['script'])
       }
+      publishers {
+        cobertura('reports/*coverage.xml') {
+          failNoReports(true)
+        }
+        archiveJunit('reports/*report.xml') 
+      }
     }
     j.addGitRepo(repoUrl, false)
     j.applyCommonConfig()
