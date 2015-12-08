@@ -1,5 +1,3 @@
-def applianceVersion = '4.6.0'
-
 use(conjur.Conventions) {
   def job = job('appliance-docker-build') {
     description('''
@@ -27,12 +25,10 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('''
-        #!/bin/bash -e
-        bundle install
-        ./ci/bin/jenkins-docker-build $CONJUR_DOCKER_REGISTRY $BUILD_TAG
-      '''.stripIndent())
-
+      shell('./jenkins.sh')
+      environmentVariables {
+        propertiesFile('env.properties')
+      }
       downstreamParameterized {
         trigger('appliance-docker-api-acceptance, appliance-docker-ha-acceptance') {
           block {
@@ -43,7 +39,7 @@ use(conjur.Conventions) {
           parameters {
             currentBuild()
             gitRevision()
-            predefinedProp('APPLIANCE_IMAGE_TAG', '$BUILD_TAG')
+            propertiesFile('env.properties')
           }
         }
       }
@@ -57,9 +53,8 @@ use(conjur.Conventions) {
           }
           parameters {
             currentBuild()
+            propertiesFile('env.properties')
             predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
-            predefinedProp('IMAGE_TAG_CURRENT', '$BUILD_TAG')
-            predefinedProp('IMAGE_TAG_NEW', "${applianceVersion}-c\$BUILD_NUMBER")
           }
         }
       }
@@ -81,7 +76,7 @@ use(conjur.Conventions) {
             downstreamParameterized {
               trigger('appliance-docker-ami') {
                 parameters {
-                  predefinedProp('APPLIANCE_IMAGE_TAG', "${applianceVersion}-c\$PROMOTED_NUMBER")
+                  propertiesFile('env.properties')
                 }
               }
             }
@@ -93,9 +88,4 @@ use(conjur.Conventions) {
 
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/appliance.git')
-  job.setBuildName([
-    '#${BUILD_NUMBER} ${GIT_BRANCH}: ',
-    applianceVersion,
-    '-c${BUILD_NUMBER}'
-  ].join())
 }
