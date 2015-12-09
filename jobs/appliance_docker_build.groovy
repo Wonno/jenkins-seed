@@ -28,7 +28,9 @@ use(conjur.Conventions) {
       copyArtifacts('evoke') {
         includePatterns('conjur-evoke_latest_amd64.deb')
         targetDirectory('.')
-        buildSelector(144)
+        buildSelector() {
+          buildNumber(144)
+        }
       }
       shell('./jenkins.sh')
       environmentVariables {
