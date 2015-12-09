@@ -1,23 +1,16 @@
 use(conjur.Conventions) {
   def job = job('evoke') {
-    description('Test evoke, Conjur configuration and server management tool.')
-
-    wrappers {
-      rvm('2.0.0@evoke')
-    }
+    description('Build and test evoke, the configuration and server management tool.')
 
     steps {
-      shell('''
-        gem install -N bundler
-        bundle install
-        bundle exec rspec
-      '''.stripIndent())
+      shell('./jenkins.sh')
     }
-
+    
     publishers {
-      archiveJunit('spec-results.xml')
+      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
     }
   }
+  
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/evoke.git')
 }
