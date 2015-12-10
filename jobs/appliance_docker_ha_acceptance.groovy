@@ -18,11 +18,10 @@ use(conjur.Conventions) {
         bundle install
 
         bootstrap_id=$(./ci/bin/ha-bootstrap --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG)
-        fixtures_id=$(./ci/bin/ha-fixtures --log-level debug $bootstrap_id)
+        ./ci/bin/ha-fixtures --log-level debug $bootstrap_id
         echo "Bootstrap id: $bootstrap_id"
-        echo "Fixtures id:  $fixtures_id"
         rm -f ci/output/ha-acceptance/*
-        ./ci/bin/ha-acceptance -l --log-level debug "$fixtures_id"
+        ./ci/bin/ha-acceptance -l --log-level debug $bootstrap_id
       '''.stripIndent())
     }
 
