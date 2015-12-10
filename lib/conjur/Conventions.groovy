@@ -13,6 +13,9 @@ class Conventions {
         preBuildCleanup()
         colorizeOutput()
         timestamps()
+        timeout {
+            likelyStuck()
+        }
         buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
       }
 
