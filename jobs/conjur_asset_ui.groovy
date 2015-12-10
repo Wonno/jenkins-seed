@@ -136,7 +136,7 @@ use(conjur.Conventions) {
       }
       publishers {
         cobertura('reports/*coverage.xml') {
-          failNoReports(true)
+          failNoReports(false)
         }
         archiveJunit('reports/*report.xml') 
       }
