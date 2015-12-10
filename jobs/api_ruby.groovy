@@ -2,15 +2,8 @@ use(conjur.Conventions) {
   def job = job('api-ruby') {
     description('Test the Conjur Ruby client library')
 
-    wrappers {
-      rvm('1.9.3@conjur-api')
-    }
-
     steps {
-      shell('''
-        bundle update
-        bundle exec rake jenkins
-      '''.stripIndent())
+      shell('./jenkins.sh')
     }
 
     publishers {
