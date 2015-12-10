@@ -21,7 +21,7 @@ use(conjur.Conventions) {
         ./ci/bin/ha-fixtures --log-level debug $bootstrap_id
         echo "Bootstrap id: $bootstrap_id"
         rm -f ci/output/ha-acceptance/*
-        ./ci/bin/ha-acceptance -l --log-level debug $bootstrap_id
+        ./ci/bin/ha-acceptance -l --log-level debug $bootstrap_id || true
       '''.stripIndent())
     }
 
