@@ -29,7 +29,7 @@ use(conjur.Conventions) {
         includePatterns('conjur-evoke_latest_amd64.deb')
         targetDirectory('.')
         buildSelector() {
-          lastSuccessfulBuild()
+          latestSuccessful(true)
         }
       }
       shell('./jenkins.sh')
