@@ -24,8 +24,4 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/authn-ldap.git')
-  job.publishToArtifactory(
-    'debian-local', '*.deb',
-    'deb.distribution=trusty;deb.component=main;deb.architecture=amd64'
-  )
 }
