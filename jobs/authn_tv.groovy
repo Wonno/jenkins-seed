@@ -5,10 +5,6 @@ use(conjur.Conventions) {
     steps {
       shell('''
         ./jenkins.sh
-
-        # Remove these, no longer needed after tests have run
-        rm -f conjur-authn-tv-dev_latest_amd64.deb
-        rm -f conjur-authn-tv_latest_amd64.deb
       '''.stripIndent())
     }
 
@@ -19,8 +15,4 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/authn-tv.git')
-  job.publishToArtifactory(
-    'debian-local', '*.deb',
-    'deb.distribution=trusty;deb.component=main;deb.architecture=amd64'
-  )
 }
