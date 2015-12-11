@@ -134,13 +134,18 @@ use(conjur.Conventions) {
       steps {
         shell(testJob['script'])
       }
-      publishers {
-        cobertura('reports/*coverage.xml') {
-          failNoReports(false)
+      
+      if (testJob['name'] == "${mainJobName}_test_backend") {
+        publishers {
+          cobertura('reports/*coverage.xml') {
+            failNoReports(false)
+          }
+          
+          archiveJunit('reports/*report.xml') 
         }
-        archiveJunit('reports/*report.xml') 
       }
     }
+    
     j.addGitRepo(repoUrl, false)
     j.applyCommonConfig()
   }
