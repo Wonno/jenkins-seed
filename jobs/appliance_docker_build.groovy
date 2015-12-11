@@ -39,8 +39,8 @@ use(conjur.Conventions) {
       downstreamParameterized {
         trigger('appliance-docker-api-acceptance, appliance-docker-ha-acceptance') {
           block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
+            buildStepFailure('UNSTABLE')
+            failure('UNSTABLE')
             unstable('UNSTABLE')
           }
           parameters {
@@ -65,6 +65,7 @@ use(conjur.Conventions) {
           }
         }
       }
+      shell('./tag_and_push_stable.sh')
     }
 
     publishers {
