@@ -69,7 +69,10 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('ci/output/*')
+      archiveArtifacts {
+        pattern('ci/output/*')
+        pattern('TAG=*')
+      }
     }
 
     properties {
