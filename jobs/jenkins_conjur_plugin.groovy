@@ -7,8 +7,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('*.deb')
-      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+      archiveArtifacts('target/*.hpi')
     }
   }
   job.applyCommonConfig()
