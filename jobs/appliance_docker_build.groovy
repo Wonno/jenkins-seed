@@ -33,7 +33,7 @@ use(conjur.Conventions) {
         }
       }
       copyArtifacts('expiration') {
-        includePatterns('conjur-expiration_latest_amd64.deb')
+        includePatterns('conjur-expiration_*_amd64.deb')
         targetDirectory('.')
         buildSelector() {
           latestSuccessful(true)
