@@ -32,6 +32,13 @@ use(conjur.Conventions) {
           latestSuccessful(true)
         }
       }
+      copyArtifacts('expiration') {
+        includePatterns('conjur-expiration_latest_amd64.deb')
+        targetDirectory('.')
+        buildSelector() {
+          latestSuccessful(true)
+        }
+      }
       shell('./jenkins.sh')
       environmentVariables {
         propertiesFile('env.properties')
