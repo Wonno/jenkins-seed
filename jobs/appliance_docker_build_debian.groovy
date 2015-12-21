@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Builds the conjur_appliance debian wrapper package')
 
     steps {
-      shell('make clean package')
+      shell('make clean publish')
     }
 
     publishers {
