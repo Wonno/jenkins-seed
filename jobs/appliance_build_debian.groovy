@@ -1,6 +1,6 @@
 use(conjur.Conventions) {
-  def job = job('appliance-docker-build-debian') {
-    description('Builds the conjur_appliance debian wrapper package')
+  def job = job('appliance-build-debian') {
+    description('Builds the conjur-appliance debian wrapper package')
 
     steps {
       shell('make clean publish')
