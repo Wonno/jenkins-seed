@@ -9,6 +9,25 @@ use(conjur.Conventions) {
         publishers {
             archiveJunit('spec/reports/*.xml, features/reports/*.xml')
         }
+
+        properties {
+            promotions {
+                promotion {
+                    name("Release to Rubygems")
+                    icon("star-gold")
+                    conditions {
+                        manual('')
+                    }
+                    actions {
+                        downstreamParameterized {
+                            trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+                                predefinedProp("GEM_NAME","conjur-asset-dsl2")
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     job.applyCommonConfig()
