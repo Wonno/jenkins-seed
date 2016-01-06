@@ -12,7 +12,7 @@ use(conjur.Conventions) {
       postBuildScripts {
         steps {
           shell('''
-            if [ "\$GIT_BRANCH" != "origin/master" ]; then
+            if [ "\$GIT_BRANCH" == "origin/master" ]; then
               make publish
             fi
           '''.stripIndent())
