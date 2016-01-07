@@ -2,6 +2,10 @@ use(conjur.Conventions) {
   def job = job('rack-heartbeat') {
     description('conjur-rack-heartbeat - respond to OPTIONS / with 200 OK')
 
+    wrappers {
+      rvm('2.0.0@rack-heartbeat')
+    }
+    
     steps {
       shell('./jenkins.sh')
     }
