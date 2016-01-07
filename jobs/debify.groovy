@@ -2,6 +2,10 @@ use(conjur.Conventions) {
   def job = job('debify') {
     description('conjur-debify - build and test deb packages for the Conjur appliance')
 
+    wrappers {
+      rvm('2.0.0@debify')
+    }
+
     steps {
       shell('./jenkins.sh')
     }
