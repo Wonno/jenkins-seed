@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('conjur-debify - build and test deb packages for the Conjur appliance')
 
     steps {
-      shell('rake features')
+      shell('./jenkins.sh')
     }
 
     publishers {
