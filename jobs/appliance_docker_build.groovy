@@ -25,26 +25,6 @@ use(conjur.Conventions) {
     }
 
     steps {
-      downstreamParameterized {
-        trigger('appliance-build-debian') {
-          block {
-            buildStepFailure('UNSTABLE')
-            failure('UNSTABLE')
-            unstable('UNSTABLE')
-          }
-          parameters {
-            currentBuild()
-            gitRevision()
-          }
-        }
-      }
-      copyArtifacts('evoke') {
-        includePatterns('conjur-evoke_latest_amd64.deb')
-        targetDirectory('.')
-        buildSelector() {
-          latestSuccessful(true)
-        }
-      }
       copyArtifacts('expiration') {
         includePatterns('conjur-expiration_*_amd64.deb')
         targetDirectory('.')
