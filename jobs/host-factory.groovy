@@ -1,7 +1,11 @@
 use(conjur.Conventions) {
   def job = job('host-factory') {
-    description('Build and test the Conjur host factory service')
+    description('host-factory - generate host identities for servers and VMs')
 
+    wrappers {
+      rvm('2.0.0@host-factory')
+    }
+    
     steps {
       shell('./jenkins.sh')
     }
