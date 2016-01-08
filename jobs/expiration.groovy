@@ -20,7 +20,7 @@ use(conjur.Conventions) {
 
     publishers {
       archiveArtifacts('*.deb')
-      archiveJunit('ci/output/report/*.xml')
+      archiveJunit('features/report/*.xml')
     }
   }
   job.applyCommonConfig()
