@@ -8,6 +8,10 @@ use(conjur.Conventions) {
       Builds Debian packages
     '''.stripIndent())
 
+    wrappers {
+      rvm('2.0.0@expiration')
+    }
+
     steps {
       shell('''
         ./jenkins.sh
