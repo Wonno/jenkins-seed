@@ -2,10 +2,6 @@ use(conjur.Conventions) {
   def job = job('authn-tv') {
     description('Build token-vending authn')
 
-    wrappers {
-      rvm('2.0.0@authn-tv')
-    }
-
     steps {
       shell('''
         ./jenkins.sh
