@@ -13,9 +13,7 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('''
-        ./jenkins.sh
-      '''.stripIndent())
+      shell('./jenkins.sh')
     }
 
     publishers {
@@ -25,8 +23,4 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/expiration.git')
-  job.publishToArtifactory(
-    'debian-local', '*.deb',
-    'deb.distribution=trusty;deb.component=main;deb.architecture=amd64'
-  )
 }
