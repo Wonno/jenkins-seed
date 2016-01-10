@@ -9,16 +9,6 @@ use(conjur.Conventions) {
     publishers {
       archiveArtifacts('*.deb')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
-      postBuildScripts {
-        steps {
-          shell('''
-            if [ "\$GIT_BRANCH" == "origin/master" ]; then
-              make publish
-            fi
-          '''.stripIndent())
-        }
-        onlyIfBuildSucceeds()
-      }
     }
   }
 
