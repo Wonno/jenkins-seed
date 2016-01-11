@@ -72,19 +72,23 @@ class Conventions {
           }
         }
       }
-      steps {
-        downstreamParameterized {
-          trigger('release_debian') {
-            condition('SUCCESS')
-            block {
-              buildStepFailure('FAILURE')
-              failure('FAILURE')
-              unstable('UNSTABLE')
-            }
-            parameters {
-              predefinedProp('PROJECT_NAME', '$JOB_NAME')
-              predefinedProp('BUILD_NUMBER', '$BUILD_NUMBER')
-              predefinedProp('GIT_BRANCH', '$GIT_BRANCH')
+      publishers {
+        postBuildScripts {
+          onlyIfBuildSucceeds()
+          steps {
+            downstreamParameterized {
+              trigger('release_debian') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('PROJECT_NAME', '$JOB_NAME')
+                  predefinedProp('BUILD_NUMBER', '$BUILD_NUMBER')
+                  predefinedProp('GIT_BRANCH', '$GIT_BRANCH')
+                }
+              }
             }
           }
         }
