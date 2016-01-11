@@ -13,8 +13,9 @@ use(conjur.Conventions) {
         trigger('release_debian') {
           condition('SUCCESS')
           parameters {
-            currentBuild()
-            gitRevision()
+            predefinedProp('PROJECT_NAME', '$JOB_NAME')
+            predefinedProp('BUILD_NUMBER', '$BUILD_NUMBER')
+            predefinedProp('GIT_BRANCH', '$GIT_BRANCH')
           }
         }
       }
