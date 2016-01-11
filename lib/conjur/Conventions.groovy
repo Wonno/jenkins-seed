@@ -65,8 +65,8 @@ class Conventions {
 
   static void publishDebianOnSuccess(Job job) {
     job.with {
-      configure { project ->
-        project / properties << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+      configure {
+        it / 'properties' / 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
           projectNameList {
             string 'release_debian'
           }
