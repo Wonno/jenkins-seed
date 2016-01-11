@@ -63,6 +63,35 @@ class Conventions {
     }
   }
 
+  static void publishDebianOnSuccess(Job job) {
+    job.with {
+      configure { project ->
+        project / properties << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+          projectNameList {
+            string 'release_debian'
+          }
+        }
+      }
+      publishers {
+        downstreamParameterized {
+          trigger('release_debian') {
+            condition('SUCCESS')
+            block {
+              buildStepFailure('FAILURE')
+              failure('FAILURE')
+              unstable('UNSTABLE')
+            }
+            parameters {
+              predefinedProp('PROJECT_NAME', '$JOB_NAME')
+              predefinedProp('BUILD_NUMBER', '$BUILD_NUMBER')
+              predefinedProp('GIT_BRANCH', '$GIT_BRANCH')
+            }
+          }
+        }
+      }
+    }
+  }
+
   // Publish build artifacts to Artifactory
   static void publishToArtifactory(Job job, String targetRepo, String artifactRegex, String deploymentProperties) {
     job.with {
