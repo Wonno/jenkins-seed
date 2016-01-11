@@ -72,7 +72,7 @@ class Conventions {
           }
         }
       }
-      publishers {
+      steps {
         downstreamParameterized {
           trigger('release_debian') {
             condition('SUCCESS')
