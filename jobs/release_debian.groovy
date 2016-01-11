@@ -6,6 +6,7 @@ use(conjur.Conventions) {
       stringParam('PROJECT_NAME', '', 'Jenkins job to grab the artifact from')
       stringParam('BUILD_NUMBER', 'lastSuccessfulBuild', 'Build to grab the artifact from')
       stringParam('ARTIFACT_PATTERN', '*.deb', 'Pattern used to select artifacts')
+      stringParam('GIT_BRANCH', '', 'Branch upstream artifact was built on')
     }
 
     steps {
