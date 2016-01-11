@@ -9,6 +9,15 @@ use(conjur.Conventions) {
     publishers {
       archiveArtifacts('*.deb')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+      downstreamParameterized {
+        trigger('release_debian') {
+          condition('SUCCESS')
+          parameters {
+            currentBuild()
+            gitRevision()
+          }
+        }
+      }
     }
   }
 

@@ -11,6 +11,7 @@ use(conjur.Conventions) {
     steps {
       copyArtifacts('$PROJECT_NAME') {
         includePatterns('$ARTIFACT_PATTERN')
+        flatten()
         buildSelector {
           buildNumber('$BUILD_NUMBER')
         }
