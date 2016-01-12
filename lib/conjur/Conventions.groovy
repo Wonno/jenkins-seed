@@ -86,7 +86,7 @@ class Conventions {
             fi
 
             rm -f *latest*.deb
-            summon debify publish -c $COMPONENT $ARTIFACT_PATTERN
+            summon debify publish -c $COMPONENT *.deb
             '''.stripIndent())
           }
         }
