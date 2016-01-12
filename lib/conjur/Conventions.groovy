@@ -10,7 +10,6 @@ class Conventions {
       logRotator(-1, 30, -1, 30)
 
       wrappers {
-        preBuildCleanup()
         colorizeOutput()
         timestamps()
         timeout {
@@ -43,6 +42,7 @@ class Conventions {
             url(repoUrl)
           }
           branch('$BRANCH')
+          clean()
         }
       }
 
