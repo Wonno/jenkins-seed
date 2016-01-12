@@ -26,6 +26,12 @@ class Conventions {
           notifyBackToNormal()
         }
       }
+
+      properties {
+        rebuild {
+          autoRebuild()
+        }
+      }
     }
   }
 
