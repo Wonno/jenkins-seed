@@ -14,5 +14,5 @@ use(conjur.Conventions) {
 
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/evoke.git')
-  //job.publishDebianOnSuccess()
+  job.publishDebianOnSuccess()
 }

@@ -65,31 +65,29 @@ class Conventions {
 
   static void publishDebianOnSuccess(Job job) {
     job.with {
-      configure {
-        it / 'properties' / 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
-          projectNameList {
-            string 'release_debian'
-          }
-        }
-      }
       publishers {
         postBuildScripts {
           onlyIfBuildSucceeds()
           steps {
-            downstreamParameterized {
-              trigger('release_debian') {
-                block {
-                  buildStepFailure('FAILURE')
-                  failure('FAILURE')
-                  unstable('UNSTABLE')
-                }
-                parameters {
-                  predefinedProp('PROJECT_NAME', '$JOB_NAME')
-                  predefinedProp('BUILD_NUMBER', '$BUILD_NUMBER')
-                  predefinedProp('GIT_BRANCH', '$GIT_BRANCH')
-                }
-              }
-            }
+            shell('''
+            cat << YML > secrets.yml
+            ARTIFACTORY_USERNAME: !var artifactory/users/jenkins/username
+            ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
+            YML
+            '''.stripIndent())
+
+            shell('''
+            #!/bin/bash -e
+
+            COMPONENT="testing"
+
+            if [ "$GIT_BRANCH" == "origin/master" ]; then
+              COMPONENT="stable"
+            fi
+
+            rm -f *latest*.deb
+            summon debify publish -c $COMPONENT $ARTIFACT_PATTERN
+            '''.stripIndent())
           }
         }
       }
