@@ -20,6 +20,12 @@ use(conjur.Conventions) {
       </ul>
     '''.stripIndent())
 
+    concurrentBuild()
+    throttleConcurrentBuilds {
+      maxPerNode(1)
+      maxTotal(2)
+    }
+
     wrappers {
       rvm('2.1.5@appliance-docker-build')
     }
