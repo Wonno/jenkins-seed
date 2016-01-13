@@ -28,8 +28,8 @@ use(conjur.Conventions) {
 
     wrappers {
       rvm('2.1.5@appliance-docker-build')
+      preBuildCleanup()
     }
-
     steps {
       shell('./jenkins.sh')
       environmentVariables {
