@@ -4,7 +4,7 @@ use(conjur.Conventions) {
 
     axes {
       label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
-      text('PLATFORM', 'el6', 'el7', 'precise', 'trusty')
+      text('PLATFORM', 'el6', 'el7', 'precise', 'trusty', 'debian')
     }
 
     steps {
