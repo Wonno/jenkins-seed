@@ -8,6 +8,12 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+      postBuildScripts {
+          steps {
+              shell('./publish.sh')
+          }
+          onlyIfBuildSucceeds(true)
+      }
     }
   }
   job.applyCommonConfig()
