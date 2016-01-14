@@ -9,8 +9,13 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('*.deb')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+      postBuildScripts {
+          steps {
+              shell('./publish.sh')
+          }
+          onlyIfBuildSucceeds(true)
+      }
     }
   }
   job.applyCommonConfig()
