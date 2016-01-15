@@ -10,6 +10,10 @@ class Conventions {
       logRotator(-1, 30, -1, 30)
 
       wrappers {
+        // note: necessary because of broken permissions from the
+        // docker build process; remove after fixing that
+        preBuildCleanup()
+
         colorizeOutput()
         timestamps()
         timeout {
