@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('expiration') {
+  def job = job('pubkeys') {
     description('''
       pubkeys - Manage and distribute public keys
     '''.stripIndent())
