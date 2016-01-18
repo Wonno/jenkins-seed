@@ -15,6 +15,12 @@ use(conjur.Conventions) {
           csvFile('performance.csv')
         }
       }
+      postBuildScripts {
+          steps {
+              shell('./publish.sh')
+          }
+          onlyIfBuildSucceeds(true)
+      }
     }
   }
   job.applyCommonConfig()
