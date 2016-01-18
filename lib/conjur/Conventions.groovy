@@ -32,7 +32,7 @@ class CommonConfigOptionsBuilder {
 class Conventions {
   // Applies common configuration to a job
   static void applyCommonConfig(Job job, Closure options = null) {
-    opts = new CommonConfigOptionsBuilder().make(options)
+    def opts = new CommonConfigOptionsBuilder().make(options)
 
     job.with {
       label('docker && slave')
