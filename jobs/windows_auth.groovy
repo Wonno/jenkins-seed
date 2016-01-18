@@ -22,6 +22,10 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig()
+
+  job.applyCommonConfig {
+    noPreBuildCleanup()
+  }
+
   job.addGitRepo(repoUrl, true)
 }
