@@ -15,11 +15,6 @@ use(conjur.Conventions) {
     }
     publishers {
       archiveArtifacts('bin/*')
-      archiveXUnit {
-        cTest {
-          pattern('Testing/**/*.xml')
-        }
-      }
     }
   }
 
