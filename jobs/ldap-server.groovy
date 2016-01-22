@@ -7,7 +7,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveJunit('reports/*.xml)
+      archiveJunit('reports/*.xml')
       plotBuildData {
         plot('Performance', 'performance.csv') {
           style('line')
