@@ -11,7 +11,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+      archiveJunit('spec/reports/*.xml, features/reports/*.xml, acceptance-features/reports/*.xml')
       postBuildScripts {
           steps {
               shell('./publish.sh')
