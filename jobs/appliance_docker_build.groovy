@@ -59,6 +59,7 @@ use(conjur.Conventions) {
           }
           parameters {
             currentBuild()
+            sameNode()
             propertiesFile('env.properties')
             predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
           }
