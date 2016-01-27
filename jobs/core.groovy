@@ -1,21 +1,7 @@
 use(conjur.Conventions) {
   def job = job('core') {
-    description('Test the Conjur core ...core service')
-
-    steps {
-      shell('./jenkins.sh')
-    }
-
-    publishers {
-      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
-    }
+    using('templates/conjur_service')
+    description('Build and test the Conjur core ...core service')
   }
-  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/core.git')
 }

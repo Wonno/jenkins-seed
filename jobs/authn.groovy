@@ -1,28 +1,7 @@
 use(conjur.Conventions) {
   def job = job('authn') {
+    using('templates/conjur_service')
     description('Test the Conjur authn core service')
-
-    steps {
-      shell('./jenkins.sh')
-    }
-
-    publishers {
-      archiveJunit('spec/reports/*.xml, features/reports/*.xml')
-      plotBuildData {
-        plot('Performance', 'performance.csv') {
-          style('line')
-          yAxis('requests per second')
-          csvFile('performance.csv')
-        }
-      }
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
-    }
   }
-  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/authn.git')
 }

@@ -1,23 +1,7 @@
 use(conjur.Conventions) {
   def job = job('pubkeys') {
-    description('''
-      pubkeys - Manage and distribute public keys
-    '''.stripIndent())
-
-    steps {
-      shell('./jenkins.sh')
-    }
-
-    publishers {
-      archiveJunit('features/reports/*.xml')
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
-    }
+    using('templates/conjur_service')
+    description('pubkeys - Manage and distribute public keys')
   }
-  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/pubkeys.git')
 }

@@ -1,5 +1,6 @@
 use(conjur.Conventions) {
   def job = job('expiration') {
+    using('templates/conjur_service')
     description('''
       A Conjur server plugin that supports variable expiration.
       <br>
@@ -7,21 +8,6 @@ use(conjur.Conventions) {
       <hr>
       Builds Debian packages
     '''.stripIndent())
-
-    steps {
-      shell('./jenkins.sh')
-    }
-
-    publishers {
-      archiveJunit('features/reports/*.xml')
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
-    }
   }
-  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/expiration.git')
 }
