@@ -28,3 +28,13 @@ use(conjur.Conventions) {
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/authz.git')
 }
+
+// Can't use this yet, job is still RVM-ified - DC 1/27/2016
+//use(conjur.Conventions) {
+//  def job = job('authz') {
+//    using('templates/conjur_service')
+//    description('Test the Conjur authz core service')
+//  }
+//  job.addGitRepo('git@github.com:conjurinc/authz.git')
+//}
+
