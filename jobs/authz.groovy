@@ -13,6 +13,7 @@ use(conjur.Conventions) {
         bundle install --without "production appliance"
         ./jenkins.sh
       '''.stripIndent())
+      shell('debify publish -c testing 4.6 authz')
     }
 
     publishers {

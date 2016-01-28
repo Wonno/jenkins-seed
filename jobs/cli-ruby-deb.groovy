@@ -8,6 +8,7 @@ use(conjur.Conventions) {
 
     steps {
       shell('./build-deb.sh')
+      shell('debify publish -c testing 4.6 cli')
     }
 
     publishers {
