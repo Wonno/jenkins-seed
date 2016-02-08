@@ -41,7 +41,7 @@ use(conjur.Conventions) {
       }
 
       publishers {
-        archiveArtifacts('built/*')
+        archiveArtifacts('pkg/*')
       }
     }
     j.applyCommonConfig()
