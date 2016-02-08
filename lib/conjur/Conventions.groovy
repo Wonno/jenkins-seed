@@ -48,7 +48,7 @@ class Conventions {
         colorizeOutput()
         timestamps()
         timeout {
-            likelyStuck()
+            noActivity(300) // kill build after 5min of no activity
         }
         buildName('#${BUILD_NUMBER} ${GIT_BRANCH}')
       }

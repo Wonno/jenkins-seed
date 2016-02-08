@@ -7,6 +7,10 @@ use(conjur.Conventions) {
       stringParam('BUILD_VERSION', 'LATEST', 'Version of the CLI to build')
     }
 
+    triggers {
+        cron('@weekly')
+    }
+
     buildFlow('''
       parallel (
         { build("omnibus-conjur-centos", BUILD_VERSION: params["BUILD_VERSION"]) },
