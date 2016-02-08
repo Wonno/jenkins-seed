@@ -9,7 +9,7 @@ use(conjur.Conventions) {
 
     wrappers {
       timeout {
-        noActivity(1800) // kill build after 30min of no activity
+        noActivity(3600) // kill build after 60min of no activity
       }
     }
 
