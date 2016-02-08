@@ -7,6 +7,12 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
+    wrappers {
+      timeout {
+        noActivity(1800) // kill build after 30min of no activity
+      }
+    }
+
     steps {
       shell('./jenkins.sh $APPLIANCE_IMAGE $APPLIANCE_IMAGE_TAG')
     }
