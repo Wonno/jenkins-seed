@@ -8,10 +8,6 @@ use(conjur.Conventions) {
   def job = job('conjur-cookbook') {
     description('Lints and tests the <a href="https://github.com/conjur-cookbooks/conjur">conjur</a> cookbook')
 
-    wrappers {
-      rvm('2.1.5@conjur-cookbook')
-    }
-
     steps {
       shell('./jenkins.sh')
     }
