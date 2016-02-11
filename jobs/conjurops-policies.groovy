@@ -7,7 +7,7 @@ use(conjur.Conventions) {
         }
 
         publishers {
-            archiveJunit('spec/reports/*.xml, features/reports/*.xml')
+            // archiveJunit('spec/reports/*.xml, features/reports/*.xml')
         }
     }
 
