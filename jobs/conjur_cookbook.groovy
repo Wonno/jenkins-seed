@@ -1,19 +1,30 @@
-// TODO: 
-//   * add publish step (uses ./publish.sh)
-//   * add postbuild steps
-//     * scan console log, foodcritic parser
-//     * report violations (10 999 999 for each 
-
 use(conjur.Conventions) {
   def job = job('conjur-cookbook') {
-    description('Lints and tests the <a href="https://github.com/conjur-cookbooks/conjur">conjur</a> cookbook')
+    description('''
+      Lints and tests the <a href="https://github.com/conjur-cookbooks/conjur">conjur</a> cookbook.
+      Kicks off the "conjur-cookbook-matrix" job to run test-kitchen in parallel.
+    '''.stripIndent())
 
     steps {
-      shell('./jenkins.sh')
-    }
+      shell('''
+        SUITES=$(summon -f secrets.ci.yml kitchen list -b | tr "\n" " ")
+        echo "SUITES=$SUITES" >> env.properties
+      '''.stripIndent())
 
-    publishers {
-      archiveJunit('ci/reports/*.xml, spec/*.xml')
+      downstreamParameterized {
+        trigger('conjur-cookbook-matrix') {
+          block {
+            buildStepFailure('FAILURE')
+            failure('FAILURE')
+            unstable('UNSTABLE')
+          }
+          parameters {
+            propertiesFile('env.properties')
+            currentBuild()
+            gitRevision()
+          }
+        }
+      }
     }
   }
 
