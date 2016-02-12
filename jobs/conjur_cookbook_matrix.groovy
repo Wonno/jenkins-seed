@@ -40,4 +40,5 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
+  job.addGitRepo('git@github.com:conjur-cookbooks/conjur.git', false)
 }
