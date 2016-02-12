@@ -7,8 +7,7 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
-        SUITES=$(summon -f secrets.ci.yml kitchen list -b | tr "\n" " ")
-        echo "SUITES=$SUITES" >> env.properties
+        summon -f secrets.ci.yml ./jenkins.sh
       '''.stripIndent())
 
       downstreamParameterized {
