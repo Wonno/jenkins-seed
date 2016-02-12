@@ -39,4 +39,5 @@ use(conjur.Conventions) {
       archiveJunit('ci/reports/*.xml, spec/*.xml')
     }
   }
+  job.applyCommonConfig()
 }
