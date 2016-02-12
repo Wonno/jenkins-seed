@@ -32,7 +32,7 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
-        summon -f secrets.ci.yml ./matrix.sh env.properties --only ${SUITE}
+        summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}
       '''.stripIndent())
     }
 
