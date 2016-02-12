@@ -4,11 +4,15 @@ use(conjur.Conventions) {
       Runs test-kitchen suites of the
       <a href="https://github.com/conjur-cookbooks/conjur">conjur</a> cookbook
       in parallel on EC2.
-
+      <br><br>
       Update the SUITES parameter to run a subset of the tests as needed. The names
       are space-delimited and use the same regex as test-kitchen. For example, to run
       all centos and ubuntu suites set SUITES to "centos ubuntu".
     '''.stripIndent())
+
+    parameters {
+      stringParam('SUITES', '', 'test-kitchen suites to run')
+    }
 
     axes {
       label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
