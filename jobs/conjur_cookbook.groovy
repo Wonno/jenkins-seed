@@ -25,6 +25,14 @@ use(conjur.Conventions) {
         }
       }
     }
+
+    publishers {
+      postBuildScripts {
+        steps {
+          shell('summon -f secrets.ci.yml ci/cleanup.sh')
+        }
+      }
+    }
   }
 
   job.applyCommonConfig()
