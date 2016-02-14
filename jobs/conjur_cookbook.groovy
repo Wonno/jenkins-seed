@@ -29,7 +29,7 @@ use(conjur.Conventions) {
     publishers {
       postBuildScripts {
         steps {
-          shell('summon -f secrets.ci.yml ci/cleanup.sh')
+          shell('summon -f secrets.ci.yml ./cleanup.sh')
         }
       }
     }
