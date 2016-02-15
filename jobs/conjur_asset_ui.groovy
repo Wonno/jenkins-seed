@@ -143,6 +143,12 @@ use(conjur.Conventions) {
           
           archiveJunit('reports/*report.xml') 
         }
+      } else if (testJob['name'] == "${mainJobName}_test_frontend") {
+        publishers {
+          cobertura('reports/*coverage.xml') {
+            failNoReports(false)
+          }
+        }
       }
     }
     
