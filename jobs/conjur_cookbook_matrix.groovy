@@ -30,6 +30,11 @@ use(conjur.Conventions) {
       }
     }
 
+    throttleConcurrentBuilds {
+        maxPerNode(4)
+        maxTotal(4)
+    }
+
     steps {
       shell('''
         summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}
