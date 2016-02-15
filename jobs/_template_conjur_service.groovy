@@ -17,7 +17,7 @@ use(conjur.Conventions) {
 
         PACKAGE_NAME=$JOB_NAME
         DISTRIBUTION=$(cat VERSION_APPLIANCE)
-        COMPONENT=$(echo $GIT_BRANCH | sed "s/^origin\///" | tr '/' '.')
+        COMPONENT=$(echo $GIT_BRANCH | sed 's/^origin\\///' | tr '/' '.')
 
         echo "Publishing $PACKAGE_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
