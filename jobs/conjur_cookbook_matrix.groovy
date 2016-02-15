@@ -53,7 +53,6 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('ci/reports/*.xml, spec/*.xml')
-      archiveArtifacts('ci/output/*.tar.gz')
     }
   }
   job.applyCommonConfig()

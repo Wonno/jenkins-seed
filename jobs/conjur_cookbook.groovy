@@ -33,6 +33,7 @@ use(conjur.Conventions) {
         }
         onlyIfBuildSucceeds(false)
       }
+      archiveArtifacts('ci/output/*.tar.gz')
     }
   }
 
