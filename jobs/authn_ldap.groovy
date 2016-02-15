@@ -6,10 +6,6 @@ use(conjur.Conventions) {
       <br>
       <a href="https://github.com/conjurinc/authn-ldap/blob/master/README.md">README</a>
     '''.stripIndent())
-
-    steps {
-      shell('debify publish -c testing 4.6 authn-ldap')
-    }
   }
   job.addGitRepo('git@github.com:conjurinc/authn-ldap.git')
 }

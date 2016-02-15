@@ -8,17 +8,10 @@ use(conjur.Conventions) {
 
     steps {
       shell('./build-deb.sh')
-      shell('debify publish -c testing 4.6 cli')
     }
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, acceptance-features/reports/*.xml')
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
     }
   }
   job.applyCommonConfig()

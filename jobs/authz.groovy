@@ -13,17 +13,10 @@ use(conjur.Conventions) {
         bundle install --without "production appliance"
         ./jenkins.sh
       '''.stripIndent())
-      shell('debify publish -c testing 4.6 authz')
     }
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
-      postBuildScripts {
-          steps {
-              shell('./publish.sh')
-          }
-          onlyIfBuildSucceeds(true)
-      }
     }
   }
   job.applyCommonConfig()

@@ -8,10 +8,6 @@ use(conjur.Conventions) {
       <hr>
       Builds Debian packages
     '''.stripIndent())
-
-    steps {
-      shell('debify publish -c testing 4.6 expiration')
-    }
   }
   job.addGitRepo('git@github.com:conjurinc/expiration.git')
 }

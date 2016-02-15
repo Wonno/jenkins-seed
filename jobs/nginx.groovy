@@ -13,5 +13,4 @@ use(conjur.Conventions) {
 
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/nginx.git')
-  job.publishDebianOnSuccess()
 }
