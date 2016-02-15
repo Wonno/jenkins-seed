@@ -145,7 +145,7 @@ use(conjur.Conventions) {
         }
       } else if (testJob['name'] == "${mainJobName}_test_frontend") {
         publishers {
-          cobertura('reports/*coverage.xml') {
+          cobertura('reports/*clover.xml') {
             failNoReports(false)
           }
         }
