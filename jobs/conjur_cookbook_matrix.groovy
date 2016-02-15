@@ -35,6 +35,16 @@ use(conjur.Conventions) {
         maxTotal(4)
     }
 
+    // Per https://issues.jenkins-ci.org/browse/JENKINS-32631, can't
+    // throttle matrix configuration jobs directly. Use the workaround
+    // suggested in the ticket until it's fixed.
+    configure { project ->
+      project / 'properties' / 'hudson.plugins.throttleconcurrents.ThrottleJobProperty' << 'matrixOptions' {
+        throttleMatrixBuilds(false)
+        throttleMatrixConfigurations(true)
+      }
+    }
+
     steps {
       shell('''
         summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}
@@ -43,6 +53,7 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('ci/reports/*.xml, spec/*.xml')
+      archiveArtifacts('ci/output/*.tar.gz')
     }
   }
   job.applyCommonConfig()
