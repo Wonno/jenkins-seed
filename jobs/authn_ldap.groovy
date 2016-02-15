@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('authn_ldap') {
+  def job = job('authn-ldap') {
     using('templates/conjur_service')
     description('''
       A Conjur authenticator which calls out to an external LDAP service to bind.
