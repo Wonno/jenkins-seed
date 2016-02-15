@@ -31,6 +31,7 @@ use(conjur.Conventions) {
         steps {
           shell('summon -f secrets.ci.yml ./cleanup.sh')
         }
+        onlyIfBuildSucceeds(false)
       }
     }
   }
