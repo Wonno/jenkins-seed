@@ -32,7 +32,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('*.deb')
+      archiveArtifacts('*.deb,DISTRIBUTION=*,COMPONENT=*')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
     }
   }
