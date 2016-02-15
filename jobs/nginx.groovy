@@ -14,7 +14,7 @@ use(conjur.Conventions) {
       archiveArtifacts('*.deb')
       postBuildScripts {
         steps {
-          shell('debify publish --component stable $DISTRIBUTION nginx')
+          shell('./publish.sh $DISTRIBUTION')
         }
         onlyIfBuildSucceeds(true)
       }
