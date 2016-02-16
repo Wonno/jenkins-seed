@@ -21,10 +21,7 @@ use(conjur.Conventions) {
 
         echo "Publishing $PACKAGE_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
-        debify publish \
-        --component $COMPONENT \
-        $DISTRIBUTION \
-        $PACKAGE_NAME
+        debify publish --component $COMPONENT $DISTRIBUTION $PACKAGE_NAME
 
         touch "DISTRIBUTION=\$DISTRIBUTION"
         touch "COMPONENT=\$COMPONENT"
@@ -32,8 +29,26 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('*.deb,DISTRIBUTION=*,COMPONENT=*')
+      archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
+    }
+
+    properties {
+      promotions {
+        promotion {
+          name("Publish to apt stable")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            shell('''
+              DISTRIBUTION=$(cat VERSION_APPLIANCE)
+              debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME
+            '''.stripIndent())
+          }
+        }
+      }
     }
   }
   templateJob.applyCommonConfig()
