@@ -22,6 +22,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.addGitRepo('git@github.com:conjurinc/api-ruby.git')
+  job.addGitRepo('git@github.com:conjurinc/conjur-asset-policy-loader.git')
   job.applyCommonConfig()
 }
