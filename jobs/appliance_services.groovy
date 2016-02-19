@@ -14,6 +14,8 @@ def services = [
   'pubkeys'
 ]
 
+def artifacts = '*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties, Gemfile'
+
 use(conjur.Conventions) {
   services.each { service ->
     def serviceJob = job(service) {
@@ -61,7 +63,7 @@ use(conjur.Conventions) {
       }
 
       publishers {
-        archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties')
+        archiveArtifacts(artifacts)
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
       }
 
@@ -75,7 +77,7 @@ use(conjur.Conventions) {
             }
             actions {
               copyArtifacts('$PROMOTED_JOB_NAME') {
-                includePatterns('env.properties')
+                includePatterns(artifacts)
                 buildSelector {
                   buildNumber('$PROMOTED_NUMBER')
                 }
