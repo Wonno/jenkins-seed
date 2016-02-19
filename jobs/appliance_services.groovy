@@ -90,7 +90,7 @@ use(conjur.Conventions) {
               environmentVariables {
                 propertiesFile('env.properties')
               }
-              shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
+              shell('debify publish --component stable --version $VERSION $DISTRIBUTION $PROMOTED_JOB_NAME')
             }
           }
         }
