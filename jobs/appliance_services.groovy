@@ -2,6 +2,7 @@ def services = [
   'audit',
   'authn',
   'authn-ldap',
+  'authn-local',
   'authn-tv',
   'authz',
   'core',
