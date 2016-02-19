@@ -62,8 +62,8 @@ use(conjur.Conventions) {
           touch "DISTRIBUTION=\$DISTRIBUTION"
           touch "COMPONENT=\$COMPONENT"
           touch "VERSION=\$VERSION"
-          echo -n "DISTRIBUTION=\$DISTRIBUTION" > env.properties
-          echo -n "VERSION=\$VERSION" >> env.properties
+          echo "DISTRIBUTION=\$DISTRIBUTION" > env.properties
+          echo "VERSION=\$VERSION" >> env.properties
         '''.stripIndent())
       }
 
