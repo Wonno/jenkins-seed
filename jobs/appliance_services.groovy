@@ -14,7 +14,7 @@ def services = [
   'pubkeys'
 ]
 
-def artifacts = '*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties, Gemfile*'
+def artifacts = '*.deb, *=*, *.properties, Gemfile*'
 
 use(conjur.Conventions) {
   services.each { service ->
@@ -56,9 +56,14 @@ use(conjur.Conventions) {
 
           debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
 
+          debfile=$(basename *.deb)
+          VERSION=${$(echo ${debfile%_*})#*_}
+
           touch "DISTRIBUTION=\$DISTRIBUTION"
           touch "COMPONENT=\$COMPONENT"
+          touch "VERSION=\$VERSION"
           echo -n "DISTRIBUTION=\$DISTRIBUTION" > env.properties
+          echo -n "VERSION=\$VERSION" >> env.properties
         '''.stripIndent())
       }
 
