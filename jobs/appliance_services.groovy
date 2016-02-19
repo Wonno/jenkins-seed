@@ -65,6 +65,14 @@ use(conjur.Conventions) {
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
       }
 
+      configure { project ->
+        project / properties << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+          projectNameList {
+            string "${service}"
+          }
+        }
+      }
+
       properties {
         promotions {
           promotion {
@@ -74,6 +82,12 @@ use(conjur.Conventions) {
               manual('')
             }
             actions {
+              copyArtifacts('$PROMOTED_JOB_NAME') {
+                includePatterns('env.properties')
+                buildSelector {
+                  buildNumber('$PROMOTED_NUMBER')
+                }
+              }
               environmentVariables {
                 propertiesFile('env.properties')
               }
