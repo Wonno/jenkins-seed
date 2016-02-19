@@ -17,7 +17,15 @@ def services = [
 use(conjur.Conventions) {
   services.each { service ->
     def serviceJob = job(service) {
-      description("Builds packages and tests ${service}. Created by 'appliance_services.groovy'")
+      description("""
+        <p>Builds packages and tests ${service}.</p>
+
+        <p>
+          Promote to 'stable' apt component by
+          approving the 'Publish to apt stable' promotion.
+        </p>
+        <p>Created by 'appliance_services.groovy'</p>
+      """.stripIndent())
 
       if (service == 'authz') {
         wrappers {
