@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Build custom nginx package for installation on the appliance')
 
     parameters {
-      stringParam('DISTRIBUTION', '5.0', 'apt distribution to push package to')
+      stringParam('DISTRIBUTION', 'conjurtools', 'apt distribution to push package to')
     }
 
     steps {

@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Builds a non-Omnibus deb for the Ruby CLI')
 
     parameters {
-      stringParam('DISTRIBUTION', '5.0', 'apt distribution to push package to')
+      stringParam('DISTRIBUTION', 'conjurtools', 'apt distribution to push package to')
     }
 
     wrappers {
@@ -21,21 +21,6 @@ use(conjur.Conventions) {
           shell('./publish.sh $DISTRIBUTION')
         }
         onlyIfBuildSucceeds(true)
-      }
-    }
-
-    properties {
-      promotions {
-        promotion {
-          name("Publish to apt stable")
-          icon("star-gold")
-          conditions {
-            manual('')
-          }
-          actions {
-            shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
-          }
-        }
       }
     }
   }
