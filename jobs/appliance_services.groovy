@@ -14,7 +14,7 @@ def services = [
   'pubkeys'
 ]
 
-def artifacts = '*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties, Gemfile'
+def artifacts = '*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties, Gemfile*'
 
 use(conjur.Conventions) {
   services.each { service ->
