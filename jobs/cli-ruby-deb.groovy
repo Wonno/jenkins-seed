@@ -23,6 +23,21 @@ use(conjur.Conventions) {
         onlyIfBuildSucceeds(true)
       }
     }
+
+    properties {
+      promotions {
+        promotion {
+          name("Publish to apt stable")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
+          }
+        }
+      }
+    }
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/cli-ruby.git')
