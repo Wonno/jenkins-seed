@@ -65,14 +65,6 @@ use(conjur.Conventions) {
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
       }
 
-      configure { project ->
-        project / properties << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
-          projectNameList {
-            string "${service}"
-          }
-        }
-      }
-
       properties {
         promotions {
           promotion {
@@ -93,6 +85,14 @@ use(conjur.Conventions) {
               }
               shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
             }
+          }
+        }
+      }
+
+      configure { project ->
+        project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+          projectNameList {
+            string "${service}"
           }
         }
       }
