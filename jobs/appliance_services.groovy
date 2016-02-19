@@ -10,7 +10,7 @@ def services = [
   'evoke',
   'host-factory',
   'ldap-server',
-  'policy-loader'
+  'policy-loader',
   'pubkeys'
 ]
 
