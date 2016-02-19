@@ -57,7 +57,7 @@ use(conjur.Conventions) {
           debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
 
           debfile=$(basename *.deb)
-          VERSION=${$(echo ${debfile%_*})#*_}
+          VERSION=$(git describe --long --tags --abbrev=7 | sed -e 's/^v//')
 
           touch "DISTRIBUTION=\$DISTRIBUTION"
           touch "COMPONENT=\$COMPONENT"
