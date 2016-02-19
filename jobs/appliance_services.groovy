@@ -61,7 +61,7 @@ use(conjur.Conventions) {
       }
 
       publishers {
-        archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*', '*.properties')
+        archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*, *.properties')
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
       }
 
