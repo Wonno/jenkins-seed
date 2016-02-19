@@ -56,11 +56,12 @@ use(conjur.Conventions) {
 
           touch "DISTRIBUTION=\$DISTRIBUTION"
           touch "COMPONENT=\$COMPONENT"
+          echo -n "DISTRIBUTION=\$DISTRIBUTION" > env.properties
         '''.stripIndent())
       }
 
       publishers {
-        archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*')
+        archiveArtifacts('*.deb, DISTRIBUTION=*, COMPONENT=*', '*.properties')
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
       }
 
@@ -73,10 +74,10 @@ use(conjur.Conventions) {
               manual('')
             }
             actions {
-              shell('''
-                DISTRIBUTION=$(cat VERSION_APPLIANCE)
-                debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME
-              '''.stripIndent())
+              environmentVariables {
+                propertiesFile('env.properties')
+              }
+              shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
             }
           }
         }
