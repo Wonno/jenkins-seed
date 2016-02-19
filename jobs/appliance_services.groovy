@@ -40,7 +40,7 @@ use(conjur.Conventions) {
           export GLI_DEBUG=true
 
           DISTRIBUTION=$(cat VERSION_APPLIANCE)
-          COMPONENT=$(echo $GIT_BRANCH | sed 's/^origin\\///' | tr '/' '.')
+          COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
 
           echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
