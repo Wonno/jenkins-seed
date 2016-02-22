@@ -1,3 +1,5 @@
+def artifacts = '*.deb, *=*, *.properties, Gemfile*'
+
 use(conjur.Conventions) {
   def job = job('cli-ruby-deb') {
     description('Builds a non-Omnibus deb for the Ruby CLI')
@@ -12,10 +14,16 @@ use(conjur.Conventions) {
 
     steps {
       shell('./build-deb.sh')
+      shell('''
+        VERSION=$(git describe --long --tags --abbrev=7 | sed -e 's/^v//')
+        echo "DISTRIBUTION=\$DISTRIBUTION" > env.properties
+        echo "VERSION=\$VERSION" >> env.properties
+      '''.stripIndent())
     }
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, acceptance-features/reports/*.xml')
+      archiveArtifacts(artifacts)
     }
 
     properties {
@@ -27,7 +35,16 @@ use(conjur.Conventions) {
             manual('')
           }
           actions {
-            shell('debify publish --component stable $DISTRIBUTION $PROMOTED_JOB_NAME')
+            copyArtifacts('$PROMOTED_JOB_NAME') {
+              includePatterns(artifacts)
+              buildSelector {
+                buildNumber('$PROMOTED_NUMBER')
+              }
+            }
+            environmentVariables {
+              propertiesFile('env.properties')
+            }
+            shell('debify publish --component stable $DISTRIBUTION cli')
           }
         }
       }
