@@ -1,3 +1,5 @@
+def artifacts = '*.deb, *=*, *.properties, Gemfile*'
+
 use(conjur.Conventions) {
   def job = job('ldap-sync') {
     description('Build and test ldap-sync')
