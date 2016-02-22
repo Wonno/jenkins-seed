@@ -43,32 +43,37 @@ use(conjur.Conventions) {
           '''.stripIndent())
         }
         shell('./jenkins.sh')
-        shell('''
-          #!/bin/bash -ex
-
-          export DEBUG=true
-          export GLI_DEBUG=true
-
-          DISTRIBUTION=$(cat VERSION_APPLIANCE)
-          COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
-
-          echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
-
-          debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
-
-          VERSION=$(git describe --long --tags --abbrev=7 | sed -e 's/^v//')
-
-          touch "DISTRIBUTION=\$DISTRIBUTION"
-          touch "COMPONENT=\$COMPONENT"
-          touch "VERSION=\$VERSION"
-          echo "DISTRIBUTION=\$DISTRIBUTION" > env.properties
-          echo "VERSION=\$VERSION" >> env.properties
-        '''.stripIndent())
       }
 
       publishers {
         archiveArtifacts(artifacts)
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
+        postBuildScripts {
+          steps {
+            shell('''
+              #!/bin/bash -ex
+
+              export DEBUG=true
+              export GLI_DEBUG=true
+
+              DISTRIBUTION=$(cat VERSION_APPLIANCE)
+              COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
+
+              echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
+
+              debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
+
+              VERSION=$(git describe --long --tags --abbrev=7 | sed -e 's/^v//')
+
+              touch "DISTRIBUTION=\$DISTRIBUTION"
+              touch "COMPONENT=\$COMPONENT"
+              touch "VERSION=\$VERSION"
+              echo "DISTRIBUTION=\$DISTRIBUTION" > env.properties
+              echo "VERSION=\$VERSION" >> env.properties
+            '''.stripIndent())
+          }
+          onlyIfBuildSucceeds(true)
+        }
       }
 
       properties {
