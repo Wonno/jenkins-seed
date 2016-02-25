@@ -46,7 +46,6 @@ use(conjur.Conventions) {
       }
 
       publishers {
-        archiveArtifacts(artifacts)
         archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
         postBuildScripts {
           steps {
@@ -74,6 +73,7 @@ use(conjur.Conventions) {
           }
           onlyIfBuildSucceeds(true)
         }
+        archiveArtifacts(artifacts)
       }
 
       properties {
