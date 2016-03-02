@@ -7,7 +7,6 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts(artifacts)
       postBuildScripts {
         steps {
           shell('./publish.sh 5.0')
