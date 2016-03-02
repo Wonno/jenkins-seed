@@ -11,7 +11,8 @@ def services = [
   'host-factory',
   'ldap-server',
   'policy-loader',
-  'pubkeys'
+  'pubkeys',
+  'rotation'
 ]
 
 def artifacts = '*.deb, *=*, *.properties, Gemfile*'
