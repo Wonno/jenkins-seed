@@ -2,8 +2,18 @@ use(conjur.Conventions) {
   def job = job('cli-ruby-deb-v5') {
     description('Builds pure Rubygems style non-Omnibus deb for the Ruby CLI, without using bundler')
 
+    wrappers {
+      rvm('2.0.0@cli-ruby-deb-v5')
+    }
+    
     steps {
-      shell('./build-deb.sh')
+      shell('''
+      #!/bin/bash -e
+      gem install -N bundler
+      bundle
+      
+      ./build-deb.sh
+      '''.stripIndent())
     }
 
     publishers {
