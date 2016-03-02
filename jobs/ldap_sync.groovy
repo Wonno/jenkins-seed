@@ -13,6 +13,9 @@ use(conjur.Conventions) {
     }
 
     publishers {
+      cobertura('spec/reports/coverage/*coverage.xml') {
+        failNoReports(false)
+      }
       archiveArtifacts('*.deb')
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
       postBuildScripts {
