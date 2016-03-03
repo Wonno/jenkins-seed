@@ -24,7 +24,23 @@ use(conjur.Conventions) {
         onlyIfBuildSucceeds(true)
       }
     }
+
+    properties {
+      promotions {
+        promotion {
+          name("Publish to apt stable")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            shell('./publish.sh 5.0 stable')
+          }
+        }
+      }
+    }
   }
+
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/cli-ruby.git')
 }
