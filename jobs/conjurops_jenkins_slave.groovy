@@ -10,13 +10,23 @@ use(conjur.Conventions) {
       '''.stripIndent())
     }
 
-    publishers {
-      downstreamParameterized {
-        trigger('conjurops-jenkins-slave-image') {
-          condition('SUCCESS')
-          parameters {
-            currentBuild()
-            gitRevision()
+    properties {
+      promotions {
+        promotion {
+          name("Create AMI")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            downstreamParameterized {
+              trigger("conjurops-jenkins-slave-image") {
+                parameters {
+                  currentBuild()
+                  gitRevision()
+                }
+              }
+            }
           }
         }
       }
