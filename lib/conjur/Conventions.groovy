@@ -35,7 +35,7 @@ class Conventions {
     def opts = new CommonConfigOptionsBuilder().make(options)
 
     job.with {
-      label('docker && slave')
+      label('executor')
       logRotator(-1, 30, -1, 30)
 
       wrappers {
