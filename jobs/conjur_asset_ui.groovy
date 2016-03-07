@@ -32,6 +32,9 @@ use(conjur.Conventions) {
       </ul>
     '''.stripIndent())
     concurrentBuild()
+    throttleConcurrentBuilds {
+      maxPerNode(1)
+    }
 
     steps {
       shell('''
@@ -130,6 +133,9 @@ use(conjur.Conventions) {
     def j = job(testJob['name']) {
       description("Runs ${testJob['script']}")
       concurrentBuild()
+      throttleConcurrentBuilds {
+        maxPerNode(1)
+      }
 
       steps {
         shell(testJob['script'])
