@@ -6,8 +6,16 @@ folder(folderName) {
 
 job("${folderName}/cleanup_docker") {
   description('Periodically removes stopped containers and dangling images')
-  label('docker && slave')
   logRotator(-1, 30, -1, 30)
+  concurrentBuild()
+
+  parameters {
+    labelParam('NODE_LABEL') {
+      defaultValue('docker')
+      description('Run job on all nodes with this label')
+      allNodes('allCases', 'IgnoreOfflineNodeEligibility')
+    }
+  }
 
   wrappers {
     preBuildCleanup()
@@ -16,7 +24,7 @@ job("${folderName}/cleanup_docker") {
   }
 
   triggers {
-    cron('0 5 * * *') // 5am UTC, 12am EST
+    cron('H 5 * * *') // 5am UTC, 12am EST
   }
 
   steps {
