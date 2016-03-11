@@ -9,7 +9,7 @@ use(conjur.Conventions) {
     '''.stripIndent())
 
     axes {
-      label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
+      label('label', 'executor') // Restrict to run child jobs on slaves tagged 'executor'
       text('RUBY', '1.9', '2.0', '2.1', '2.2')
     }
 
