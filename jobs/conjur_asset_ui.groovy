@@ -112,6 +112,12 @@ use(conjur.Conventions) {
             manual('')
           }
           actions {
+            copyArtifacts('$PROMOTED_JOB_NAME') {
+              includePatterns('env.properties')
+              buildSelector {
+                buildNumber('$PROMOTED_NUMBER')
+              }
+            }
             downstreamParameterized {
               trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
                 propertiesFile('env.properties')
