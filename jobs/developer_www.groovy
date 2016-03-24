@@ -15,8 +15,7 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('./test.sh')
-      shell('#rake links:check')
+      shell('./jenkins.sh')
     }
 
     publishers {
