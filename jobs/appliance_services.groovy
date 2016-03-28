@@ -32,7 +32,7 @@ use(conjur.Conventions) {
 
       if (service == 'authz') {
         wrappers {
-          rvm('2.0.0@conjur-authz')
+          rvm('2.2.4@conjur-authz')
         }
       }
 
