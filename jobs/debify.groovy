@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('conjur-debify - build and test deb packages for the Conjur appliance')
 
     wrappers {
-      rvm('2.2.4@debify')
+      rvm('2.0.0@debify')
     }
 
     steps {
