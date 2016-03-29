@@ -37,12 +37,16 @@ use(conjur.Conventions) {
       }
 
       steps {
+        /* XXX authz's bundle doesn't install properly on the executor
+         * as of 20160329. Leave this out till it gets sorted out:
+
         if (service == 'authz') {
           shell('''
             gem install -N bundler
             bundle install --without "production appliance"
           '''.stripIndent())
         }
+        */
         shell('./jenkins.sh')
       }
 
