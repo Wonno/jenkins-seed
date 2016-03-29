@@ -1,6 +1,6 @@
 use(conjur.Conventions) {
-    def job = job('conjur-asset-dsl2') {
-        description('Test the Conjur DSL2 plugin')
+    def job = job('conjur-asset-policy') {
+        description('Test the Conjur policy plugin')
 
         steps {
             shell('./jenkins.sh')
@@ -21,7 +21,7 @@ use(conjur.Conventions) {
                     actions {
                         downstreamParameterized {
                             trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                                predefinedProp("GEM_NAME","conjur-asset-dsl2")
+                                predefinedProp("GEM_NAME","conjur-asset-policy")
                             }
                         }
                     }
@@ -31,5 +31,5 @@ use(conjur.Conventions) {
     }
 
     job.applyCommonConfig()
-    job.addGitRepo('git@github.com:conjurinc/conjur-asset-dsl2.git')
+    job.addGitRepo('git@github.com:conjurinc/conjur-asset-policy.git')
 }
