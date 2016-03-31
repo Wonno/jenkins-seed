@@ -59,11 +59,7 @@ class Conventions {
         }
       }
 
-      properties {
-        rebuild {
-          autoRebuild()
-        }
-      }
+      properties {}
     }
   }
 
