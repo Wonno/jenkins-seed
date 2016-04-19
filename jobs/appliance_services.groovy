@@ -68,7 +68,7 @@ use(conjur.Conventions) {
 
               debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
 
-              VERSION=$(git describe --long --tags --abbrev=7 | sed -e 's/^v//')
+              VERSION=$(git describe --long --tags --abbrev=7 --match 'v*.*.*' | sed -e 's/^v//')
 
               touch "DISTRIBUTION=\$DISTRIBUTION"
               touch "COMPONENT=\$COMPONENT"
