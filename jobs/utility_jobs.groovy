@@ -32,15 +32,19 @@ job("${folderName}/cleanup_docker") {
     df -h
 
     echo '----------'
+    
+    docker ps -a -q --filter status=exited | xargs -r docker rm
+    docker images -q --filter dangling=true | xargs -r  docker rmi
+    docker volume ls -q --filter dangling=true | xargs -r docker volume rm
 
-    # Remove exited containers
-    docker rm -f -v $(docker ps -a -q -f status=exited) || true
+    image=conjurinc/docker-cleanup
+    docker pull $image &> /dev/null
 
-    # Remove dangling images
-    docker rmi $(docker images -q --filter "dangling=true") || true
-
-    # Remove old conjur-ui images, they're not cleaned up well by their jobs
-    docker rmi -f $(docker images | grep -E 'conjurinc.*ui.*[23456] weeks ago' | tr -s ' ' | cut -d' ' -f3) || true
+    docker run --rm \
+      -v /var/run/docker.sock:/var/run/docker.sock \
+      $image \
+      --older-than 2.weeks \
+      --match conjur- --match cuke- --match acceptance-ui | xargs -r docker rmi
 
     echo '----------'
 
