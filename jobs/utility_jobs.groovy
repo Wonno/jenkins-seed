@@ -34,7 +34,7 @@ job("${folderName}/cleanup_docker") {
     echo '----------'
     
     docker ps -a -q --filter status=exited | xargs -r docker rm
-    docker images -q --filter dangling=true | xargs -r  docker rmi
+    docker images -q --filter dangling=true | xargs -r  docker rmi || true
     docker volume ls -q --filter dangling=true | xargs -r docker volume rm
 
     image=conjurinc/docker-cleanup
