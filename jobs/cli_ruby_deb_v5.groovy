@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Builds pure Rubygems style non-Omnibus deb for the Ruby CLI, without using bundler')
 
     parameters {
-      stringParam('DISTRIBUTION', '4.7', 'apt distribution to push to')
+      stringParam('DISTRIBUTION', 'conjurtools', 'apt distribution to push to')
     }
 
     wrappers {
