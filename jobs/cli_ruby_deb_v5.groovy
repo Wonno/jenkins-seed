@@ -2,6 +2,10 @@ use(conjur.Conventions) {
   def job = job('cli-ruby-deb-v5') {
     description('Builds pure Rubygems style non-Omnibus deb for the Ruby CLI, without using bundler')
 
+    parameters {
+      stringParam('DISTRIBUTION', '4.7', 'apt distribution to push to')
+    }
+
     wrappers {
       rvm('2.0.0@cli-ruby-deb-v5')
     }
@@ -19,7 +23,7 @@ use(conjur.Conventions) {
     publishers {
       postBuildScripts {
         steps {
-          shell('./publish.sh 5.0')
+          shell('./publish.sh $DISTRIBUTION')
         }
         onlyIfBuildSucceeds(true)
       }
@@ -34,7 +38,7 @@ use(conjur.Conventions) {
             manual('')
           }
           actions {
-            shell('./publish.sh 5.0 stable')
+            shell('./publish.sh $DISTRIBUTION stable')
           }
         }
       }
