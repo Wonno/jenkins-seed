@@ -14,14 +14,14 @@ use(conjur.Conventions) {
     }
 
     wrappers {
-      rvm('2.1.5@appliance-docker-api-acceptance')
+      rvm('2.2.4@appliance-docker-api-acceptance')
     }
 
     steps {
       shell('''
         #!/bin/bash -e
-
-        bundle install
+      
+        gem install bundler:1.11.2 && bundle install
 
         ./ci/bin/api-acceptance --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG
       '''.stripIndent())
