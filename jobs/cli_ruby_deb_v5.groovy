@@ -13,7 +13,7 @@ use(conjur.Conventions) {
     steps {
       shell('''
       #!/bin/bash -e
-      gem install -N bundler
+      gem install -N bundler:1.11.2
       bundle
       
       ./build-deb.sh
