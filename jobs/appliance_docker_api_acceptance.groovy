@@ -14,7 +14,7 @@ use(conjur.Conventions) {
     }
 
     wrappers {
-      rvm('2.2.4@appliance-docker-api-acceptance')
+      rvm('2.1.5@appliance-docker-api-acceptance')
     }
 
     steps {
