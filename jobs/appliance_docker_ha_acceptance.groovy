@@ -21,7 +21,7 @@ use(conjur.Conventions) {
       shell('''
         #!/bin/bash -e
 
-        bundle install
+        gem install bundler:1.11.2 && bundle install
 
         bootstrap_id=$(./ci/bin/ha-bootstrap --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG)
         ./ci/bin/ha-fixtures --log-level debug $bootstrap_id
