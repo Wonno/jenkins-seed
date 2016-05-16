@@ -103,6 +103,14 @@ use(conjur.Conventions) {
       archiveArtifacts('env.properties')
     }
 
+    configure { project ->
+      project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+        projectNameList {
+          string mainJobName
+        }
+      }
+    }
+
     properties {
       promotions {
         promotion {
