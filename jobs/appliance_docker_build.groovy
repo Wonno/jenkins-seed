@@ -72,6 +72,7 @@ use(conjur.Conventions) {
       archiveArtifacts {
         pattern('ci/output/*')
         pattern('TAG=*')
+        pattern('env.properties')
       }
     }
 
