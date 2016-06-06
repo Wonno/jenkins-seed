@@ -169,6 +169,10 @@ use(conjur.Conventions) {
             failNoReports(false)
           }
         }
+      } else if (testJob['name'] == "${mainJobName}_test_acceptance") {
+        publishers {
+          archiveJunit('build/test/*.xml')
+        }
       }
     }
     
