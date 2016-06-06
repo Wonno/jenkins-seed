@@ -171,7 +171,9 @@ use(conjur.Conventions) {
         }
       } else if (testJob['name'] == "${mainJobName}_test_acceptance") {
         publishers {
-          archiveJunit('build/test/*.xml')
+          archiveJunit('build/test/*.xml') {
+            allowEmptyResults(true)
+          }
         }
       }
     }
