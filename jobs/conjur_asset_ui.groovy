@@ -154,14 +154,14 @@ use(conjur.Conventions) {
       steps {
         shell(testJob['script'])
       }
-      
+
       if (testJob['name'] == "${mainJobName}_test_backend") {
         publishers {
           cobertura('reports/*coverage.xml') {
             failNoReports(false)
           }
-          
-          archiveJunit('reports/*report.xml') 
+
+          archiveJunit('reports/*report.xml')
         }
       } else if (testJob['name'] == "${mainJobName}_test_frontend") {
         publishers {
@@ -171,13 +171,16 @@ use(conjur.Conventions) {
         }
       } else if (testJob['name'] == "${mainJobName}_test_acceptance") {
         publishers {
-          archiveJunit('build/test/*.xml') {
-            allowEmptyResults()
+          archiveXUnit {
+            jUnit {
+              pattern('build/test/*.xml')
+              skipNoTestFiles()
+            }
           }
         }
       }
     }
-    
+
     j.addGitRepo(repoUrl, false)
     j.applyCommonConfig()
   }
