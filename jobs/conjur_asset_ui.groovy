@@ -176,6 +176,19 @@ use(conjur.Conventions) {
               pattern('build/test/*.xml')
               skipNoTestFiles()
             }
+            failedThresholds {
+              unstable(0)
+              unstableNew(0)
+              failure(50)
+              failureNew(50)
+            }
+            skippedThresholds {
+              unstable(0)
+              unstableNew(0)
+              failure(0)
+              failureNew(0)
+            }
+            thresholdMode(ThresholdMode.PERCENT)
           }
         }
       }
