@@ -89,7 +89,6 @@ use(conjur.Conventions) {
               }
               parameters {
                 propertiesFile('env.properties')
-                predefinedProp('IMAGE_TAG', '$UI_VERSION')
                 currentBuild()
                 gitRevision()
               }
@@ -200,20 +199,21 @@ use(conjur.Conventions) {
 
     j.addGitRepo(repoUrl, false)
     j.applyCommonConfig()
+    j.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="UI_VERSION"}')
   }
 
   def deployJob = job("${mainJobName}_deploy") {
     description('Deploy the Conjur UI to Elastic Beanstack env')
 
     parameters {
-      stringParam('IMAGE_TAG', '', 'Tag of the UI to deploy')
+      stringParam('UI_VERSION', '', 'Tag of the UI to deploy')
     }
 
     steps {
-      shell('cd deploy && ./deploy.sh $IMAGE_TAG')
+      shell('cd deploy && ./deploy.sh $UI_VERSION')
     }
   }
   deployJob.applyCommonConfig()
   deployJob.addGitRepo(repoUrl, false)
-  deployJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="IMAGE_TAG"}')
+  deployJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="UI_VERSION"}')
 }
