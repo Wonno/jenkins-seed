@@ -38,8 +38,8 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
-        echo "APP_VERSION:$(cat app/package.json | jsonfield version)" > env.properties
-        echo "BUILD_NUMBER:\$BUILD_NUMBER" >> env.properties
+        version=$(cat app/package.json | jsonfield version)
+        echo "UI_VERSION:$version-$(git rev-parse --short $GIT_COMMIT)" >> env.properties
       '''.stripIndent())
       environmentVariables {
         propertiesFile('env.properties')
@@ -74,9 +74,9 @@ use(conjur.Conventions) {
               parameters {
                 propertiesFile('env.properties')
                 predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_LOCAL_TAG', '$BUILD_NUMBER')
+                predefinedProp('DOCKER_LOCAL_TAG', '$UI_VERSION')
                 predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui-dev')
-                predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+                predefinedProp('DOCKER_REMOTE_TAG', '$UI_VERSION')
               }
             }
           }
@@ -89,7 +89,7 @@ use(conjur.Conventions) {
               }
               parameters {
                 propertiesFile('env.properties')
-                predefinedProp('IMAGE_TAG', '$APP_VERSION-rc$BUILD_NUMBER')
+                predefinedProp('IMAGE_TAG', '$UI_VERSION')
                 currentBuild()
                 gitRevision()
               }
@@ -130,9 +130,9 @@ use(conjur.Conventions) {
               trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
                 propertiesFile('env.properties')
                 predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_LOCAL_TAG', '$PROMOTED_NUMBER')
+                predefinedProp('DOCKER_LOCAL_TAG', '$UI_VERSION')
                 predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_REMOTE_TAG', '$APP_VERSION')
+                predefinedProp('DOCKER_REMOTE_TAG', '$UI_VERSION')
               }
             }
           }
