@@ -38,8 +38,8 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
-        version=$(cat app/package.json | jsonfield version)
-        echo "UI_VERSION:$version-$(git rev-parse --short $GIT_COMMIT)" >> env.properties
+        version=$(cat app/package.json | jsonfield version)-$(git rev-parse --short $GIT_COMMIT)-$BUILD_NUMBER
+        echo "UI_VERSION:$version" >> env.properties
         touch UI_VERSION=$version
       '''.stripIndent())
       environmentVariables {
