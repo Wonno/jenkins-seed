@@ -40,6 +40,7 @@ use(conjur.Conventions) {
       shell('''
         version=$(cat app/package.json | jsonfield version)
         echo "UI_VERSION:$version-$(git rev-parse --short $GIT_COMMIT)" >> env.properties
+        touch UI_VERSION=$version
       '''.stripIndent())
       environmentVariables {
         propertiesFile('env.properties')
@@ -99,7 +100,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveArtifacts('env.properties')
+      archiveArtifacts('env.properties, UI_VERSION=*')
     }
 
     configure { project ->
