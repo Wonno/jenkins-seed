@@ -151,6 +151,10 @@ use(conjur.Conventions) {
         maxPerNode(1)
       }
 
+      parameters {
+        stringParam('UI_VERSION', '', 'UI version to tag and push')
+      }
+
       steps {
         shell(testJob['script'])
       }
