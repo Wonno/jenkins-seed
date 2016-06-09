@@ -16,6 +16,7 @@ use(conjur.Conventions) {
     }
 
     steps {
+      shell('docker pull $DOCKER_LOCAL_IMAGE:$DOCKER_LOCAL_TAG')
       shell('''
         builder/bin/promote_docker_image \
         $DOCKER_LOCAL_IMAGE $DOCKER_LOCAL_TAG $DOCKER_REMOTE_IMAGE $DOCKER_REMOTE_TAG
