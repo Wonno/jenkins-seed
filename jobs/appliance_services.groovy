@@ -16,21 +16,16 @@ def services = [
   'rotation'
 ]
 
-def artifacts = '*.deb, *=*, *.properties, Gemfile*'
+def artifacts = '*.deb, *=*'
 
 use(conjur.Conventions) {
   services.each { service ->
     def serviceJob = job(service) {
       description("""
         <p>Builds packages and tests ${service}.</p>
-
-        <p>
-          Promote to 'stable' apt component by
-          approving the 'Publish to apt stable' promotion.
-        </p>
         <p>Created by 'appliance_services.groovy'</p>
       """.stripIndent())
-      
+
       concurrentBuild()
       throttleConcurrentBuilds {
         maxPerNode(1)
@@ -69,6 +64,10 @@ use(conjur.Conventions) {
               DISTRIBUTION=$(cat VERSION_APPLIANCE)
               COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
 
+              if [ "$COMPONENT" == "master" ] || [ "$COMPONENT" == "v$DISTRIBUTION" ]; then
+                COMPONENT=stable
+              fi
+
               echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
               debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
@@ -78,37 +77,11 @@ use(conjur.Conventions) {
               touch "DISTRIBUTION=\$DISTRIBUTION"
               touch "COMPONENT=\$COMPONENT"
               touch "VERSION=\$VERSION"
-              echo "DISTRIBUTION=\$DISTRIBUTION" > env.properties
-              echo "VERSION=\$VERSION" >> env.properties
             '''.stripIndent())
           }
           onlyIfBuildSucceeds(true)
         }
         archiveArtifacts(artifacts)
-      }
-
-      properties {
-        promotions {
-          promotion {
-            name("Publish to apt stable")
-            icon("star-gold")
-            conditions {
-              manual('')
-            }
-            actions {
-              copyArtifacts('$PROMOTED_JOB_NAME') {
-                includePatterns(artifacts)
-                buildSelector {
-                  buildNumber('$PROMOTED_NUMBER')
-                }
-              }
-              environmentVariables {
-                propertiesFile('env.properties')
-              }
-              shell('debify publish --component stable --version $VERSION $DISTRIBUTION $PROMOTED_JOB_NAME')
-            }
-          }
-        }
       }
 
       configure { project ->
