@@ -48,8 +48,8 @@ use(conjur.Conventions) {
       downstreamParameterized {
         trigger(testJobNames) {
           block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
+            buildStepFailure('UNSTABLE')
+            failure('UNSTABLE')
             unstable('UNSTABLE')
           }
           parameters {
