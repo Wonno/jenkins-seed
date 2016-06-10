@@ -68,8 +68,8 @@ use(conjur.Conventions) {
           downstreamParameterized {
             trigger('release_dockerhub') {
               block {
-                buildStepFailure('FAILURE')
-                failure('FAILURE')
+                buildStepFailure('UNSTABLE')
+                failure('UNSTABLE')
                 unstable('UNSTABLE')
               }
               parameters {
@@ -84,8 +84,8 @@ use(conjur.Conventions) {
           downstreamParameterized {
             trigger("${mainJobName}_deploy") {
               block {
-                buildStepFailure('FAILURE')
-                failure('FAILURE')
+                buildStepFailure('UNSTABLE')
+                failure('UNSTABLE')
                 unstable('UNSTABLE')
               }
               parameters {
