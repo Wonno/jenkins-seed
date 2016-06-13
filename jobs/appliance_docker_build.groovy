@@ -76,6 +76,14 @@ use(conjur.Conventions) {
       }
     }
 
+    configure { project ->
+      project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+        projectNameList {
+          string 'appliance-docker-build'
+        }
+      }
+    }
+
     properties {
       promotions {
         promotion {
@@ -85,6 +93,12 @@ use(conjur.Conventions) {
             manual('')
           }
           actions {
+            copyArtifacts('$PROMOTED_JOB_NAME') {
+              includePatterns('env.properties')
+              buildSelector {
+                buildNumber('$PROMOTED_NUMBER')
+              }
+            }
             downstreamParameterized {
               trigger('appliance-docker-ami') {
                 parameters {
