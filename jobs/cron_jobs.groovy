@@ -1,5 +1,5 @@
 // cron jobs that trigger other builds on a schedule
-import conjur.Appliance
+import Appliance
 
 def appliance_branches  = [
   [name: 'master', cron: 'H 5 * * *'],  // every day, 1am EST
