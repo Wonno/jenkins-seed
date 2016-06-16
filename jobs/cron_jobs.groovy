@@ -17,21 +17,23 @@ folder(folderName) {
 
 // Appliance builds
 def applianceJobName = 'appliance-docker-build'
-appliance_branches.each { appliance_branch ->
-  def j = job("${folderName}/${applianceJobName}-${appliance_branch.name}") {
-    description("Triggers job ${applianceJobName} on branch ${appliance_branch.name}")
-    triggers {
-      cron(appliance_branch.cron)
-    }
-    steps {
-      downstreamParameterized {
-        trigger(applianceJobName) {
-          parameters {
-            predefinedProp('BRANCH', appliance_branch.name)
+use(conjur.Conventions) {
+  appliance_branches.each { appliance_branch ->
+    def j = job("${folderName}/${applianceJobName}-${appliance_branch.name}") {
+      description("Triggers job ${applianceJobName} on branch ${appliance_branch.name}")
+      triggers {
+        cron(appliance_branch.cron)
+      }
+      steps {
+        downstreamParameterized {
+          trigger(applianceJobName) {
+            parameters {
+              predefinedProp('BRANCH', appliance_branch.name)
+            }
           }
         }
       }
     }
+    j.applyCommonConfig()
   }
-  j.applyCommonConfig()
 }
