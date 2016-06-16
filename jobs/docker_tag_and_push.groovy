@@ -1,7 +1,6 @@
 use(conjur.Conventions) {
   def job = job('docker_tag_and_push') {
     description('Adds a new tag to an existing Docker image and pushes it to the registry')
-    concurrentBuild()
 
     parameters {
       stringParam('IMAGE_NAME', '', 'Docker image name')

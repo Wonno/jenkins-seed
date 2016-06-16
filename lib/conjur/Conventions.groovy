@@ -38,6 +38,11 @@ class Conventions {
       label('executor')
       logRotator(-1, 30, -1, 30)
 
+      concurrentBuild()
+      throttleConcurrentBuilds {
+        maxPerNode(1)
+      }
+
       wrappers {
         // note: necessary because of broken permissions from the
         // docker build process; remove after fixing that

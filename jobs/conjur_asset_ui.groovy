@@ -31,10 +31,6 @@ use(conjur.Conventions) {
         </li>
       </ul>
     '''.stripIndent())
-    concurrentBuild()
-    throttleConcurrentBuilds {
-      maxPerNode(1)
-    }
 
     steps {
       shell('''
@@ -146,10 +142,6 @@ use(conjur.Conventions) {
   testJobs.each { testJob ->
     def j = job(testJob['name']) {
       description("Runs ${testJob['script']}")
-      concurrentBuild()
-      throttleConcurrentBuilds {
-        maxPerNode(1)
-      }
 
       parameters {
         stringParam('UI_VERSION', '', 'UI version to tag and push')

@@ -7,11 +7,6 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
-    concurrentBuild()
-    throttleConcurrentBuilds {
-      maxPerNode(1)
-      maxTotal(2)
-    }
 
     wrappers {
       rvm('2.1.5@appliance-docker-api-acceptance')
@@ -20,7 +15,7 @@ use(conjur.Conventions) {
     steps {
       shell('''
         #!/bin/bash -e
-      
+
         gem install bundler:1.11.2 && bundle install
 
         ./ci/bin/api-acceptance --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG

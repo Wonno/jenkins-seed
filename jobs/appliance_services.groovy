@@ -10,11 +10,6 @@ use(conjur.Conventions) {
         <p>Created by 'appliance_services.groovy'</p>
       """.stripIndent())
 
-      concurrentBuild()
-      throttleConcurrentBuilds {
-        maxPerNode(1)
-      }
-
       if (service == 'authz') {
         wrappers {
           rvm('2.0.0@conjur-authz')

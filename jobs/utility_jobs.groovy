@@ -7,7 +7,6 @@ folder(folderName) {
 job("${folderName}/cleanup_docker") {
   description('Periodically removes stopped containers and dangling images')
   logRotator(-1, 30, -1, 30)
-  concurrentBuild()
 
   parameters {
     labelParam('NODE_LABEL') {
