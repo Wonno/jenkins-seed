@@ -37,6 +37,10 @@ use(conjur.Conventions) {
         }
       }
 
+      triggers {
+        cron('H 4 * * *')  // 12am EST
+      }
+
       steps {
         /* XXX authz's bundle doesn't install properly on the executor
          * as of 20160329. Leave this out till it gets sorted out:

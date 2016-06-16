@@ -30,6 +30,11 @@ use(conjur.Conventions) {
       rvm('2.1.5@appliance-docker-build')
       preBuildCleanup()
     }
+
+    triggers {
+      cron('H 5 * * *')  // 1am EST
+    }
+
     steps {
       shell('./jenkins.sh')
       environmentVariables {
