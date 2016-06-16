@@ -31,10 +31,6 @@ use(conjur.Conventions) {
       preBuildCleanup()
     }
 
-    triggers {
-      cron('H 5 * * *')  // 1am EST
-    }
-
     steps {
       shell('./jenkins.sh')
       environmentVariables {
