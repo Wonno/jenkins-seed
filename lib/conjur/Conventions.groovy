@@ -69,7 +69,7 @@ class Conventions {
   }
 
   // Listens for Github pushes, defines a BRANCH param for overriding
-  static void addGitRepo(Job job, String repoUrl, boolean triggerOnPush=true, String listenOn='master') {
+  static void addGitRepo(Job job, String repoUrl, boolean triggerOnPush=true, String listenOn='') {
     job.with {
       parameters {
         stringParam('BRANCH', listenOn, 'Git branch or SHA to build. Not required.')
