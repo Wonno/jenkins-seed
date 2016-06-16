@@ -35,7 +35,9 @@ use(conjur.Conventions) {
     steps {
       shell('''
         version=$(cat app/package.json | jsonfield version)-$(git rev-parse --short $GIT_COMMIT)-$BUILD_NUMBER
-        echo "UI_VERSION:$version" >> env.properties
+        echo "UI_VERSION:$version" > env.properties
+        echo "DOCKER_LOCAL_TAG:$version" >> env.properties
+        echo "DOCKER_REMOTE_TAG:$version" >> env.properties
         touch UI_VERSION=$version
       '''.stripIndent())
       environmentVariables {
@@ -126,9 +128,7 @@ use(conjur.Conventions) {
               trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
                 propertiesFile('env.properties')
                 predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_LOCAL_TAG', '$UI_VERSION')
                 predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_REMOTE_TAG', '$UI_VERSION')
               }
             }
           }
