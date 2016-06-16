@@ -28,6 +28,11 @@ use(conjur.Conventions) {
       steps {
         downstreamParameterized {
           trigger(applianceJobName) {
+            block {
+              buildStepFailure('UNSTABLE')
+              failure('UNSTABLE')
+              unstable('UNSTABLE')
+            }
             parameters {
               predefinedProp('BRANCH', appliance_branch.name)
             }
@@ -51,6 +56,11 @@ use(conjur.Conventions) {
         steps {
           downstreamParameterized {
             trigger(service) {
+              block {
+                buildStepFailure('UNSTABLE')
+                failure('UNSTABLE')
+                unstable('UNSTABLE')
+              }
               parameters {
                 predefinedProp('BRANCH', service_branch.name)
               }

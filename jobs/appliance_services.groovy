@@ -1,25 +1,9 @@
-def services = [
-  'audit',
-  'authn',
-  'authn-ldap',
-  'authn-local',
-  'authn-tv',
-  'authz',
-  'core',
-  'expiration',
-  'evoke',
-  'host-factory',
-  'ldap-server',
-  'ldap-sync',
-  'policy-loader',
-  'pubkeys',
-  'rotation'
-]
+import conjur.Appliance
 
 def artifacts = '*.deb, *=*'
 
 use(conjur.Conventions) {
-  services.each { service ->
+  Appliance.getServices().each { service ->
     def serviceJob = job(service) {
       description("""
         <p>Builds packages and tests ${service}.</p>
