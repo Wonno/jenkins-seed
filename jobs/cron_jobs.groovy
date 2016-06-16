@@ -1,4 +1,5 @@
 // cron jobs that trigger other builds on a schedule
+import conjur.Appliance
 
 def appliance_branches  = [
   [name: 'master', cron: 'H 5 * * *'],  // every day, 1am EST
@@ -41,7 +42,7 @@ use(conjur.Conventions) {
 // Service builds
 use(conjur.Conventions) {
   service_branches.each { service_branch ->
-    Appliance.services.each {service ->
+    Appliance.getServices().each {service ->
       def j = job("${folderName}/${service}-${service_branch.name}") {
         description("Triggers job ${service} on branch ${service_branch.name}")
         triggers {
