@@ -1,5 +1,6 @@
 // Holds services to be built in the appliance
 // This is needed so that different jobs can use the services list
+package conjur
 
 class Appliance {
   def services = [
