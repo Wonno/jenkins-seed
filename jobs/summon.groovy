@@ -21,18 +21,9 @@ use(conjur.Conventions) {
         }
         runner('Run')
         steps {
-        shell('./test.sh')
-          shell('./build.sh')
-          shell('''
-            if [ -d "acceptance" ]; then
-              cp ${WORKSPACE}/pkg/linux-amd64/summon .
-              cd acceptance && make
-            fi
-          '''.stripIndent())
-          shell('sudo chmod -R 777 pkg/ && ./package.sh')
+          shell('./jenkins.sh')
         }
       }
-
     }
 
     publishers {
