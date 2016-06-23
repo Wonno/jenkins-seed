@@ -1,6 +1,6 @@
 import conjur.Appliance
 
-listView('appliance_services') {
+listView('Appliance Services') {
   description('Services built into the Conjur appliance')
   filterBuildQueue()
 
