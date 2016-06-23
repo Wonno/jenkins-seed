@@ -4,7 +4,7 @@ listView('Failing Builds') {
   jobFilters {
     status {
       status(Status.UNSTABLE)
-      status(Status.FAILURE)
+      status(Status.FAILED)
     }
   }
   columns {
