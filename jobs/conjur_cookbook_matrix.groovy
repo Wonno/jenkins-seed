@@ -15,7 +15,7 @@ use(conjur.Conventions) {
     }
 
     axes {
-      label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
+      label('label', 'executor') // Restrict to run child jobs on slaves tagged 'executor'
       configure { axes ->
         axes << 'ca.silvermaplesolutions.jenkins.plugins.daxis.DynamicAxis' {
           name 'SUITE'
