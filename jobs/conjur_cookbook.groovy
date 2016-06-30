@@ -13,8 +13,8 @@ use(conjur.Conventions) {
       downstreamParameterized {
         trigger('conjur-cookbook-matrix') {
           block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
+            buildStepFailure('UNSTABLE')
+            failure('UNSTABLE')
             unstable('UNSTABLE')
           }
           parameters {
@@ -34,14 +34,6 @@ use(conjur.Conventions) {
         onlyIfBuildSucceeds(false)
       }
       archiveArtifacts('ci/output/*.tar.gz, env.properties')
-    }
-
-    configure { project ->
-      project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
-        projectNameList {
-          string 'conjur-cookbook-matrix'
-        }
-      }
     }
   }
 

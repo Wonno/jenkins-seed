@@ -12,6 +12,10 @@ use(conjur.Conventions) {
 
     parameters {
       stringParam('SUITES', '', 'test-kitchen suites to run')
+      stringParam('CONJUR_INTERNAL_ADDR', '', '')
+      stringParam('CONJUR_TOKEN', '', '')
+      stringParam('CONJUR_EXTERNAL_ADDR', '', '')
+      stringParam('MATRIX_IMAGE_TAG', '', '')
     }
 
     axes {
@@ -46,18 +50,7 @@ use(conjur.Conventions) {
     }
 
     steps {
-      copyArtifacts('conjur-cookbook') {
-        includePatterns('env.properties')
-        buildSelector {
-          upstreamBuild()
-        }
-      }
-      environmentVariables {
-        propertiesFile('env.properties')
-      }
-      shell('''
-        summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}
-      '''.stripIndent())
+      shell('summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}')
     }
 
     publishers {
