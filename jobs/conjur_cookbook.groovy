@@ -33,7 +33,15 @@ use(conjur.Conventions) {
         }
         onlyIfBuildSucceeds(false)
       }
-      archiveArtifacts('ci/output/*.tar.gz')
+      archiveArtifacts('ci/output/*.tar.gz, env.properties')
+    }
+
+    configure { project ->
+      project / 'properties' << 'hudson.plugins.copyartifact.CopyArtifactPermissionProperty' {
+        projectNameList {
+          string 'conjur-cookbook-matrix'
+        }
+      }
     }
   }
 

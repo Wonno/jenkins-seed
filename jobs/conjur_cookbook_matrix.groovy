@@ -46,6 +46,15 @@ use(conjur.Conventions) {
     }
 
     steps {
+      copyArtifacts('conjur-cookbook') {
+        includePatterns('env.properties')
+        buildSelector {
+          upstreamBuild()
+        }
+      }
+      environmentVariables {
+        propertiesFile('env.properties')
+      }
       shell('''
         summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}
       '''.stripIndent())
