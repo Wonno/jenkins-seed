@@ -44,22 +44,6 @@ use(conjur.Conventions) {
           }
         }
       }
-
-      downstreamParameterized {
-        trigger('docker_tag_and_push') {
-          block {
-            buildStepFailure('FAILURE')
-            failure('FAILURE')
-            unstable('UNSTABLE')
-          }
-          parameters {
-            currentBuild()
-            sameNode()
-            propertiesFile('env.properties')
-            predefinedProp('IMAGE_NAME', 'registry.tld/conjur-appliance')
-          }
-        }
-      }
       shell('./tag_and_push_stable.sh')
     }
 
