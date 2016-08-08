@@ -14,7 +14,7 @@ use(conjur.Conventions) {
     }
 
     publishers {
-      archiveJunit('reports/*')
+      archiveArtifacts('reports/*')
     }
   }
   job.applyCommonConfig()
