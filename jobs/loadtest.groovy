@@ -19,4 +19,4 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/loadtest.git', false)
-)
+}
