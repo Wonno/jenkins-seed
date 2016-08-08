@@ -63,36 +63,6 @@ use(conjur.Conventions) {
         }
         runner('Run')
         steps {
-          downstreamParameterized {
-            trigger('release_dockerhub') {
-              block {
-                buildStepFailure('UNSTABLE')
-                failure('UNSTABLE')
-                unstable('UNSTABLE')
-              }
-              parameters {
-                propertiesFile('env.properties')
-                predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_LOCAL_TAG', '$UI_VERSION')
-                predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui-dev')
-                predefinedProp('DOCKER_REMOTE_TAG', '$UI_VERSION')
-              }
-            }
-          }
-          downstreamParameterized {
-            trigger("${mainJobName}_deploy") {
-              block {
-                buildStepFailure('UNSTABLE')
-                failure('UNSTABLE')
-                unstable('UNSTABLE')
-              }
-              parameters {
-                propertiesFile('env.properties')
-                currentBuild()
-                gitRevision()
-              }
-            }
-          }
         }
       }
     }
@@ -109,32 +79,6 @@ use(conjur.Conventions) {
       }
     }
 
-    properties {
-      promotions {
-        promotion {
-          name("Push to DockerHub prod")
-          icon("star-gold")
-          conditions {
-            manual('')
-          }
-          actions {
-            copyArtifacts('$PROMOTED_JOB_NAME') {
-              includePatterns('env.properties')
-              buildSelector {
-                buildNumber('$PROMOTED_NUMBER')
-              }
-            }
-            downstreamParameterized {
-              trigger("release_dockerhub", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                propertiesFile('env.properties')
-                predefinedProp('DOCKER_LOCAL_IMAGE', 'conjur-ui')
-                predefinedProp('DOCKER_REMOTE_IMAGE', 'conjur-ui')
-              }
-            }
-          }
-        }
-      }
-    }
   }
   mainJob.applyCommonConfig()
   mainJob.addGitRepo(repoUrl)
@@ -194,19 +138,4 @@ use(conjur.Conventions) {
     j.applyCommonConfig()
     j.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="UI_VERSION"}')
   }
-
-  def deployJob = job("${mainJobName}_deploy") {
-    description('Deploy the Conjur UI to Elastic Beanstack env')
-
-    parameters {
-      stringParam('UI_VERSION', '', 'Tag of the UI to deploy')
-    }
-
-    steps {
-      shell('cd deploy && ./deploy.sh $UI_VERSION')
-    }
-  }
-  deployJob.applyCommonConfig()
-  deployJob.addGitRepo(repoUrl, false)
-  deployJob.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="UI_VERSION"}')
 }
