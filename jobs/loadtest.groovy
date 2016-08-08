@@ -15,6 +15,12 @@ use(conjur.Conventions) {
 
     publishers {
       archiveArtifacts('reports/*')
+      publishHtml {
+        report('reports') {
+          reportFiles('out.html')
+          reportName('Load Test')
+        }
+      }
     }
   }
   job.applyCommonConfig()
