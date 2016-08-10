@@ -14,5 +14,5 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
-  job.addGitRepo("git@github.com:conjurinc/conjur-asset-ui.git", false)
+  job.addGitRepo("git@github.com:conjurinc/conjur-asset-ui.git")
 }
