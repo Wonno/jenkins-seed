@@ -24,6 +24,7 @@ use(conjur.Conventions) {
             manual('')
           }
           actions {
+            shell('./publish.sh -v stable')
             shell('./publish.sh -v $(cat VERSION)')
           }
         }
