@@ -14,6 +14,21 @@ use(conjur.Conventions) {
         onlyIfBuildSucceeds(true)
       }
     }
+    
+    properties {
+      promotions {
+        promotion {
+          name("Publish the version indicated in the VERSION file")
+          icon("star-gold")
+          conditions {
+            manual('')
+          }
+          actions {
+            shell('./publish.sh -v $(cat VERSION)')
+          }
+        }
+      }
+    }
   }
 
   job.applyCommonConfig()
