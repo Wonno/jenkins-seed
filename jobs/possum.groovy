@@ -10,12 +10,14 @@ use(conjur.Conventions) {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, cucumber/api/features/reports/*.xml, cucumber/policy/features/reports/*.xml')
       postBuildScripts {
         steps {
-          condition {
-            stringsMatch('${ENV, var="GIT_BRANCH"}', 'origin/master', false)
-          }
-          runner('Run')
-          steps {
-            shell('./publish.sh')
+          conditionalSteps {
+            condition {
+              stringsMatch('${ENV, var="GIT_BRANCH"}', 'origin/master', false)
+            }
+            runner('Run')
+            steps {
+              shell('./publish.sh')
+            }
           }
         }
         onlyIfBuildSucceeds()
