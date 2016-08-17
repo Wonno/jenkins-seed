@@ -8,12 +8,17 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, cucumber/api/features/reports/*.xml, cucumber/policy/features/reports/*.xml')
-
       postBuildScripts {
         steps {
-          shell('./publish.sh')
+          condition {
+            stringsMatch('${ENV, var="GIT_BRANCH"}', 'origin/master', false)
+          }
+          runner('Run')
+          steps {
+            shell('./publish.sh')
+          }
         }
-        onlyIfBuildSucceeds(true)
+        onlyIfBuildSucceeds()
       }
     }
 

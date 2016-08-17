@@ -2,6 +2,11 @@ use(conjur.Conventions) {
   def job = job('api-python') {
     description('Test the Conjur Python client library')
 
+    parameters {
+      stringParam('DOCKER_IMAGE', 'registry.tld/conjurinc/possum', 'Possum Docker image to use for tests')
+      stringParam('PULL', '1', 'Pull the latest image')
+    }
+
     steps {
       shell('./jenkins.sh')
     }
