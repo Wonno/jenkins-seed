@@ -7,5 +7,5 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
-  job.addGitRepo('git@github.com:conjurdemos/ha-ansible.git')
+  job.addGitRepo('git@github.com:conjurinc/ha-ansible.git')
 }
