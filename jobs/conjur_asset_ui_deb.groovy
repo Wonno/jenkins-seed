@@ -11,6 +11,7 @@ use(conjur.Conventions) {
         pattern('app/*.deb')
         pattern('server/*.deb')
       }
+      archiveJunit('server/spec/reports/*.xml')
     }
   }
   job.applyCommonConfig()
