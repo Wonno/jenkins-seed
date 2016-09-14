@@ -2,10 +2,6 @@ use(conjur.Conventions) {
   def job = job('conjur-rack') {
     description('Conjur fork of rack webserver')
 
-    wrappers {
-      rvm('2.2.4@conjur-rack')
-    }
-
     steps {
       shell('./jenkins.sh')
     }
