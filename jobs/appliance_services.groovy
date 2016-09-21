@@ -48,14 +48,12 @@ use(conjur.Conventions) {
               fi
 
               echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
+
+              debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
               
               if [ -f VERSION ]; then
-                VERSION="$(cat VERSION)-$(git rev-parse --short HEAD)"
-
-                debify publish -v $VERSION --component $COMPONENT $DISTRIBUTION $JOB_NAME
+                VERSION="$(debify detect-version)"
               else
-                debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
-
                 VERSION=$(git describe --long --tags --abbrev=7 --match 'v*.*.*' | sed -e 's/^v//')
               fi
 
