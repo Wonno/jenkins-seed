@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('authable__v1') {
+  def job = job('authable') {
     description('''
       SCHEDULED BUILD: weekly (to detect regressions against 3rd-party gems)
       <br>
