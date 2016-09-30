@@ -1,33 +1,33 @@
-use(conjur.Conventions) {
-  def job = job('api-node') {
-    description('Test the Conjur Node.js client library')
+import conjur.Conventions
 
-    steps {
-      shell('./jenkins.sh')
-    }
+def job = job('api-node') {
+  description('Test the Conjur Node.js client library')
 
-    publishers {
-      archiveJunit('report/xunit.xml')
-    }
+  steps {
+    shell('./jenkins.sh')
+  }
 
-    properties {
-      promotions {
-        promotion {
-          name('Publish to NPM')
-          conditions {
-            manual('')
-          }
-          actions {
-            downstreamParameterized {
-              trigger('release-npm') {
-                block {
-                  buildStepFailure('FAILURE')
-                  failure('FAILURE')
-                  unstable('UNSTABLE')
-                }
-                parameters {
-                  predefinedProp('PACKAGE_NAME', 'conjur-api')
-                }
+  publishers {
+    archiveJunit('report/xunit.xml')
+  }
+
+  properties {
+    promotions {
+      promotion {
+        name('Publish to NPM')
+        conditions {
+          manual('')
+        }
+        actions {
+          downstreamParameterized {
+            trigger('release-npm') {
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                predefinedProp('PACKAGE_NAME', 'conjur-api')
               }
             }
           }
@@ -35,6 +35,7 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig()
-  job.addGitRepo('git@github.com:conjurinc/api-node.git')
 }
+
+Conventions.applyCommonConfig(job)
+Conventions.addGitRepo(job, 'git@github.com:conjurinc/api-node.git')

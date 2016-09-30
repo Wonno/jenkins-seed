@@ -3,13 +3,13 @@ def projectName = 'api-dotnet'
 
 use(conjur.Conventions) {
   def job = job(projectName) {
-    description("""
-    <p>Build, test and sign .NET API bindings.
-    <p>
-    <a href="https://github.com/conjurinc/api-dotnet/">
-      https://github.com/conjurinc/api-dotnet/
-    </a>
-  """.stripIndent())
+    description('''
+      <p>Build, test and sign .NET API bindings.
+      <p>
+      <a href="https://github.com/conjurinc/api-dotnet/">
+        https://github.com/conjurinc/api-dotnet/
+      </a>
+    '''.stripIndent())
     steps {
       shell("./jenkins.sh")
     }
