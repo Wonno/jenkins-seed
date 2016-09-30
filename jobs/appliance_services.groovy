@@ -10,24 +10,16 @@ use(conjur.Conventions) {
         <p>Created by 'appliance_services.groovy'</p>
       """.stripIndent())
 
-      if (service == 'authz') {
-        wrappers {
-          rvm('2.0.0@conjur-authz')
-        }
-      }
-
       steps {
-        /* XXX authz's bundle doesn't install properly on the executor
-         * as of 20160329. Leave this out till it gets sorted out:
-
-        if (service == 'authz') {
+        if (service == 'authz') { // hacky workaround, needs Dockerized like other services
           shell('''
-            gem install -N bundler
-            bundle install --without "production appliance"
+           bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@conjur-authz && export > rvm.env"
+           source rvm.env
+           ./jenkins.sh
           '''.stripIndent())
+        } else {
+          shell('./jenkins.sh')
         }
-        */
-        shell('./jenkins.sh')
       }
 
       publishers {

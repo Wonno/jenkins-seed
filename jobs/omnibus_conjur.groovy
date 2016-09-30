@@ -51,13 +51,10 @@ use(conjur.Conventions) {
   // OSX job is a little different
   def osxJob = job('omnibus-conjur-osx') {
     description('Builds the Conjur CLI package for osx')
+    disabled()
 
     parameters {
       stringParam('BUILD_VERSION', 'LATEST', 'Version of the CLI to build')
-    }
-
-    wrappers {
-      rvm('2.1.5@omnibus-conjur-osx')
     }
 
     steps {

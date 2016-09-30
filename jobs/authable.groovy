@@ -12,12 +12,9 @@ use(conjur.Conventions) {
       cron('H 12 * * 6 ')
     }
 
-    wrappers {
-      rvm('2.0.0@conjur-authable')
-    }
-
     steps {
-      shell('./jenkins.sh')
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@conjur-authable && export > rvm.env"')
+      shell('source rvm.env && ./jenkins.sh')
     }
 
     publishers {

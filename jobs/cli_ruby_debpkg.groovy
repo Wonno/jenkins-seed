@@ -6,13 +6,13 @@ use(conjur.Conventions) {
       stringParam('DISTRIBUTION', 'conjurtools', 'apt distribution to push to')
     }
 
-    wrappers {
-      rvm('2.0.0@cli-ruby-deb')
-    }
-
     steps {
       shell('''
       #!/bin/bash -e
+
+      bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@cli-ruby-deb && export > rvm.env"
+      source rvm.env
+
       gem install -N bundler:1.11.2
       bundle
 
