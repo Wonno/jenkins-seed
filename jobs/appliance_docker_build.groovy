@@ -44,7 +44,7 @@ use(conjur.Conventions) {
           }
         }
       }
-      shell('./tag_and_push_stable.sh')
+      shell('source rvm.env && ./tag_and_push_stable.sh')
     }
 
     publishers {
