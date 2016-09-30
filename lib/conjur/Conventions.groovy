@@ -81,7 +81,9 @@ class Conventions {
             url(repoUrl)
           }
           branch('$BRANCH')
-          clean()
+          extensions {
+            cleanBeforeCheckout()
+          }
         }
       }
 
