@@ -58,9 +58,9 @@ class Conventions {
       publishers {
         slackNotifier {
           room('jenkins')
-          notifyFailure()
-          notifyUnstable()
-          notifyBackToNormal()
+          notifyFailure(true)
+          notifyUnstable(true)
+          notifyBackToNormal(true)
         }
       }
 
