@@ -16,7 +16,7 @@ use(conjur.Conventions) {
       shell('''
         #!/bin/bash -e
 
-        bash -c "source rvm.env"
+        source rvm.env
 
         gem install bundler:1.11.2 && bundle install
 
