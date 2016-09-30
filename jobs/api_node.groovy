@@ -13,7 +13,7 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Release to NPM")
+          name('Publish to NPM')
           conditions {
             manual('')
           }
