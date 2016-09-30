@@ -17,15 +17,21 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Release to Rubygems")
-          icon("star-gold")
+          name('Publish to Rubygems')
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                predefinedProp("GEM_NAME","backlog_reporter")
+              trigger('release-rubygems') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('GEM_NAME', 'backlog_reporter')
+                }
               }
             }
           }
