@@ -34,15 +34,21 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Release to production")
-          icon("star-gold")
+          name('Deploy to production site')
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("release-heroku", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                predefinedProp("APP_NAME","developer-www-conjur")
+              trigger('release-heroku') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('APP_NAME', 'developer-www-conjur')
+                }
               }
             }
           }
