@@ -14,14 +14,20 @@ use(conjur.Conventions) {
       promotions {
         promotion {
           name("Release to NPM")
-          icon("star-gold")
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("release-npm", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                predefinedProp("PACKAGE_NAME","conjur-api")
+              trigger('release-npm') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('PACKAGE_NAME', 'conjur-api')
+                }
               }
             }
           }
