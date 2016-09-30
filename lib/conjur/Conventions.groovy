@@ -2,38 +2,9 @@ package conjur
 
 import javaposse.jobdsl.dsl.Job
 
-class CommonConfigOptions {
-  Boolean preBuildCleanup = true
-}
-
-class CommonConfigOptionsBuilder {
-  CommonConfigOptions options
-
-  CommonConfigOptions make(Closure definition) {
-    options = new CommonConfigOptions()
-    if (definition) {
-      runClosure definition
-    }
-    options
-  }
-
-  void noPreBuildCleanup() {
-    options.preBuildCleanup = false
-  }
-
-  private runClosure(Closure closure) {
-    Closure dup = closure.clone()
-    dup.delegate = this
-    dup.resolveStrategy = Closure.DELEGATE_ONLY
-    dup()
-  }
-}
-
 class Conventions {
   // Applies common configuration to a job
-  static void applyCommonConfig(Job job, Closure options = null) {
-    def opts = new CommonConfigOptionsBuilder().make(options)
-
+  static void applyCommonConfig(Job job, boolean cleanup=true) {
     job.with {
       label('executor')
       logRotator(-1, 30, -1, 30)
@@ -46,7 +17,7 @@ class Conventions {
       wrappers {
         // note: necessary because of broken permissions from the
         // docker build process; remove after fixing that
-        if (opts.preBuildCleanup) {
+        if (cleanup) {
           preBuildCleanup()
         }
 
@@ -63,8 +34,6 @@ class Conventions {
           notifyBackToNormal()
         }
       }
-
-      properties {}
     }
   }
 
