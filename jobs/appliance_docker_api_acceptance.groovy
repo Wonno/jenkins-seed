@@ -7,14 +7,12 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
-
-    wrappers {
-      rvm('2.1.5@appliance-docker-api-acceptance')
-    }
-
     steps {
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-api-acceptance && export > rvm.env"')
       shell('''
         #!/bin/bash -e
+
+        bash -c "source rvm.env"
 
         gem install bundler:1.11.2 && bundle install
 

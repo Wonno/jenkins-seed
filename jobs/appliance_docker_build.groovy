@@ -21,12 +21,12 @@ use(conjur.Conventions) {
     '''.stripIndent())
 
     wrappers {
-      rvm('2.1.5@appliance-docker-build')
       preBuildCleanup()
     }
 
     steps {
-      shell('./jenkins.sh')
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-build && export > rvm.env"')
+      shell('bash -c "source rvm.env" && ./jenkins.sh')
       environmentVariables {
         propertiesFile('env.properties')
       }
