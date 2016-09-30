@@ -11,24 +11,29 @@ use(conjur.Conventions) {
         }
 
         properties {
-            promotions {
-                promotion {
-                    name("Release to Rubygems")
-                    icon("star-gold")
-                    conditions {
-                        manual('')
+          promotions {
+            promotion {
+              name('Publish to rubygems')
+              conditions {
+                manual('')
+              }
+              actions {
+                downstreamParameterized {
+                  trigger('release-rubygems') {
+                    block {
+                      buildStepFailure('FAILURE')
+                      failure('FAILURE')
+                      unstable('UNSTABLE')
                     }
-                    actions {
-                        downstreamParameterized {
-                            trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                                predefinedProp("GEM_NAME","conjur-asset-authn-local")
-                            }
-                        }
+                    parameters {
+                      predefinedProp('GEM_NAME', 'conjur-asset-authn-local')
                     }
+                  }
                 }
+              }
             }
+          }
         }
-    }
 
     job.applyCommonConfig()
     job.addGitRepo('git@github.com:conjurinc/conjur-asset-authn-local.git')
