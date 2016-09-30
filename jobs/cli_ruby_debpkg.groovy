@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('cli-ruby-deb') {
+  def job = job('cli-ruby-debpkg') {
     description('Builds pure Rubygems style non-Omnibus deb for the Ruby CLI, without using bundler')
 
     parameters {
