@@ -14,15 +14,21 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Release to Rubygems")
-          icon("star-gold")
+          name('Publish to rubygems')
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                predefinedProp("GEM_NAME","conjur-debify")
+              trigger('release-rubygems') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('GEM_NAME', 'conjur-debify')
+                }
               }
             }
           }
