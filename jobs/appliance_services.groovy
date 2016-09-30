@@ -44,7 +44,7 @@ use(conjur.Conventions) {
               debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
               
               if [ -f VERSION ]; then
-                VERSION="$(debify detect-version)"
+                VERSION="$(debify detect-version | tail -n 1)"
               else
                 VERSION=$(git describe --long --tags --abbrev=7 --match 'v*.*.*' | sed -e 's/^v//')
               fi
