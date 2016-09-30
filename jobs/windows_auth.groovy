@@ -3,13 +3,14 @@ def projectName = 'windows-auth'
 
 use(conjur.Conventions) {
   def job = job(projectName) {
-    description("""
+    description('''
     <p>Build windows authorization binaries.
     <p>
     <a href="https://github.com/conjurinc/windows-auth/">
       https://github.com/conjurinc/windows-auth/
     </a>
-  """.stripIndent())
+    '''.stripIndent())
+
     steps {
       shell("./jenkins.sh")
     }
@@ -18,9 +19,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.applyCommonConfig {
-    noPreBuildCleanup()
-  }
-
+  job.applyCommonConfig(false)
   job.addGitRepo(repoUrl, true)
 }
