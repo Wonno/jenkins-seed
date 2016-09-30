@@ -2,12 +2,9 @@ use(conjur.Conventions) {
   def job = job('debify') {
     description('conjur-debify - build and test deb packages for the Conjur appliance')
 
-    wrappers {
-      rvm('2.0.0@debify')
-    }
-
     steps {
-      shell('./jenkins.sh')
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@debify && export > rvm.env"')
+      shell('source rvm.env && ./jenkins.sh')
     }
 
     publishers {
