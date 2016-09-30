@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('cli-ruby-deb-v5') {
+  def job = job('cli-ruby-deb') {
     description('Builds pure Rubygems style non-Omnibus deb for the Ruby CLI, without using bundler')
 
     parameters {
@@ -7,15 +7,15 @@ use(conjur.Conventions) {
     }
 
     wrappers {
-      rvm('2.0.0@cli-ruby-deb-v5')
+      rvm('2.0.0@cli-ruby-deb')
     }
-    
+
     steps {
       shell('''
       #!/bin/bash -e
       gem install -N bundler:1.11.2
       bundle
-      
+
       ./build-deb.sh
       '''.stripIndent())
     }
@@ -32,8 +32,7 @@ use(conjur.Conventions) {
     properties {
       promotions {
         promotion {
-          name("Publish to apt stable")
-          icon("star-gold")
+          name('Publish to apt stable component')
           conditions {
             manual('')
           }

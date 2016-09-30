@@ -27,32 +27,41 @@ use(conjur.Conventions) {
       preBuildCleanup()
     }
 
-
     properties {
       promotions {
         promotion {
-          name("Publish to RubyGems")
-          icon("star-gold")
+          name('Publish to Rubygems')
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("release-rubygems", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
-                predefinedProp("GEM_NAME","conjur-cli")
+              trigger('release-rubygems') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
+                parameters {
+                  predefinedProp('GEM_NAME', 'conjur-cli')
+                }
               }
             }
           }
         }
         promotion {
-          name("Build Omnibus packages")
-          icon("star-gold")
+          name('Build omnibus packages')
           conditions {
             manual('')
           }
           actions {
             downstreamParameterized {
-              trigger("omnibus-conjur", "SUCCESS", false, ["buildStepFailure": "FAILURE","failure":"FAILURE","unstable":"UNSTABLE"]) {
+              trigger('omnibus-conjur') {
+                block {
+                  buildStepFailure('FAILURE')
+                  failure('FAILURE')
+                  unstable('UNSTABLE')
+                }
               }
             }
           }
