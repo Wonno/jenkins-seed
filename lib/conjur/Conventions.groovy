@@ -56,11 +56,11 @@ class Conventions {
       }
 
       publishers {
-        slackNotifier {
-          room('jenkins')
-          notifyFailure(true)
-          notifyUnstable(true)
-          notifyBackToNormal(true)
+        slackNotifications {
+          projectChannel('#jenkins')
+          notifyFailure()
+          notifyUnstable()
+          notifyBackToNormal()
         }
       }
 
