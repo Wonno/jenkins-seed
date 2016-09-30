@@ -24,6 +24,6 @@ use(conjur.Conventions) {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml')
     }
   }
-  job.addGitRepo('git@github.com:conjurinc/authable.git')
   job.applyCommonConfig()
+  job.addGitRepo('git@github.com:conjurinc/authable.git')
 }
