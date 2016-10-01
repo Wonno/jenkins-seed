@@ -25,9 +25,8 @@ use(conjur.Conventions) {
     }
 
     steps {
-      def rvm_tmp = File.createTempFile('rvm-env', null).absolutePath
-      shell("bash -c 'source ~/.rvm/scripts/rvm && rvm use x--install --create 2.1.5@appliance-docker-build && export > ${rvm_tmp}'")
-      shell("source ${rvm_tmp} && gem install bundler && ./jenkins.sh")
+      shell("bash -c 'source ~/.rvm/scripts/rvm && rvm use x--install --create 2.1.5@appliance-docker-build && export > /tmp/appliance-rvm-${BUILD_NUMBER}.env'")
+      shell("source /tmp/appliance-rvm-${BUILD_NUMBER}.env && gem install bundler && ./jenkins.sh")
       environmentVariables {
         propertiesFile('env.properties')
       }
@@ -45,7 +44,7 @@ use(conjur.Conventions) {
           }
         }
       }
-      shell("source ${rvm_tmp} && ./tag_and_push_stable.sh")
+      shell("source /tmp/appliance-rvm-${BUILD_NUMBER}.env && ./tag_and_push_stable.sh")
     }
 
     publishers {
