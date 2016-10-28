@@ -23,7 +23,7 @@ use(conjur.Conventions) {
       }
 
       publishers {
-        archiveJunit('spec/reports/*.xml, features/reports/*.xml, reports/*.xml')
+        archiveJunit('spec/reports/*.xml, features/reports/**/*.xml, reports/*.xml')
         postBuildScripts {
           steps {
             shell('''
