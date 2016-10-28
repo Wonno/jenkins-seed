@@ -19,6 +19,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.applyCommonConfig(false)
+  job.applyCommonConfig(cleanup: false)
   job.addGitRepo(repoUrl, true)
 }
