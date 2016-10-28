@@ -10,7 +10,7 @@ class Conventions {
   }
 
   // Applies common configuration to a job
-  static void applyCommonConfig(Job job, Map args) {
+  static void applyCommonConfig(Job job, Map args=[:]) {
     def cleanup = args.fetch('cleanup', true)
     def notifyOnRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
 
