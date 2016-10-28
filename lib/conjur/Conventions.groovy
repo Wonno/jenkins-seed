@@ -12,7 +12,7 @@ class Conventions {
   // Applies common configuration to a job
   static void applyCommonConfig(Job job, Map args) {
     def cleanup = args.fetch('cleanup', true)
-    def notifyRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
+    def notifyOnRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
 
     job.with {
       label('executor')
@@ -39,7 +39,7 @@ class Conventions {
         slackNotifications {
           projectChannel('#jenkins')
           notifyFailure()
-          notifyRepeatedFailure(notifyRepeatedFailure)
+          notifyRepeatedFailure(notifyOnRepeatedFailure)
           notifyUnstable()
           notifyBackToNormal()
           showCommitList()
