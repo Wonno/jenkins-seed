@@ -2,11 +2,13 @@ package conjur
 
 import javaposse.jobdsl.dsl.Job
 
-Map.metaClass.fetch = { key, defaultValue ->
-    delegate.containsKey(key) ? delegate[key] : defaultValue
-}
-
 class Conventions {
+  static {
+    Map.metaClass.fetch = { key, defaultValue ->
+        delegate.containsKey(key) ? delegate[key] : defaultValue
+    }
+  }
+
   // Applies common configuration to a job
   static void applyCommonConfig(Job job, Map args) {
     def cleanup = args.fetch('cleanup', true)
