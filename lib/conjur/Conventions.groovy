@@ -2,9 +2,16 @@ package conjur
 
 import javaposse.jobdsl.dsl.Job
 
+Map.metaClass.fetch = { key, defaultValue ->
+    delegate.containsKey(key) ? delegate[key] : defaultValue
+}
+
 class Conventions {
   // Applies common configuration to a job
-  static void applyCommonConfig(Job job, boolean cleanup=true) {
+  static void applyCommonConfig(Job job, Map args) {
+    def cleanup = args.fetch('cleanup', true)
+    def notifyRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
+
     job.with {
       label('executor')
       logRotator(-1, 30, -1, 30)
@@ -30,8 +37,10 @@ class Conventions {
         slackNotifications {
           projectChannel('#jenkins')
           notifyFailure()
+          notifyRepeatedFailure(notifyRepeatedFailure)
           notifyUnstable()
           notifyBackToNormal()
+          showCommitList()
         }
       }
     }

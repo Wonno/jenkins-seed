@@ -91,6 +91,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.applyCommonConfig()
+  job.applyCommonConfig(notifyRepeatedFailure: true)
   job.addGitRepo('git@github.com:conjurinc/appliance.git')
 }
