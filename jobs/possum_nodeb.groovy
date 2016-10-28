@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('possum') {
+  def job = job('possum_nodeb') {
     description('Test Possum')
 
     steps {
@@ -8,20 +8,6 @@ use(conjur.Conventions) {
 
     publishers {
       archiveJunit('spec/reports/*.xml, features/reports/*.xml, cucumber/api/features/reports/*.xml, cucumber/policy/features/reports/*.xml')
-      postBuildScripts {
-        steps {
-          conditionalSteps {
-            condition {
-              stringsMatch('${ENV, var="GIT_BRANCH"}', 'origin/master', false)
-            }
-            runner('Run')
-            steps {
-              shell('./publish.sh')
-            }
-          }
-        }
-        onlyIfBuildSucceeds()
-      }
     }
 
     wrappers {
