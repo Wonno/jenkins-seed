@@ -14,10 +14,12 @@ class Appliance {
       'core',
       'expiration',
       'evoke',
+      'glider',
       'host-factory',
       'ldap-server',
       'ldap-sync',
       'policy-loader',
+      'possum',
       'pubkeys',
       'rotation'
     ]
