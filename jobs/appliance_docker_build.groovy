@@ -25,7 +25,7 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell("bash -c 'source ~/.rvm/scripts/rvm && rvm use x--install --create 2.1.5@appliance-docker-build && export > /tmp/appliance-rvm-${BUILD_NUMBER}.env'")
+      shell("bash -c 'source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-build && export > /tmp/appliance-rvm-${BUILD_NUMBER}.env'")
       shell("source /tmp/appliance-rvm-${BUILD_NUMBER}.env && gem install bundler && ./jenkins.sh")
       environmentVariables {
         propertiesFile('env.properties')
