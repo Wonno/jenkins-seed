@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Pushes package container to S3 for distribution')
 
     parameters {
-      stringParam('IMAGE_NAME', '', 'Name of the image to push to S3')
+      stringParam('IMAGE_NAME', 'conjur-appliance', 'Name of the image to push to S3')
       stringParam('RELEASE_TAG', '', 'Release tag to push')
     }
 
