@@ -11,6 +11,7 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
+        docker pull docker tag -f $IMAGE_NAME_CURRENT:$IMAGE_TAG_CURRENT
         docker tag -f $IMAGE_NAME_CURRENT:$IMAGE_TAG_CURRENT $IMAGE_NAME_NEW:$IMAGE_TAG_NEW
         docker push $IMAGE_NAME_NEW:$IMAGE_TAG_NEW
       '''.stripIndent())
