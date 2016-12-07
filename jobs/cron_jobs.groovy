@@ -3,10 +3,12 @@ import conjur.Appliance
 
 def appliance_branches  = [
   [name: 'master', cron: 'H 5 * * *'],  // every day, 1am EST
+  [name: 'v4.8',   cron: 'H 5 */7 * *'], // every week, 1am EST
   [name: 'v4.7',   cron: 'H 5 */7 * *'] // every week, 1am EST
 ]
 def service_branches  = [
   [name: 'master', cron: 'H 4 * * *'],  // every day, 12am EST
+  [name: 'v4.8',   cron: 'H 4 */7 * *'], // every week, 12am EST
   [name: 'v4.7',   cron: 'H 4 */7 * *'] // every week, 12am EST
 ]
 
