@@ -36,5 +36,4 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/summon.git')
-  job.publishToArtifactory('', '', '')
 }
