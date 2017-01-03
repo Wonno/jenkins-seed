@@ -36,13 +36,13 @@ class Conventions {
       }
 
       publishers {
-        slackNotifications {
-          projectChannel('#jenkins')
+        slackNotifier {
+          room('jenkins')
           notifyFailure()
           notifyRepeatedFailure(notifyOnRepeatedFailure)
           notifyUnstable()
           notifyBackToNormal()
-          showCommitList()
+          commitInfoChoice('AUTHORS_AND_TITLES')
         }
       }
     }
