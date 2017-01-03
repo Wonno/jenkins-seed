@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('conjur-debify - build and test deb packages for the Conjur appliance')
 
     steps {
-      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@debify && export > rvm.env"')
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.2.6@debify && export > rvm.env"')
       shell('source rvm.env && ./jenkins.sh')
     }
 
