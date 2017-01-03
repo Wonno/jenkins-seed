@@ -38,10 +38,10 @@ class Conventions {
       publishers {
         slackNotifier {
           room('jenkins')
-          notifyFailure()
+          notifyFailure(true)
           notifyRepeatedFailure(notifyOnRepeatedFailure)
-          notifyUnstable()
-          notifyBackToNormal()
+          notifyUnstable(true)
+          notifyBackToNormal(true)
           commitInfoChoice('AUTHORS_AND_TITLES')
         }
       }
