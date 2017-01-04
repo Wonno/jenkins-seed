@@ -9,19 +9,21 @@ use(conjur.Conventions) {
     publishers {
       archiveJunit('results/rspec.xml')
       postBuildScripts {  // deploy to Heroku if tests pass on master
-        conditionalSteps {
-          condition {
-            stringsMatch('${GIT_BRANCH}', 'origin/master', false)
-          }
-          runner('Run')
-          steps {
-            downstreamParameterized {
-              trigger('release-heroku') {
-                condition('SUCCESS')
-                parameters {
-                  predefinedProp('APP_NAME', 'developer-www-conjur')
-                  currentBuild()
-                  gitRevision()
+        steps {
+          conditionalSteps {
+            condition {
+              stringsMatch('${GIT_BRANCH}', 'origin/master', false)
+            }
+            runner('Run')
+            steps {
+              downstreamParameterized {
+                trigger('release-heroku') {
+                  condition('SUCCESS')
+                  parameters {
+                    predefinedProp('APP_NAME', 'developer-www-conjur')
+                    currentBuild()
+                    gitRevision()
+                  }
                 }
               }
             }
