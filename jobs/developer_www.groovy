@@ -18,7 +18,11 @@ use(conjur.Conventions) {
             steps {
               downstreamParameterized {
                 trigger('release-heroku') {
-                  condition('SUCCESS')
+                  block {
+                    buildStepFailure('FAILURE')
+                    failure('FAILURE')
+                    unstable('UNSTABLE')
+                  }
                   parameters {
                     predefinedProp('APP_NAME', 'developer-www-conjur')
                     currentBuild()
