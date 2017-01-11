@@ -4,38 +4,35 @@ use(conjur.Conventions) {
 
     steps {
       shell('./jenkins.sh')
-    }
-
-    publishers {
-      archiveJunit('results/rspec.xml')
-      postBuildScripts {  // deploy to Heroku if tests pass on master
+      conditionalSteps {
+        condition {
+          stringsMatch('${GIT_BRANCH}', 'origin/master', false)
+        }
+        runner('Run')
         steps {
-          conditionalSteps {
-            condition {
-              stringsMatch('${GIT_BRANCH}', 'origin/master', false)
-            }
-            runner('Run')
-            steps {
-              downstreamParameterized {
-                trigger('release-heroku') {
-                  block {
-                    buildStepFailure('FAILURE')
-                    failure('FAILURE')
-                    unstable('UNSTABLE')
-                  }
-                  parameters {
-                    predefinedProp('APP_NAME', 'developer-www-conjur')
-                    currentBuild()
-                    gitRevision()
-                  }
-                }
+          downstreamParameterized {
+            trigger('release-heroku') {
+              block {
+                buildStepFailure('FAILURE')
+                failure('FAILURE')
+                unstable('UNSTABLE')
+              }
+              parameters {
+                predefinedProp('APP_NAME', 'developer-www-conjur')
+                currentBuild()
+                gitRevision()
               }
             }
           }
         }
       }
     }
+
+    publishers {
+      archiveJunit('results/rspec.xml')
+    }
   }
+
   job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/developer-www.git')
 }
