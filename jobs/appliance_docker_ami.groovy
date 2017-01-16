@@ -21,7 +21,7 @@ use(conjur.Conventions) {
       archiveArtifacts('ami-*')
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(dailyCron: false)
   job.addGitRepo('git@github.com:conjurinc/appliance-docker.git', false)
   job.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
 }

@@ -23,6 +23,6 @@ use(conjur.Conventions) {
         }
     }
 
-    job.applyCommonConfig()
+    job.applyCommonConfig(dailyCron: false)
     job.addGitRepo('git@github.com:conjurinc/release-bot.git')
 }

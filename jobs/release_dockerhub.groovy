@@ -22,7 +22,7 @@ use(conjur.Conventions) {
       '''.stripIndent())
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(dailyCron: false)
   job.addGitRepo('git@github.com:conjurinc/pubbit.git', false)
   job.setBuildName('#${BUILD_NUMBER} ${ENV,var="DOCKER_REMOTE_IMAGE"}:${ENV,var="DOCKER_REMOTE_TAG"}')
 }

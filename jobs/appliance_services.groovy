@@ -42,7 +42,7 @@ use(conjur.Conventions) {
               echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
               debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
-              
+
               if [ -f VERSION ]; then
                 VERSION="$(debify detect-version | tail -n 1)"
               else

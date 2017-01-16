@@ -6,6 +6,6 @@ use(conjur.Conventions) {
       shell('docker build -t artifact-url .')
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(dailyCron: false)
   job.addGitRepo('git@github.com:conjurinc/artifact-url.git')
 }

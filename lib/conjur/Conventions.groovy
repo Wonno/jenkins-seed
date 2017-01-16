@@ -13,6 +13,7 @@ class Conventions {
   static void applyCommonConfig(Job job, Map args=[:]) {
     def cleanup = args.fetch('cleanup', true)
     def notifyOnRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
+    def dailyCron = args.fetch('dailyCron', true)
 
     job.with {
       label('executor')
@@ -21,6 +22,12 @@ class Conventions {
       concurrentBuild()
       throttleConcurrentBuilds {
         maxPerNode(1)
+      }
+
+      triggers {
+        if (dailyCron) {
+          cron('H H * * *')
+        }
       }
 
       wrappers {

@@ -23,7 +23,7 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(dailyCron: false)
   job.addGitRepo('git@github.com:conjurinc/loadtest.git', false)
   job.setBuildName('#${BUILD_NUMBER} ${ENV,var="IMAGE_ID"}-${ENV,var="INSTANCE_TYPE"}-${ENV,var="REQUEST_RATE"}req/sec-${ENV,var="DURATION"}')
 }

@@ -54,6 +54,6 @@ use(conjur.Conventions) {
       archiveArtifacts('*.log')
     }
   }
-  imageJob.applyCommonConfig()
+  imageJob.applyCommonConfig(dailyCron: false)
   imageJob.addGitRepo('git@github.com:conjurinc/conjurops-jenkins-slave.git', false)
 }

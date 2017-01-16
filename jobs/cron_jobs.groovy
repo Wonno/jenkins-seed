@@ -1,15 +1,15 @@
 // cron jobs that trigger other builds on a schedule
 import conjur.Appliance
 
+def cron_weekly = 'H H */7 * *'
+
 def appliance_branches  = [
-  [name: 'master', cron: 'H H * * *'],  // every day
-  [name: 'v4.8',   cron: 'H H */7 * *'], // every week
-  [name: 'v4.7',   cron: 'H H */7 * *'] // every week
+  [name: 'v4.8',   cron: cron_weekly],
+  [name: 'v4.7',   cron: cron_weekly]
 ]
 def service_branches  = [
-  [name: 'master', cron: 'H H * * *'],  // every day
-  [name: 'v4.8',   cron: 'H H */7 * *'], // every week
-  [name: 'v4.7',   cron: 'H H */7 * *'] // every week
+  [name: 'v4.8',   cron: cron_weekly],
+  [name: 'v4.7',   cron: cron_weekly]
 ]
 
 // Create a __cron folder to hold jobs
