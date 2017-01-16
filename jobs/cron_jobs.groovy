@@ -2,14 +2,14 @@
 import conjur.Appliance
 
 def appliance_branches  = [
-  [name: 'master', cron: 'H 5 * * *'],  // every day, 1am EST
-  [name: 'v4.8',   cron: 'H 5 */7 * *'], // every week, 1am EST
-  [name: 'v4.7',   cron: 'H 5 */7 * *'] // every week, 1am EST
+  [name: 'master', cron: 'H H * * *'],  // every day
+  [name: 'v4.8',   cron: 'H H */7 * *'], // every week
+  [name: 'v4.7',   cron: 'H H */7 * *'] // every week
 ]
 def service_branches  = [
-  [name: 'master', cron: 'H 4 * * *'],  // every day, 12am EST
-  [name: 'v4.8',   cron: 'H 4 */7 * *'], // every week, 12am EST
-  [name: 'v4.7',   cron: 'H 4 */7 * *'] // every week, 12am EST
+  [name: 'master', cron: 'H H * * *'],  // every day
+  [name: 'v4.8',   cron: 'H H */7 * *'], // every week
+  [name: 'v4.7',   cron: 'H H */7 * *'] // every week
 ]
 
 // Create a __cron folder to hold jobs
@@ -30,11 +30,6 @@ use(conjur.Conventions) {
       steps {
         downstreamParameterized {
           trigger(applianceJobName) {
-            block {
-              buildStepFailure('UNSTABLE')
-              failure('UNSTABLE')
-              unstable('UNSTABLE')
-            }
             parameters {
               predefinedProp('BRANCH', appliance_branch.name)
             }
@@ -58,11 +53,6 @@ use(conjur.Conventions) {
         steps {
           downstreamParameterized {
             trigger(service) {
-              block {
-                buildStepFailure('UNSTABLE')
-                failure('UNSTABLE')
-                unstable('UNSTABLE')
-              }
               parameters {
                 predefinedProp('BRANCH', service_branch.name)
               }
