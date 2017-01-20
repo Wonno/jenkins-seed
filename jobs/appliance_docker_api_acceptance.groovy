@@ -8,15 +8,18 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-api-acceptance && export > rvm.env"')
       shell('''
-        #!/bin/bash -e
+        if [ -f api_acceptance.sh ]; then
+          ./api_acceptance.sh $APPLIANCE_IMAGE $APPLIANCE_IMAGE_TAG
+        else
+          source ~/.rvm/scripts/rvm
+          rvm use --install --create 2.1.5@appliance-docker-api-acceptance
+          export > rvm.env
 
-        source rvm.env
+          gem install bundler:1.11.2 && bundle install
 
-        gem install bundler:1.11.2 && bundle install
-
-        ./ci/bin/api-acceptance --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG
+          ./ci/bin/api-acceptance --log-level debug -i $APPLIANCE_IMAGE -t $APPLIANCE_IMAGE_TAG
+        fi
       '''.stripIndent())
     }
 
