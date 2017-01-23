@@ -17,5 +17,5 @@ use(conjur.Conventions) {
       '''.stripIndent())
     }
   }
-  job.applyCommonConfig(dailyCron: false)
+  job.applyCommonConfig()
 }

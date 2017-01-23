@@ -15,6 +15,6 @@ use(conjur.Conventions) {
       '''.stripIndent())
     }
   }
-  job.applyCommonConfig(dailyCron: false)
+  job.applyCommonConfig()
   job.setBuildName('#${BUILD_NUMBER} ${ENV,var="PACKAGE_NAME"}')
 }

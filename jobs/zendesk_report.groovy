@@ -9,6 +9,6 @@ use(conjur.Conventions) {
       shell('./run_report.sh')
     }
   }
-  job.applyCommonConfig(dailyCron: false)
+  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/zendesk_report.git', false)
 }
