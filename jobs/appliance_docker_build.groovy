@@ -26,6 +26,7 @@ use(conjur.Conventions) {
 
     steps {
       shell('''
+        source ~/.rvm/scripts/rvm
         rvm use --install --create 2.1.5@appliance-docker-build
         gem install bundler
 
