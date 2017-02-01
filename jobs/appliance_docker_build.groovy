@@ -49,7 +49,13 @@ use(conjur.Conventions) {
           }
         }
       }
-      shell("source /tmp/appliance-rvm-${BUILD_NUMBER}.env && ./tag_and_push_stable.sh")
+      shell('''
+        source ~/.rvm/scripts/rvm
+        rvm use --install --create 2.1.5@appliance-docker-build
+        gem install bundler
+
+        ./tag_and_push_stable.sh
+      '''.stripIndent())
     }
 
     publishers {
