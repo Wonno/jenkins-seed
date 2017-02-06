@@ -13,9 +13,10 @@ class Conventions {
   static void applyCommonConfig(Job job, Map args=[:]) {
     def cleanup = args.fetch('cleanup', true)
     def notifyOnRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
+    def args_label = args.fetch('label', 'executor')
 
     job.with {
-      label('executor')
+      label(args_label)
       logRotator(60, -1, 60, -1)  // keep builds/artifacts for 60 days
 
       concurrentBuild()
