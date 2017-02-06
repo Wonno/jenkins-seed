@@ -33,6 +33,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.applyCommonConfig(label='executor-v2')
+  job.applyCommonConfig(label: 'executor-v2')
   job.addGitRepo('git@github.com:conjurinc/developer-www.git')
 }
