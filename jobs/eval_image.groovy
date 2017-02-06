@@ -7,6 +7,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.addGitRepo('git@github.com:conjur/eval-image.git')
+  job.addGitRepo('git@github.com:conjurinc/eval-image.git')
   job.applyCommonConfig()
 }
