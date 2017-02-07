@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('uml_image') {
+  def job = job('uml-image') {
     description('Convert Docker image to a SquashFS image for UML runtime.')
     
     parameters {
@@ -7,6 +7,7 @@ use(conjur.Conventions) {
     }
     
     steps {
+      shell('docker pull $IMAGE')
       shell('./mkimage.sh $IMAGE')
     }
     
