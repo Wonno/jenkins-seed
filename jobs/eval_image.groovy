@@ -8,5 +8,5 @@ use(conjur.Conventions) {
   }
 
   job.addGitRepo('git@github.com:conjurinc/eval-image.git')
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
 }
