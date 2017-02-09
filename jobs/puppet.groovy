@@ -12,5 +12,5 @@ use(conjur.Conventions) {
   }
 
   job.addGitRepo('git@github.com:conjur/puppet.git')
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
 }
