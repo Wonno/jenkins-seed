@@ -9,6 +9,7 @@ use(conjur.Conventions) {
     publishers {
       archiveArtifacts {
         pattern('*.deb')
+        archiveJunit('spec/reports/*.xml')
       }
     }
   }
