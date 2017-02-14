@@ -15,5 +15,5 @@ use(conjur.Conventions) {
   }
   job.applyCommonConfig()
   job.addGitRepo("git@github.com:conjurinc/conjur-ui.git")
-  job.publishDebsOnSuccess()
+  job.publishDebsOnSuccess('ui')  // debify prepends 'conjur-'
 }

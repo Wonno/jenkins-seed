@@ -85,7 +85,7 @@ class Conventions {
     }
   }
 
-  static void publishDebsOnSuccess(Job job) {
+  static void publishDebsOnSuccess(Job job, String projectName) {
     job.with {
       publishers {
         postBuildScripts {
@@ -114,33 +114,9 @@ class Conventions {
             ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
             YML
 
-            summon debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
+            summon debify publish --component $COMPONENT $DISTRIBUTION ${projectName}
             '''.stripIndent())
           }
-        }
-      }
-    }
-  }
-
-  // Publish build artifacts to Artifactory
-  static void publishToArtifactory(Job job, String targetRepo, String artifactRegex, String deploymentProperties) {
-    job.with {
-      configure { project ->
-        project / buildWrappers << 'org.jfrog.hudson.generic.ArtifactoryGenericConfigurator' {
-          details {
-            artifactoryName('-1280243840@1442969665256')
-            artifactoryUrl('https://conjurinc.artifactoryonline.com/conjurinc')
-            deployReleaseRepository {
-              keyFromSelect(targetRepo)
-              dynamicMode(false)
-            }
-          }
-          deployPattern(artifactRegex)
-          matrixParams(deploymentProperties)
-          deployBuildInfo(true)
-          includeEnvVars(false)
-          discardOldBuilds(false)
-          discardBuildArtifacts(false)
         }
       }
     }
