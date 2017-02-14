@@ -108,6 +108,12 @@ class Conventions {
             fi
 
             rm -f *latest*.deb
+
+            cat << YML > secrets.yml
+            ARTIFACTORY_USERNAME: !var artifactory/users/jenkins/username
+            ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
+            YML
+
             summon debify publish -d $DISTRIBUTION -c $COMPONENT *.deb
             '''.stripIndent())
           }
