@@ -91,15 +91,15 @@ class Conventions {
         postBuildScripts {
           onlyIfBuildSucceeds()
           steps {
-            shell('''
+            shell("""
             DISTRIBUTION=$(cat VERSION_APPLIANCE)
             COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
 
-            if [ "$COMPONENT" == "master" ] || [ "$COMPONENT" == "v$DISTRIBUTION" ]; then
+            if [ "\$COMPONENT" == "master" ] || [ "\$COMPONENT" == "v\$DISTRIBUTION" ]; then
               COMPONENT=stable
             fi
 
-            echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
+            echo "Publishing conjur-${projectName} to distribution '\$DISTRIBUTION', component '\$COMPONENT'"
 
             if [ -f VERSION ]; then
               VERSION="$(debify detect-version | tail -n 1)"
@@ -114,8 +114,8 @@ class Conventions {
             ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
             YML
 
-            summon debify publish --component $COMPONENT $DISTRIBUTION ${projectName}
-            '''.stripIndent())
+            summon debify publish --component \$COMPONENT \$DISTRIBUTION ${projectName}
+            """.stripIndent())
           }
         }
       }
