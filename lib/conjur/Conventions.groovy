@@ -114,7 +114,7 @@ class Conventions {
             ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
             YML
 
-            summon debify publish -d $DISTRIBUTION -c $COMPONENT *.deb
+            summon debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
             '''.stripIndent())
           }
         }
