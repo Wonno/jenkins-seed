@@ -85,30 +85,30 @@ class Conventions {
     }
   }
 
-  static void publishDebianOnSuccess(Job job) {
+  static void publishDebsOnSuccess(Job job) {
     job.with {
       publishers {
         postBuildScripts {
           onlyIfBuildSucceeds()
           steps {
             shell('''
-            cat << YML > secrets.yml
-            ARTIFACTORY_USERNAME: !var artifactory/users/jenkins/username
-            ARTIFACTORY_PASSWORD: !var artifactory/users/jenkins/password
-            YML
-            '''.stripIndent())
+            DISTRIBUTION=$(cat VERSION_APPLIANCE)
+            COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
 
-            shell('''
-            #!/bin/bash -e
+            if [ "$COMPONENT" == "master" ] || [ "$COMPONENT" == "v$DISTRIBUTION" ]; then
+              COMPONENT=stable
+            fi
 
-            COMPONENT="testing"
+            echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
 
-            if [ "$GIT_BRANCH" == "origin/master" ]; then
-              COMPONENT="stable"
+            if [ -f VERSION ]; then
+              VERSION="$(debify detect-version | tail -n 1)"
+            else
+              VERSION=$(git describe --long --tags --abbrev=7 --match 'v*.*.*' | sed -e 's/^v//')
             fi
 
             rm -f *latest*.deb
-            summon debify publish -c $COMPONENT *.deb
+            summon debify publish -d $DISTRIBUTION -c $COMPONENT *.deb
             '''.stripIndent())
           }
         }
