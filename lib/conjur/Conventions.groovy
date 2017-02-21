@@ -17,7 +17,7 @@ class Conventions {
 
     job.with {
       label(args_label)
-      logRotator(60, -1, 60, -1)  // keep builds/artifacts for 60 days
+      logRotator(30, -1, 30, -1)  // keep builds/artifacts for 30 days
 
       concurrentBuild()
       throttleConcurrentBuilds {
