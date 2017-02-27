@@ -35,6 +35,6 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig(label: 'executor-v2')
+  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/api-node.git')
 }
