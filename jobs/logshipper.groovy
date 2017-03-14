@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Build and test logshipper for several platforms')
 
     axes {
-      label('label', 'docker') // Restrict to run child jobs on slaves tagged 'docker'
+      label('label', 'executor') // Restrict to run child jobs on slaves tagged 'executor'
       text('PLATFORM', 'el6', 'el7', 'precise', 'trusty', 'jessie')
     }
 
