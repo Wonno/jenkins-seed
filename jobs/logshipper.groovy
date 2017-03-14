@@ -4,7 +4,7 @@ use(conjur.Conventions) {
 
     axes {
       label('label', 'executor') // Restrict to run child jobs on slaves tagged 'executor'
-      text('PLATFORM', 'el6', 'el7', 'precise', 'trusty', 'jessie')
+      text('PLATFORM', 'el6', 'el7', 'precise', 'trusty', 'xenial', 'jessie')
     }
 
     steps {
