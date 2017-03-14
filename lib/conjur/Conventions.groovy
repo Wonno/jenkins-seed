@@ -37,14 +37,14 @@ class Conventions {
       }
 
       publishers {
-        // slackNotifier {
-        //   room('jenkins')
-        //   notifyFailure(true)
-        //   notifyRepeatedFailure(notifyOnRepeatedFailure)
-        //   notifyUnstable(true)
-        //   notifyBackToNormal(true)
-        //   commitInfoChoice('AUTHORS_AND_TITLES')
-        // }
+        slackNotifier {
+          room('jenkins')
+          notifyFailure(true)
+          notifyRepeatedFailure(notifyOnRepeatedFailure)
+          notifyUnstable(true)
+          notifyBackToNormal(true)
+          commitInfoChoice('AUTHORS_AND_TITLES')
+        }
       }
     }
   }
