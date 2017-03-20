@@ -7,6 +7,7 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
+    concurrentBuild()
     throttleConcurrentBuilds {
       categories(['resource-intensive'])
     }

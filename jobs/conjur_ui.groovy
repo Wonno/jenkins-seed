@@ -2,6 +2,7 @@ use(conjur.Conventions) {
   def job = job('conjur-ui') {
     description('Build new Conjur UI')
 
+    concurrentBuild()
     throttleConcurrentBuilds {
       categories(['resource-intensive'])
     }
