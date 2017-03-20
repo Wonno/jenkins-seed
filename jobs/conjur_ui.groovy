@@ -2,6 +2,10 @@ use(conjur.Conventions) {
   def job = job('conjur-ui') {
     description('Build new Conjur UI')
 
+    throttleConcurrentBuilds {
+      categories(['resource-intensive'])
+    }
+
     steps {
       shell('./jenkins.sh')
     }

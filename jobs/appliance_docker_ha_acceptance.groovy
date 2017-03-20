@@ -7,6 +7,10 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
+    throttleConcurrentBuilds {
+      categories(['resource-intensive'])
+    }
+
     steps {
       shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-ha-acceptance && export > rvm.env"')
       shell('''
