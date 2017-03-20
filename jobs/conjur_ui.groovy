@@ -17,7 +17,7 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(concurrent: false)
   job.addGitRepo("git@github.com:conjurinc/conjur-ui.git")
   job.publishDebsOnSuccess('ui')  // debify prepends 'conjur-'
 }

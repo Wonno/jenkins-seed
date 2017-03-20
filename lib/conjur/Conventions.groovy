@@ -14,14 +14,17 @@ class Conventions {
     def cleanup = args.fetch('cleanup', true)
     def notifyOnRepeatedFailure = args.fetch('notifyRepeatedFailure', false)
     def args_label = args.fetch('label', 'executor')
+    def concurrent = args.fetch('concurrent',  true)
 
     job.with {
       label(args_label)
       logRotator(30, -1, 30, -1)  // keep builds/artifacts for 30 days
 
-      concurrentBuild()
-      throttleConcurrentBuilds {
-        maxPerNode(1)
+      if (concurrent) {
+        concurrentBuild()
+        throttleConcurrentBuilds {
+          maxPerNode(1)
+        }
       }
 
       wrappers {
