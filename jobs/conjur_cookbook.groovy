@@ -10,29 +10,29 @@ use(conjur.Conventions) {
         summon -f secrets.ci.yml ./jenkins.sh
       '''.stripIndent())
 
-      downstreamParameterized {
-        trigger('conjur-cookbook-matrix') {
-          block {
-            buildStepFailure('UNSTABLE')
-            failure('UNSTABLE')
-            unstable('UNSTABLE')
-          }
-          parameters {
-            propertiesFile('env.properties')
-            currentBuild()
-            gitRevision()
-          }
-        }
-      }
+      //downstreamParameterized {
+      //  trigger('conjur-cookbook-matrix') {
+      //    block {
+      //      buildStepFailure('UNSTABLE')
+      //      failure('UNSTABLE')
+      //      unstable('UNSTABLE')
+      //    }
+      //    parameters {
+      //      propertiesFile('env.properties')
+      //      currentBuild()
+      //      gitRevision()
+      //    }
+      //  }
+      //}
     }
 
     publishers {
-      postBuildScripts {
-        steps {
-          shell('summon -f secrets.ci.yml ./cleanup.sh')
-        }
-        onlyIfBuildSucceeds(false)
-      }
+      //postBuildScripts {
+      //  steps {
+      //    shell('summon -f secrets.ci.yml ./cleanup.sh')
+      //  }
+      //  onlyIfBuildSucceeds(false)
+      //}
       archiveArtifacts('ci/output/*.tar.gz, env.properties')
     }
   }
