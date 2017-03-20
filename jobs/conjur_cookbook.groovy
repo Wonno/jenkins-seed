@@ -27,13 +27,18 @@ use(conjur.Conventions) {
     }
 
     publishers {
+      archiveJunit('ci/reports/specs.xml')
+      violations(50) {
+        checkstyle(10, 999, 999, 'ci/reports/rubocop.xml')
+      }
       //postBuildScripts {
       //  steps {
       //    shell('summon -f secrets.ci.yml ./cleanup.sh')
       //  }
       //  onlyIfBuildSucceeds(false)
       //}
-      archiveArtifacts('ci/output/*.tar.gz, env.properties')
+      // archiveArtifacts('ci/output/*.tar.gz, env.properties')
+
     }
   }
 
