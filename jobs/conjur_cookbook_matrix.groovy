@@ -12,9 +12,6 @@ use(conjur.Conventions) {
 
     parameters {
       stringParam('SUITES', '', 'test-kitchen suites to run')
-      stringParam('CONJUR_INTERNAL_ADDR', '', '')
-      stringParam('CONJUR_TOKEN', '', '')
-      stringParam('CONJUR_EXTERNAL_ADDR', '', '')
       stringParam('MATRIX_IMAGE_TAG', '', '')
     }
 
@@ -50,11 +47,11 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('summon -f secrets.ci.yml ./matrix.sh --only ${SUITE}')
+      shell('./matrix.sh --only ${SUITE}')
     }
 
     publishers {
-      archiveJunit('ci/reports/*.xml, spec/*.xml')
+      // archiveJunit('ci/reports/*.xml, spec/*.xml')
     }
   }
   job.applyCommonConfig()

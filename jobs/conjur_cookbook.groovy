@@ -6,24 +6,22 @@ use(conjur.Conventions) {
     '''.stripIndent())
 
     steps {
-      shell('''
-        summon -f secrets.ci.yml ./jenkins.sh
-      '''.stripIndent())
+      shell('./jenkins.sh')
 
-      //downstreamParameterized {
-      //  trigger('conjur-cookbook-matrix') {
-      //    block {
-      //      buildStepFailure('UNSTABLE')
-      //      failure('UNSTABLE')
-      //      unstable('UNSTABLE')
-      //    }
-      //    parameters {
-      //      propertiesFile('env.properties')
-      //      currentBuild()
-      //      gitRevision()
-      //    }
-      //  }
-      //}
+      downstreamParameterized {
+       trigger('conjur-cookbook-matrix') {
+         block {
+           buildStepFailure('FAILURE')
+           failure('FAILURE')
+           unstable('UNSTABLE')
+         }
+         parameters {
+           propertiesFile('env.properties')
+           currentBuild()
+           gitRevision()
+         }
+       }
+      }
     }
 
     publishers {
@@ -31,14 +29,6 @@ use(conjur.Conventions) {
       violations(50) {
         checkstyle(10, 999, 999, 'ci/reports/rubocop.xml')
       }
-      //postBuildScripts {
-      //  steps {
-      //    shell('summon -f secrets.ci.yml ./cleanup.sh')
-      //  }
-      //  onlyIfBuildSucceeds(false)
-      //}
-      // archiveArtifacts('ci/output/*.tar.gz, env.properties')
-
     }
   }
 
