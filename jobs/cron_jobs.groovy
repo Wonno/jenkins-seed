@@ -44,7 +44,7 @@ use(conjur.Conventions) {
         }
       }
     }
-    j.applyCommonConfig()
+    j.applyCommonConfig(label: 'master')  // trigger the build from the master
   }
 }
 
@@ -67,7 +67,7 @@ use(conjur.Conventions) {
           }
         }
       }
-      j.applyCommonConfig()
+      j.applyCommonConfig(label: 'master')  // trigger the build from the master
     }
   }
 }
@@ -90,6 +90,6 @@ use(conjur.Conventions) {
         }
       }
     }
-  j.applyCommonConfig()
+    j.applyCommonConfig(label: 'master')  // trigger the build from the master
   }
 }
