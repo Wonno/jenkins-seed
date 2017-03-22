@@ -89,7 +89,7 @@ use(conjur.Conventions) {
           }
         }
       }
-    j.applyCommonConfig()
     }
+  j.applyCommonConfig()
   }
 }
