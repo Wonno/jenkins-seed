@@ -75,7 +75,7 @@ use(conjur.Conventions) {
 // Other cron jobs, various jobs that need to run on a schedule
 use(conjur.Conventions) {
   other_cron_jobs.each { cron_job ->
-    def j = job("${folderName}/${cron_job.name}") {
+    def j = job("${folderName}/${cron_job.name}-cron") {
       description("Triggers job ${cron_job.name} to run regularly on master branch")
       triggers {
         cron(cron_job.cron)
