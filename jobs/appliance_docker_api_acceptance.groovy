@@ -7,6 +7,11 @@ use(conjur.Conventions) {
       stringParam('APPLIANCE_IMAGE_TAG', 'latest', 'Appliance image tag to test.')
     }
 
+    concurrentBuild()
+    throttleConcurrentBuilds {
+      categories(['resource-intensive'])
+    }
+
     steps {
       shell('''
         if [ -f api_acceptance.sh ]; then
@@ -30,6 +35,6 @@ use(conjur.Conventions) {
   }
 
   job.addGitRepo('git@github.com:conjurinc/appliance.git', false)
-  job.applyCommonConfig(notifyRepeatedFailure: true)
+  job.applyCommonConfig(notifyRepeatedFailure: true, concurrent: false)
   job.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
 }
