@@ -1,5 +1,5 @@
 use(conjur.Conventions) {
-  def job = job('eval-image') {
+  def job = job('training-image') {
     description('Conjur training image')
 
     steps {
