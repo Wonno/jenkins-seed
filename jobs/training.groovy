@@ -18,5 +18,5 @@ use(conjur.Conventions) {
   }
 
   job.addGitRepo('git@github.com:conjurinc/training.git')
-  job.applyCommonConfig(label: 'executor-v2')
+  job.applyCommonConfig(label: 'executor')
 }
