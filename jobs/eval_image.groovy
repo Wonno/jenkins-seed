@@ -1,12 +1,12 @@
 use(conjur.Conventions) {
   def job = job('eval-image') {
-    description('Conjur evaluation image')
+    description('Conjur training image')
 
     steps {
       shell('./jenkins.sh')
     }
   }
 
-  job.addGitRepo('git@github.com:conjurinc/eval-image.git')
+  job.addGitRepo('git@github.com:conjurinc/training-image.git')
   job.applyCommonConfig(label: 'executor-v2')
 }
