@@ -5,6 +5,16 @@ use(conjur.Conventions) {
     steps {
       shell('./jenkins.sh')
     }
+
+    publishers {
+      archiveArtifacts('*.deb')
+      postBuildScripts {
+        steps {
+          shell('./publish.sh')
+        }
+        onlyIfBuildSucceeds(true)
+      }
+    }
   }
 
   job.addGitRepo('git@github.com:conjurinc/training.git')
