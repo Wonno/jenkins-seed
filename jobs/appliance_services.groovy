@@ -3,7 +3,7 @@ import conjur.Appliance
 def artifacts = '*.deb, *=*'
 
 def migrated_services = [
-  'audit'
+  'audit', 'authn'
 ]
 
 use(conjur.Conventions) {
