@@ -2,9 +2,8 @@ import conjur.Appliance
 
 def artifacts = '*.deb, *=*'
 
-def migrated_services = [
-  'audit', 'authn', 'authn-ldap', 'authn-local', 'authn-tv', 'authz',
-  'core', 'expiration', 'evoke', 'host-factory', 'ldap-server'
+def services_to_migrate = [
+  'glider', 'ldap-sync', 'policy-loader', 'possum'
 ]
 
 use(conjur.Conventions) {
@@ -64,7 +63,7 @@ use(conjur.Conventions) {
         }
       }
     }
-    serviceJob.applyCommonConfig(label: (service in migrated_services) ? 'executor-v2' : 'executor')
+    serviceJob.applyCommonConfig(label: (service in services_to_migrate) ? 'executor' : 'executor-v2')
     serviceJob.addGitRepo("git@github.com:conjurinc/${service}.git")
   }
 }
