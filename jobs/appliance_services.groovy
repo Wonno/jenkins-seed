@@ -3,7 +3,7 @@ import conjur.Appliance
 def artifacts = '*.deb, *=*'
 
 def migrated_services = [
-  'audit', 'authn'
+  'audit', 'authn', 'authz', 'authn-ldap', 'authn-local', 'authn-tv'
 ]
 
 use(conjur.Conventions) {
@@ -15,15 +15,7 @@ use(conjur.Conventions) {
       """.stripIndent())
 
       steps {
-        if (service == 'authz') { // hacky workaround, needs Dockerized like other services
-          shell('''
-           bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.0.0@conjur-authz && export > rvm.env"
-           source rvm.env
-           ./jenkins.sh
-          '''.stripIndent())
-        } else {
-          shell('./jenkins.sh')
-        }
+        shell('./jenkins.sh')
       }
 
       publishers {
