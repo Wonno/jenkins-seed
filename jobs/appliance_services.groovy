@@ -2,6 +2,10 @@ import conjur.Appliance
 
 def artifacts = '*.deb, *=*'
 
+def migrated_services = [
+  'audit'
+]
+
 use(conjur.Conventions) {
   Appliance.getServices().each { service ->
     def serviceJob = job(service) {
@@ -67,7 +71,7 @@ use(conjur.Conventions) {
         }
       }
     }
-    serviceJob.applyCommonConfig()
+    serviceJob.applyCommonConfig(label: (service in migrated_services) ? 'executor-v2' : 'executor')
     serviceJob.addGitRepo("git@github.com:conjurinc/${service}.git")
   }
 }
