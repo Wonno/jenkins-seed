@@ -10,7 +10,7 @@ job("${folderName}/cleanup_docker") {
 
   parameters {
     labelParam('NODE_LABEL') {
-      defaultValue('docker')
+      defaultValue('executor')
       description('Run job on all nodes with this label')
       allNodes('allCases', 'IgnoreOfflineNodeEligibility')
     }
@@ -31,7 +31,7 @@ job("${folderName}/cleanup_docker") {
     df -h
 
     echo '----------'
-    
+
     docker ps -a -q --filter status=exited | xargs -r docker rm
     docker images -q --filter dangling=true | xargs -r  docker rmi || true
     docker volume ls -q --filter dangling=true | xargs -r docker volume rm
@@ -50,4 +50,22 @@ job("${folderName}/cleanup_docker") {
     df -h
     '''.stripIndent())
   }
+}
+use(conjur.Conventions) {
+  def j = job("${folderName}/cleanup_docker-v2") {
+    parameters {
+      labelParam('NODE_LABEL') {
+        defaultValue('executor-v2')
+        description('Run job on all nodes with this label')
+        allNodes('allCases', 'IgnoreOfflineNodeEligibility')
+      }
+    }
+    triggers {
+      cron('H 6 * * *') // 6am UTC, 1am EST
+    }
+    steps {
+      shell('docker system prune -f')
+    }
+  }
+  j.applyCommonConfig(label: 'executor-v2')
 }
