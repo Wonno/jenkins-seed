@@ -4,7 +4,7 @@ def artifacts = '*.deb, *=*'
 
 def migrated_services = [
   'audit', 'authn', 'authn-ldap', 'authn-local', 'authn-tv', 'authz',
-  'core', 'expiration', 'evoke', 'glider', 'host-factory', 'ldap-server'
+  'core', 'expiration', 'evoke', 'host-factory', 'ldap-server'
 ]
 
 use(conjur.Conventions) {
