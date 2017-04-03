@@ -17,7 +17,7 @@ use(conjur.Conventions) {
         echo "AWS_SECRET_ACCESS_KEY: !var aws/ci/sys_powerful/secret_access_key" >> secrets.yml
 
         docker save registry.tld/$IMAGE_NAME:$RELEASE_TAG > $IMAGE_NAME-$RELEASE_TAG.tar
-        summon docker run --env-file @SUMMONENVFILE -v $PWD:/share --rm blendle/aws-cli s3 cp /share/$IMAGE_NAME-$RELEASE_TAG.tar s3://conjur-ci-images/docker/
+        summon docker run --env-file @SUMMONENVFILE -v $PWD:/share --rm anigeo/awscli s3 cp /share/$IMAGE_NAME-$RELEASE_TAG.tar s3://conjur-ci-images/docker/
       '''.stripIndent())
 
     }
