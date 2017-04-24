@@ -102,6 +102,6 @@ use(conjur.Conventions) {
     }
   }
 
-  job.applyCommonConfig(notifyRepeatedFailure: true, label: 'executor-v2')
+  job.applyCommonConfig(notifyRepeatedFailure: true)
   job.addGitRepo('git@github.com:conjurinc/appliance.git')
 }
