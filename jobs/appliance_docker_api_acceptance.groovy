@@ -35,6 +35,6 @@ use(conjur.Conventions) {
   }
 
   job.addGitRepo('git@github.com:conjurinc/appliance.git', false)
-  job.applyCommonConfig(notifyRepeatedFailure: true, concurrent: false)
+  job.applyCommonConfig(notifyRepeatedFailure: true, concurrent: false, label: 'executor-v2')
   job.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
 }
