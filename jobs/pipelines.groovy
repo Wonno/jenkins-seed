@@ -1,20 +1,14 @@
 def pipelines = [
-  [name: 'conjurinc/appliance-uml']
+  [owner: 'conjurinc', name: 'appliance-uml']
 ]
 
 pipelines.each { pipeline ->
-  def (owner, repoName) =  pipeline.name.split('/')
-  multibranchPipelineJob(pipeline.repoName) {
+  multibranchPipelineJob(pipeline.name) {
     branchSources {
       github {
-        repoOwner(owner)
-        repository(repoName)
+        repoOwner(pipeline.owner)
+        repository(pipeline.name)
         scanCredentialsId('conjur-jenkins')
-      }
-    }
-    orphanedItemStrategy {
-      discardOldItems {
-        numToKeep(20)
       }
     }
   }
