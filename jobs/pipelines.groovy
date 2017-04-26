@@ -4,7 +4,7 @@ def pipelines = [
 
 pipelines.each { pipeline ->
   def (owner, repoName) =  pipeline.name.split('/')
-  multibranchPipelineJob(pipeline.name) {
+  multibranchPipelineJob(pipeline.repoName) {
     branchSources {
       github {
         repoOwner(owner)
