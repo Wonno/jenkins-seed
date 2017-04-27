@@ -1,15 +1,17 @@
 def pipelines = [
-  [owner: 'conjurinc', name: 'appliance-uml']
+  [repo: 'conjurinc/appliance-uml'],
 ]
 
 pipelines.each { pipeline ->
-  multibranchPipelineJob(pipeline.name) {
+  def (githubOrg, githubRepoName) = pipeline.repo.split('/')
+  def ondemand = (pipeline.ondemand == true)  // don't trigger this build on git changes, default false
+
+  multibranchPipelineJob(githubRepoName) {
 
     branchSources {
-      github {
-        repoOwner(pipeline.owner)
-        repository(pipeline.name)
-        scanCredentialsId('conjur-jenkins')
+      git {
+        remote("git@github.com:${githubOrg}/${githubRepoName}.git")
+        ignoreOnPushNotifications(ondemand)
       }
     }
 
