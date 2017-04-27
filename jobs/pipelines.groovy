@@ -1,12 +1,14 @@
 def pipelines = [
   [repo: 'conjurinc/appliance-uml'],
+  [repo: 'conjurinc/conjur-ui', buildName: 'conjur-ui-pipeline'],
 ]
 
 pipelines.each { pipeline ->
   def (githubOrg, githubRepoName) = pipeline.repo.split('/')
   def ondemand = (pipeline.ondemand == true)  // don't trigger this build on git changes, default false
+  def buildName = (pipeline.buildName == null) ? githubRepoName : pipeline.buildName
 
-  multibranchPipelineJob(githubRepoName) {
+  multibranchPipelineJob(buildName) {
 
     branchSources {
       git {
