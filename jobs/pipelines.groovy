@@ -10,6 +10,7 @@ pipelines.each { pipeline ->
   def buildName = (pipeline.buildName == null) ? githubRepoName : pipeline.buildName
 
   multibranchPipelineJob(buildName) {
+    description("Project: https://github.com/${githubOrg}/${githubRepoName}")
 
     branchSources {
       git {
@@ -18,9 +19,13 @@ pipelines.each { pipeline ->
       }
     }
 
+    triggers {
+      periodic(5)  // Check every 5 minutes for changes in branches, note that this is a fallback!
+    }
+
     orphanedItemStrategy {
       discardOldItems {
-        numToKeep(20)
+        numToKeep(30)
       }
     }
 
