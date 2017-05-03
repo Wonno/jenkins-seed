@@ -6,11 +6,13 @@ def pipelines = [
 
 pipelines.each { pipeline ->
   def (githubOrg, githubRepoName) = pipeline.repo.split('/')
+  def gitHubUrl = "https://github.com/${githubOrg}/${githubRepoName}"
+
   def ondemand = (pipeline.ondemand == true)  // don't trigger this build on git changes, default false
   def buildName = (pipeline.buildName == null) ? githubRepoName : pipeline.buildName
 
   multibranchPipelineJob(buildName) {
-    description("Project: https://github.com/${githubOrg}/${githubRepoName}")
+    description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
     branchSources {
       git {
