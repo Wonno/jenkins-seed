@@ -21,10 +21,6 @@ pipelines.each { pipeline ->
       }
     }
 
-    triggers {
-      periodic(5)  // Check every 5 minutes for changes in branches, note that this is a fallback!
-    }
-
     orphanedItemStrategy {
       discardOldItems {
         numToKeep(30)
