@@ -1,10 +1,9 @@
 use(conjur.Conventions) {
-  def job = job('appliance-docker-api-acceptance-v2') {
-    description('Run API acceptance tests on Docker Conjur')
+  def job = job('appliance-docker-ha-acceptance-v2') {
+    description('Run HA acceptance tests on Docker Conjur')
 
     parameters {
-      stringParam('NAME', '', 'Appliance image name to test. Required.')
-      stringParam('TAG', '', 'Appliance image tag to test. Required.')
+      stringParam('IMAGE', '', 'Appliance image id to test. Required.')
     }
 
     concurrentBuild()
@@ -13,12 +12,13 @@ use(conjur.Conventions) {
     }
 
     steps {
-      shell('cd test; ./api-acceptance.sh $NAME $TAG')
+      shell('bash -c "source ~/.rvm/scripts/rvm && rvm use --install --create 2.1.5@appliance-docker-ha-acceptance && export > rvm.env"')
+      shell('exit 0')
     }
 
     publishers {
-      archiveJunit('test/output/report/api-acceptance/*.xml')
-      archiveArtifacts('test/output/**')
+      archiveJunit('ci/output/report/ha-acceptance/*.xml')
+      archiveArtifacts('ci/output/**')
     }
   }
 

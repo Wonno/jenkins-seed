@@ -37,7 +37,7 @@ use(conjur.Conventions) {
 
     publishers {
       archiveArtifacts {
-        pattern('*.deb,env.properties,TAG,IMAGE')
+        pattern('*.deb,env.properties,NAME,TAG,IMAGE')
       }
     }
   }
