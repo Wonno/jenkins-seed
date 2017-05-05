@@ -2,14 +2,13 @@ def pipelines = [
   [repo: 'conjurinc/appliance-uml'],
   [repo: 'conjurinc/conjur-ui', buildName: 'conjur-ui-pipeline'],
   [repo: 'conjurinc/apidocs'],
-  [repo: 'conjurinc/appliance', ondemand: true]
+  [repo: 'conjurinc/appliance']
 ]
 
 pipelines.each { pipeline ->
   def (githubOrg, githubRepoName) = pipeline.repo.split('/')
   def gitHubUrl = "https://github.com/${githubOrg}/${githubRepoName}"
 
-  def ondemand = (pipeline.ondemand == true)  // don't trigger this build on git changes, default false
   def buildName = (pipeline.buildName == null) ? githubRepoName : pipeline.buildName
 
   multibranchPipelineJob(buildName) {
@@ -18,7 +17,6 @@ pipelines.each { pipeline ->
     branchSources {
       git {
         remote("git@github.com:${githubOrg}/${githubRepoName}.git")
-        ignoreOnPushNotifications(ondemand)
       }
     }
 
