@@ -15,8 +15,10 @@ pipelines.each { pipeline ->
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
     branchSources {
-      git {
-        remote("git@github.com:${githubOrg}/${githubRepoName}.git")
+      github {
+        repoOwner(githubOrg)
+        repository(githubRepoName)
+        scanCredentialsId('conjur-jenkins')
       }
     }
 
