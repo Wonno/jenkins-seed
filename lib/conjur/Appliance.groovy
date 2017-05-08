@@ -21,7 +21,8 @@ class Appliance {
       'policy-loader',
       'possum',
       'pubkeys',
-      'rotation'
+      'rotation',
+      'conjur-cyberark'
     ]
   }
 }
