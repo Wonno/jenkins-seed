@@ -17,6 +17,7 @@ pipelines.each { pipeline ->
     branchSources {
       git {
         remote("git@github.com:${githubOrg}/${githubRepoName}.git")
+        credentialsId('conjur-jenkins')
       }
     }
 
@@ -24,10 +25,6 @@ pipelines.each { pipeline ->
       discardOldItems {
         numToKeep(30)
       }
-    }
-
-    configure { project ->
-      project / 'healthMetrics' / 'com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric'
     }
   }
 }
