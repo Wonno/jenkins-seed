@@ -14,6 +14,10 @@ pipelines.each { pipeline ->
   multibranchPipelineJob(buildName) {
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
+    triggers {
+      periodic(10)  // Check branches every 10min, as a fallback to push events
+    }
+
     branchSources {
       git {
         remote("git@github.com:${githubOrg}/${githubRepoName}.git")
@@ -25,10 +29,6 @@ pipelines.each { pipeline ->
       discardOldItems {
         numToKeep(30)
       }
-    }
-
-    configure { project ->
-      project / 'healthMetrics' / 'com.cloudbees.hudson.plugins.folder.health.WorstChildHealthMetric'
     }
   }
 }
