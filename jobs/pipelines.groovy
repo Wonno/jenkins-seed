@@ -30,5 +30,9 @@ pipelines.each { pipeline ->
         numToKeep(30)
       }
     }
+
+    configure { project ->
+      project / 'extensions' << 'hudson.plugins.git.extensions.impl.CleanCheckout'
+    }
   }
 }
