@@ -22,7 +22,7 @@ class Appliance {
       'possum',
       'pubkeys',
       'rotation',
-      'cyberark'
+      'conjur-cyberark'
     ]
   }
 }
