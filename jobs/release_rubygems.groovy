@@ -4,14 +4,20 @@ use(conjur.Conventions) {
 
     parameters {
       stringParam('GEM_NAME', '', 'Ruby Gem Name. Must be whitelisted in release-bot!')
+      stringParam('GEM_BRANCH', '', 'Git branch to release. Default is master')
     }
 
     steps {
       shell('''
         set -e
 
+        data="name=$GEM_NAME"
+        if [[ "$GEM_BRANCH" != "" ]]; then
+          data="$data&branch=$GEM_BRANCH"
+        fi
+
         auth_header=`/opt/conjur/bin/conjur authn authenticate -H`
-        curl -f -H "$auth_header" -X POST "https://releasebot-conjur.herokuapp.com/rubygems/releases" --data "name=$GEM_NAME"
+        curl -f -H "$auth_header" -X POST "https://releasebot-conjur.herokuapp.com/rubygems/releases" --data "$data"
       '''.stripIndent())
     }
   }
