@@ -6,7 +6,7 @@ use(conjur.Conventions) {
       shell('./jenkins.sh')
       conditionalSteps {
         condition {
-          stringsMatch('${GIT_BRANCH}', 'origin/master', false)
+          stringsMatch('${GIT_BRANCH}', 'origin/website', false)
         }
         runner('Run')
         steps {
