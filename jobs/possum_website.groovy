@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Possum Website')
 
     steps {
-      shell('./website.sh')
+      shell('summon ./website.sh')
     }
   }
 
