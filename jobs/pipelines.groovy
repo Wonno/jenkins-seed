@@ -2,7 +2,8 @@ def pipelines = [
   [repo: 'conjurinc/appliance-uml'],
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
-  [repo: 'conjurinc/appliance']
+  [repo: 'conjurinc/appliance'],
+  [repo: 'conjurinc/summon', buildName: 'summon-pipeline'],
 ]
 
 pipelines.each { pipeline ->
