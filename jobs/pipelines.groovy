@@ -3,6 +3,7 @@ def pipelines = [
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/appliance'],
+  [repo: 'conjurinc/possum'],
   [repo: 'conjurinc/summon'],
 ]
 
