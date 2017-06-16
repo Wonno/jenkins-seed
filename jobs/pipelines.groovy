@@ -4,6 +4,7 @@ def pipelines = [
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/appliance'],
   [repo: 'conjurinc/possum', buildName: 'possum-pipeline'],
+  [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/summon'],
 ]
 
