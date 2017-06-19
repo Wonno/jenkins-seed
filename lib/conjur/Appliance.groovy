@@ -19,7 +19,6 @@ class Appliance {
       'ldap-server',
       'ldap-sync',
       'policy-loader',
-      'possum',
       'pubkeys',
       'rotation',
       'cyberark'
