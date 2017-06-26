@@ -6,6 +6,7 @@ def pipelines = [
   [repo: 'conjurinc/possum', buildName: 'possum-pipeline'],
   [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/summon'],
+  [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
 ]
 
 pipelines.each { pipeline ->
