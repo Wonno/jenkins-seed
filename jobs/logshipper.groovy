@@ -16,6 +16,6 @@ use(conjur.Conventions) {
       archiveJunit('reports/*/*')
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
   job.addGitRepo('git@github.com:conjurinc/logshipper.git')
 }
