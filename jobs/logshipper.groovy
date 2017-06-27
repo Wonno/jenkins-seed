@@ -3,7 +3,7 @@ use(conjur.Conventions) {
     description('Build and test logshipper for several platforms')
 
     axes {
-      label('label', 'executor') // Restrict to run child jobs on slaves tagged 'executor'
+      label('label', 'executor-v2') // Restrict to run child jobs on slaves tagged 'executor'
       text('PLATFORM', 'el6', 'el7', 'precise', 'trusty', 'xenial', 'jessie', 'stretch')
     }
 
@@ -16,6 +16,6 @@ use(conjur.Conventions) {
       archiveJunit('reports/*/*')
     }
   }
-  job.applyCommonConfig(label: 'executor-v2')
+  job.applyCommonConfig()
   job.addGitRepo('git@github.com:conjurinc/logshipper.git')
 }
