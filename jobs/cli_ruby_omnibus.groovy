@@ -20,7 +20,7 @@ use(conjur.Conventions) {
             unstable('UNSTABLE')
           }
           parameters {
-            predefinedProp('BUILD_VERSION', params['BUILD_VERSION'])
+            predefinedProp('BUILD_VERSION', '{ENV,var="BUILD_VERSION"}')
           }
         }
       }
