@@ -8,12 +8,12 @@ use(conjur.Conventions) {
     }
 
     triggers {
-        cron('@weekly')
+      cron('@weekly')
     }
 
     steps {
       downstreamParameterized {
-        trigger('cli-ruby-ubuntu', 'cli-ruby-centos', 'cli-ruby-osx') {
+        trigger('cli-ruby-ubuntu, cli-ruby-centos, cli-ruby-osx') {
           block {
             buildStepFailure('FAILURE')
             failure('FAILURE')
