@@ -18,7 +18,7 @@ use(conjur.Conventions) {
                 unstable('UNSTABLE')
               }
               parameters {
-                predefinedProp('APP_NAME', 'possum-ci-conjur')
+                predefinedProp('APP_NAME', 'possum-conjur')
                 currentBuild()
                 gitRevision()
               }
