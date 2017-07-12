@@ -3,7 +3,7 @@ def pipelines = [
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/appliance'],
-  [repo: 'conjurinc/possum', buildName: 'possum-pipeline'],
+  [repo: 'conjurinc/possum'],
   [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/summon'],
   [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
