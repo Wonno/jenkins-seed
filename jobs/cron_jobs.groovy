@@ -6,13 +6,9 @@ def cron_daily = 'H H * * *'
 
 def appliance_branches  = [
   [name: 'master', cron: cron_daily],
-  [name: 'v4.8',   cron: cron_weekly],
-  [name: 'v4.7',   cron: cron_weekly]
 ]
 def service_branches  = [
   [name: 'master', cron: cron_daily],
-  [name: 'v4.8',   cron: cron_weekly],
-  [name: 'v4.7',   cron: cron_weekly]
 ]
 
 def other_cron_jobs = [
