@@ -8,6 +8,7 @@ def pipelines = [
   [repo: 'conjurinc/summon'],
   [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
   [repo: 'conjurinc/cli-ruby', buildName: 'cli-ruby-pipeline'],
+  [repo: 'conjurinc/nginx', buildName: 'nginx-pipeline'],
 ]
 
 pipelines.each { pipeline ->
