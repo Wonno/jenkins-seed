@@ -19,6 +19,10 @@ pipelines.each { pipeline ->
   multibranchPipelineJob(buildName) {
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
+    triggers {
+      periodic(720)  // scan sources every 12hr, as a fallback - unit is minutes
+    }
+
     branchSources {
       git {
         remote("git@github.com:${githubOrg}/${githubRepoName}.git")
@@ -28,7 +32,7 @@ pipelines.each { pipeline ->
 
     orphanedItemStrategy {
       discardOldItems {
-        numToKeep(30)
+        daysToKeep(30)
       }
     }
   }
