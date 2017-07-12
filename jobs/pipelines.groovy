@@ -33,7 +33,7 @@ pipelines.each { pipeline ->
 
     orphanedItemStrategy {
       discardOldItems {
-        daysToKeep(30)
+        daysToKeep(10)
       }
     }
   }
