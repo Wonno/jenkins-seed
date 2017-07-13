@@ -2,9 +2,7 @@ import conjur.Appliance
 
 def artifacts = '*.deb, *=*'
 
-def services_to_migrate = [
-  'glider', 'ldap-sync'
-]
+def services_to_migrate = ['ldap-sync']
 
 use(conjur.Conventions) {
   Appliance.getServices().each { service ->
