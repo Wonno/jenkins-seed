@@ -14,7 +14,7 @@ class Appliance {
       'core',
       'expiration',
       'evoke',
-      'glider',
+      // 'glider',
       'host-factory',
       'ldap-server',
       'ldap-sync',
