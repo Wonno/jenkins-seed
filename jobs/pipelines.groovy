@@ -24,7 +24,7 @@ pipelines.each { pipeline ->
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
     triggers {
-      periodic(720)  // scan sources every 12hr, as a fallback - unit is minutes
+      periodic(480)  // scan sources every 8hr, as a fallback - unit is minutes
     }
 
     branchSources {
@@ -36,7 +36,7 @@ pipelines.each { pipeline ->
 
     orphanedItemStrategy {
       discardOldItems {
-        daysToKeep(10)
+        daysToKeep(3)  // remove merged pipelines every 3 days
       }
     }
   }
