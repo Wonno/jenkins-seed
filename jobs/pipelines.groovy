@@ -12,6 +12,7 @@ def pipelines = [
   [repo: 'conjurinc/nginx'],
   [repo: 'conjur/puppet'],
   [repo: 'conjurinc/github_hooks'],
+  [repo: 'conjurinc/java-example'],
 ]
 
 pipelines.each { pipeline ->
