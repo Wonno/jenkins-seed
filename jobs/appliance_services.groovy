@@ -14,7 +14,7 @@ use(conjur.Conventions) {
 
       steps {
         shell('./jenkins.sh')
-        shell('debify publish --version $TAG "$(cat VERSION_APPLIANCE)" appliance')
+        shell('debify publish "$(cat VERSION_APPLIANCE)" $JOB_NAME')
       }
 
       publishers {
