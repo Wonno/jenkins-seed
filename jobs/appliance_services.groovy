@@ -14,42 +14,11 @@ use(conjur.Conventions) {
 
       steps {
         shell('./jenkins.sh')
+        shell('debify publish --version $TAG "$(cat VERSION_APPLIANCE)" appliance')
       }
 
       publishers {
         archiveJunit('spec/reports/*.xml, features/reports/**/*.xml, scaling_features/reports/**/*.xml, reports/*.xml')
-        postBuildScripts {
-          steps {
-            shell('''
-              #!/bin/bash -ex
-
-              export DEBUG=true
-              export GLI_DEBUG=true
-
-              DISTRIBUTION=$(cat VERSION_APPLIANCE)
-              COMPONENT=$(echo \${GIT_BRANCH#origin/} | tr '/' '.')
-
-              if [ "$COMPONENT" == "master" ] || [ "$COMPONENT" == "v$DISTRIBUTION" ]; then
-                COMPONENT=stable
-              fi
-
-              echo "Publishing $JOB_NAME to distribution '$DISTRIBUTION', component '$COMPONENT'"
-
-              debify publish --component $COMPONENT $DISTRIBUTION $JOB_NAME
-
-              if [ -f VERSION ]; then
-                VERSION="$(debify detect-version | tail -n 1)"
-              else
-                VERSION=$(git describe --long --tags --abbrev=7 --match 'v*.*.*' | sed -e 's/^v//')
-              fi
-
-              touch "DISTRIBUTION=\$DISTRIBUTION"
-              touch "COMPONENT=\$COMPONENT"
-              touch "VERSION=\$VERSION"
-            '''.stripIndent())
-          }
-          onlyIfBuildSucceeds(true)
-        }
         archiveArtifacts(artifacts)
       }
 
