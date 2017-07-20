@@ -1,5 +1,5 @@
 // Conjur Docker appliance delivery pipeline view
-deliveryPipelineView('Docker Appliance Pipeline') {
+deliveryPipelineView('Appliance Pipeline (DSL)') {
   allowPipelineStart()
   updateInterval(5)
   pipelineInstances(10)
@@ -9,6 +9,6 @@ deliveryPipelineView('Docker Appliance Pipeline') {
   showTotalBuildTime()
 
   pipelines {
-    component('Docker Appliance Pipeline', 'appliance-docker-build')
+    component('Appliance Pipeline (DSL)', 'appliance-docker-build')
   }
 }
