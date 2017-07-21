@@ -1,6 +1,10 @@
 use(conjur.Conventions) {
   def job = job('api-ruby') {
-    description('Test the Conjur Ruby client library')
+    description('''
+      Test the Conjur Ruby client library
+
+      DEPRECATED, see https://jenkins.conjur.net/job/api-ruby-pipeline/
+    '''.stripIndent())
 
     steps {
       shell('./jenkins.sh')
