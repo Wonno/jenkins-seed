@@ -2,6 +2,10 @@
 
 DSL-defined jobs for Conjur Jenkins
 
+[![Stories in Ready](https://badge.waffle.io/conjurinc/jenkins-seed.png?label=ready&title=Ready)](http://waffle.io/conjurinc/jenkins-seed)
+
+---
+
 [Jenkins DSL API explorer](https://jenkinsci.github.io/job-dsl-plugin)
 
 Jobs are written as Groovy files and placed in the `jobs` folder.
