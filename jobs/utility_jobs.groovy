@@ -64,7 +64,7 @@ use(conjur.Conventions) {
       cron('H 6 * * *') // 6am UTC, 1am EST
     }
     steps {
-      shell('docker system prune -f')
+      shell('docker system prune --all --force')
     }
   }
   j.applyCommonConfig(label: 'executor-v2')
