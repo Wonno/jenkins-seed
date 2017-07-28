@@ -13,6 +13,7 @@ def pipelines = [
   [repo: 'conjur/puppet'],
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
+  [repo: 'conjurinc/authn', buildName: 'authn-pipeline'],
 ]
 
 pipelines.each { pipeline ->
