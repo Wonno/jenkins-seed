@@ -14,10 +14,11 @@ pipeline {
         branch 'master'
       }
       steps {
-        jobDsl targets: 'jobs/*.groovy\njobs/**/*.groovy\nviews/*.groovy',
+        jobDsl(targets: 'jobs/*.groovy\njobs/**/*.groovy\nviews/*.groovy',
           additionalClasspath: 'lib',
           removedJobAction: 'DELETE', removedViewAction: 'DELETE',
-          unstableOnDeprecation: true,
+          unstableOnDeprecation: true
+        )
       }
     }
   }
