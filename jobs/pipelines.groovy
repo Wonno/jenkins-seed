@@ -1,10 +1,11 @@
 def pipelines = [
   [repo: 'conjurinc/jenkins-seed'],
-  
+
   [repo: 'conjurinc/appliance-uml'],
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/appliance'],
+  [repo: 'conjurinc/appliance-docker-ami', buildName: 'appliance-docker-ami-pipeline'],
   [repo: 'conjurinc/possum'],
   [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/summon'],
