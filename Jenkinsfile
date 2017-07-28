@@ -15,7 +15,7 @@ pipeline {
       }
       steps {
         jobDsl targets: 'jobs/*.groovy\njobs/**/*.groovy\nviews/*.groovy',
-          additionalClasspath: 'lib'
+          additionalClasspath: 'lib',
           removedJobAction: 'DELETE', removedViewAction: 'DELETE',
           unstableOnDeprecation: true,
       }
