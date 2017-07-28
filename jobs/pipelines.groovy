@@ -1,4 +1,6 @@
 def pipelines = [
+  [repo: 'conjurinc/jenkins-seed'],
+  
   [repo: 'conjurinc/appliance-uml'],
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
