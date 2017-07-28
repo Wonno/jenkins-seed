@@ -8,6 +8,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '30'))
   }
 
+  triggers {
+    cron('H H * * *')  // Run at least once a day
+  }
+
   stages {
     stage('Process Job DSL files') {
       when {
