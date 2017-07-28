@@ -6,7 +6,7 @@ class Appliance {
   static List getServices() {
     return [
       'audit',
-      'authn',
+      // 'authn',  // pipelined
       'authn-ldap',
       'authn-local',
       'authn-tv',
