@@ -4,9 +4,6 @@ import conjur.Appliance
 def cron_weekly = 'H H */7 * *'
 def cron_daily = 'H H * * *'
 
-def appliance_branches  = [
-  [name: 'master', cron: cron_daily],
-]
 def service_branches  = [
   [name: 'master', cron: cron_daily],
 ]
@@ -19,29 +16,6 @@ def other_cron_jobs = [
 def folderName = '__cron'
 folder(folderName) {
   description('cron jobs, run periodically')
-}
-
-// Appliance builds
-def applianceJobName = 'appliance-docker-build'
-use(conjur.Conventions) {
-  appliance_branches.each { appliance_branch ->
-    def j = job("${folderName}/${applianceJobName}-${appliance_branch.name}") {
-      description("Triggers job ${applianceJobName} on branch ${appliance_branch.name}")
-      triggers {
-        cron(appliance_branch.cron)
-      }
-      steps {
-        downstreamParameterized {
-          trigger(applianceJobName) {
-            parameters {
-              predefinedProp('BRANCH', appliance_branch.name)
-            }
-          }
-        }
-      }
-    }
-    j.applyCommonConfig(label: 'master')  // trigger the build from the master
-  }
 }
 
 // Service builds
