@@ -1,4 +1,5 @@
 def appliance_services = [
+  'appliance',
   'audit',
   'authn',  // pipelined
   'authn-ldap',
@@ -17,10 +18,12 @@ def appliance_services = [
   'pubkeys',
   'rotation',
   // 'cyberark'
+  'conjur-ui',
+  'cli-ruby-omnibus'
 ]
 
-listView('Appliance Services') {
-  description('Services built into the Conjur appliance')
+listView('V4 Appliance Jobs') {
+  description('Jobs related to the Appliance project')
   filterBuildQueue()
 
   jobs {
