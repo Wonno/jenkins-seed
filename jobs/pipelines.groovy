@@ -10,6 +10,7 @@ def pipelines = [
   [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/summon'],
   [repo: 'conjurinc/summon-conjur'],
+  [repo: 'conjurinc/api-go', buildName: 'api-go-pipeline'],
   [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
   [repo: 'conjurinc/cli-ruby', buildName: 'cli-ruby-pipeline'],
   [repo: 'conjurinc/nginx'],
