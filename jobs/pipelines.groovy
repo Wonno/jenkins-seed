@@ -18,6 +18,7 @@ def pipelines = [
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn'],
+  [repo: 'conjurinc/api-java'],
 ]
 
 pipelines.each { pipeline ->
