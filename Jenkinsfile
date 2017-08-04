@@ -28,9 +28,6 @@ pipeline {
   }
 
   post {
-    always {
-      deleteDir() // wipe the workspace
-    }
     failure {
       slackSend(color: 'danger', message: "${env.JOB_NAME} #${env.BUILD_NUMBER} FAILURE (<${env.BUILD_URL}|Open>)")
     }
