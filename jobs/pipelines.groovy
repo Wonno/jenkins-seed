@@ -19,6 +19,7 @@ def pipelines = [
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn'],
   [repo: 'conjurinc/api-java'],
+  [repo: 'conjurinc/conjurops-policies']
 ]
 
 pipelines.each { pipeline ->
