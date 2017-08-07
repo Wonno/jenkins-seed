@@ -17,5 +17,7 @@ use(conjur.Conventions) {
       '''.stripIndent())
     }
   }
+  
+  job.applyCommonConfig(label: 'executor-v2')
   job.applyCommonConfig()
 }
