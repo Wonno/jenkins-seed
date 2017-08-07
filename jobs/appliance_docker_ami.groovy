@@ -22,6 +22,7 @@ use(conjur.Conventions) {
     }
   }
   job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
   job.addGitRepo('git@github.com:conjurinc/appliance-docker.git', false)
   job.setBuildName('#${BUILD_NUMBER} ${GIT_BRANCH}: ${ENV,var="APPLIANCE_IMAGE_TAG"}')
 }
