@@ -1,24 +1,23 @@
 def pipelines = [
   [repo: 'conjurinc/jenkins-seed'],
-
   [repo: 'conjurinc/appliance-uml'],
   [repo: 'conjurinc/conjur-ui'],
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/appliance'],
   [repo: 'conjurinc/appliance-docker-ami', buildName: 'appliance-docker-ami-pipeline'],
-  [repo: 'conjurinc/possum'],
+  [repo: 'cyberark/conjur'],
   [repo: 'conjurinc/possum-cpanel'],
-  [repo: 'conjurinc/summon'],
-  [repo: 'conjurinc/summon-conjur'],
-  [repo: 'conjurinc/api-go', buildName: 'api-go-pipeline'],
-  [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
+  [repo: 'cyberark/summon'],
+  [repo: 'cyberark/summon-conjur'],
+  [repo: 'cyberark/api-go', buildName: 'api-go-pipeline'],
+  [repo: 'cyberark/api-ruby', buildName: 'api-ruby-pipeline'],
   [repo: 'cyberark/cli-ruby', buildName: 'cli-ruby-pipeline'],
   [repo: 'conjurinc/nginx'],
   [repo: 'conjur/puppet'],
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn'],
-  [repo: 'conjurinc/api-java'],
+  [repo: 'cyberark/api-java'],
   [repo: 'conjurinc/conjurops-policies']
 ]
 
