@@ -12,7 +12,7 @@ def pipelines = [
   [repo: 'conjurinc/summon-conjur'],
   [repo: 'conjurinc/api-go', buildName: 'api-go-pipeline'],
   [repo: 'conjurinc/api-ruby', buildName: 'api-ruby-pipeline'],
-  [repo: 'conjurinc/cli-ruby', buildName: 'cli-ruby-pipeline'],
+  [repo: 'cyberark/cli-ruby', buildName: 'cli-ruby-pipeline'],
   [repo: 'conjurinc/nginx'],
   [repo: 'conjur/puppet'],
   [repo: 'conjurinc/github_hooks'],
