@@ -41,7 +41,7 @@ pipelines.each { pipeline ->
   def (githubOrg, githubRepoName) = pipeline.repo.split('/')
   def gitHubUrl = "https://github.com/${githubOrg}/${githubRepoName}"
 
-  def buildName = (pipeline.buildName == null) ? githubRepoName : pipeline.buildName
+  def buildName = (pipeline.buildName == null) ? pipeline.repo : pipeline.buildName
 
   multibranchPipelineJob(buildName) {
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
