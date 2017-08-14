@@ -1,20 +1,20 @@
 def jobs = [
-  'conjur',  // Conjur 5 ->
+  'cyberark--conjur',  // Conjur 5 ->
 
   // - CLIs
-  'conjur-cli',
-  'summon',
-  'summon-conjur',
+  'cyberark--conjur-cli',
+  'cyberark--summon',
+  'cyberark--summon-conjur',
 
   // - Integrations
-  'conjur-puppet',
-  'ansible-role-conjur',
+  'cyberark--conjur-puppet',
+  'cyberark--ansible-role-conjur',
 
   // - API clients
-  'conjur-api-dotnet',
-  'conjur-api-go',
-  'conjur-api-java',
-  'conjur-api-ruby',
+  'cyberark--conjur-api-dotnet',
+  'cyberark--conjur-api-go',
+  'cyberark--conjur-api-java',
+  'cyberark--conjur-api-ruby',
 ]
 
 listView('Conjur 5.x') {
