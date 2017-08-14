@@ -1,4 +1,4 @@
-def appliance_services = [
+def jobs = [
   'appliance',
   'audit',
   'authn',  // pipelined
@@ -19,16 +19,18 @@ def appliance_services = [
   'rotation',
   // 'cyberark'
   'conjur-ui',
-  'cli-ruby-omnibus'
+  'cli-ruby-omnibus',
+  'appliance-docker-ami',
+  'appliance-uml',
 ]
 
-listView('V4 Appliance Jobs') {
-  description('Jobs related to the Appliance project')
+listView('Conjur 4.x') {
+  description('V4 Pipelines and Jobs')
   filterBuildQueue()
 
   jobs {
-    appliance_services.each { service ->
-      name(service)
+    jobs.each { jobName ->
+      name(jobName)
     }
   }
   columns {
