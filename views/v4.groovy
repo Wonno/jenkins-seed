@@ -1,4 +1,4 @@
-def jobs = [
+def pipelines = [
   'conjurinc--appliance',
   // 'audit',
   // 'authn',  // pipelined
@@ -29,8 +29,8 @@ listView('Conjur 4.x') {
   filterBuildQueue()
 
   jobs {
-    jobs.each { jobName ->
-      name(jobName)
+    pipelineName.each { pipelineName ->
+      name(pipelineName)
     }
   }
   columns {

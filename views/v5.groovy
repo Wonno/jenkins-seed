@@ -1,4 +1,4 @@
-def jobs = [
+def pipelines = [
   'cyberark--conjur',  // Conjur 5 ->
 
   // - CLIs
@@ -22,8 +22,8 @@ listView('Conjur 5.x') {
   filterBuildQueue()
 
   jobs {
-    jobs.each { jobName ->
-      name(jobName)
+    pipelines.each { pipelineName ->
+      name(pipelineName)
     }
   }
   columns {
