@@ -31,7 +31,8 @@ def pipelines = [
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn'],
-  [repo: 'conjurinc/conjurops-policies']
+  [repo: 'conjurinc/conjurops-policies'],
+  [repo: 'conjurinc/conjur-ce-ami']
 
   // 'conjur-cookbooks' org
 
