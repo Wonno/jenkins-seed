@@ -22,8 +22,8 @@ def pipelines = [
   // 'conjurinc' org
   [repo: 'conjurinc/appliance'],  // Docker distribution
   [repo: 'conjurinc/conjur-ui'],  // Integrated UI
-  [repo: 'conjurinc/appliance-uml'], // UML/RPM distribution
-  [repo: 'conjurinc/appliance-docker-ami', buildName: 'appliance-docker-ami-pipeline'],
+  [repo: 'conjurinc/appliance-uml'],  // UML/RPM distribution
+  [repo: 'conjurinc/appliance-docker-ami'],  // AWS EC2 AMI
   [repo: 'conjurinc/jenkins-seed'],
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/possum-cpanel'],
