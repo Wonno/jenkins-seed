@@ -1,5 +1,5 @@
 def jobs = [
-  // 'appliance',
+  'conjurinc--appliance',
   // 'audit',
   // 'authn',  // pipelined
   // 'authn-ldap',
@@ -20,8 +20,8 @@ def jobs = [
   // // 'cyberark'
   // 'conjur-ui',
   // 'cli-ruby-omnibus',
-  // 'appliance-docker-ami',
-  // 'appliance-uml',
+  'conjurinc--appliance-docker-ami',
+  'conjurinc--appliance-uml',
 ]
 
 listView('Conjur 4.x') {
