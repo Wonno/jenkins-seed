@@ -29,7 +29,7 @@ listView('Conjur 4.x') {
   filterBuildQueue()
 
   jobs {
-    pipelineName.each { pipelineName ->
+    pipelines.each { pipelineName ->
       name(pipelineName)
     }
   }
