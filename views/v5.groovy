@@ -1,16 +1,20 @@
 def jobs = [
-  'conjurinc/appliance',  // Docker distribution
-  'conjurinc/conjur-ui',  // Integrated UI
-  'conjurinc/appliance-uml',  // UML/RPM distribution
-  'conjurinc/appliance-docker-ami',  // AWS EC2 AMI
-  'conjurinc/jenkins-seed',
-  'conjurinc/apidocs',
-  'conjurinc/possum-cpanel',
-  'conjurinc/nginx',
-  'conjurinc/github_hooks',
-  'conjurinc/java-example',
-  'conjurinc/authn',
-  'conjurinc/conjurops-policies'
+  'conjur',  // Conjur 5 ->
+
+  // - CLIs
+  'conjur-cli',
+  'summon',
+  'summon-conjur',
+
+  // - Integrations
+  'conjur-puppet',
+  'ansible-role-conjur',
+
+  // - API clients
+  'conjur-api-dotnet',
+  'conjur-api-go',
+  'conjur-api-java',
+  'conjur-api-ruby',
 ]
 
 listView('Conjur 5.x') {
