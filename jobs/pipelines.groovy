@@ -33,7 +33,8 @@ def pipelines = [
   [repo: 'conjurinc/authn'],
   [repo: 'conjurinc/conjurops-policies'],
   [repo: 'conjurinc/conjur-ce-ami'],
-  [repo: 'conjurinc/joes-pipeline']
+  [repo: 'conjurinc/joes-pipeline'],
+  [repo: 'conjurinc/possum-website-app']
 
   // 'conjur-cookbooks' org
 
