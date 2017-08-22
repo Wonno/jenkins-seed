@@ -14,7 +14,7 @@ use(conjur.Conventions) {
 
         touch secrets.yml
         echo "AWS_ACCESS_KEY_ID: !var ci/aws/iam/users/sys_powerful_conjurops_v2/access_key_id" >> secrets.yml
-        echo "AWS_SECRET_ACCESS_KEY: !var ci/aws/iam/users/sys_powerful_conjurops_v2/access_key_id" >> secrets.yml
+        echo "AWS_SECRET_ACCESS_KEY: !var ci/aws/iam/users/sys_powerful_conjurops_v2/secret_access_key" >> secrets.yml
 
         docker pull registry.tld/$IMAGE_NAME:$RELEASE_TAG
         docker save registry.tld/$IMAGE_NAME:$RELEASE_TAG > $IMAGE_NAME-$RELEASE_TAG.tar
