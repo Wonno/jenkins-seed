@@ -13,15 +13,14 @@ use(conjur.Conventions) {
         set -e
 
         touch secrets.yml
-        echo "AWS_ACCESS_KEY_ID: !var aws/ci/sys_powerful/access_key_id" >> secrets.yml
-        echo "AWS_SECRET_ACCESS_KEY: !var aws/ci/sys_powerful/secret_access_key" >> secrets.yml
+        echo "AWS_ACCESS_KEY_ID: !var ci/aws/iam/users/sys_powerful_conjurops_v2/access_key_id" >> secrets.yml
+        echo "AWS_SECRET_ACCESS_KEY: !var ci/aws/iam/users/sys_powerful_conjurops_v2/access_key_id" >> secrets.yml
 
         docker pull registry.tld/$IMAGE_NAME:$RELEASE_TAG
         docker save registry.tld/$IMAGE_NAME:$RELEASE_TAG > $IMAGE_NAME-$RELEASE_TAG.tar
         summon docker run --env-file @SUMMONENVFILE -v $PWD:/share --rm anigeo/awscli s3 cp /share/$IMAGE_NAME-$RELEASE_TAG.tar s3://conjur-ci-images/docker/
       '''.stripIndent())
-
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
 }
