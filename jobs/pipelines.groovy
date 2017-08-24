@@ -17,8 +17,6 @@ def pipelines = [
   [repo: 'cyberark/conjur-api-java'],
   [repo: 'cyberark/conjur-api-ruby'],
 
-  // 'conjur' org
-
   // 'conjurinc' org
   [repo: 'conjurinc/appliance'],  // Docker distribution
   [repo: 'conjurinc/conjur-ui'],  // Integrated UI
@@ -36,6 +34,8 @@ def pipelines = [
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
+
+  // 'conjur' org
 
   // 'conjur-cookbooks' org
 
