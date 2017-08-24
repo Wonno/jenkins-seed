@@ -34,7 +34,8 @@ def pipelines = [
   [repo: 'conjurinc/conjurops-policies'],
   [repo: 'conjurinc/conjur-ce-ami'],
   [repo: 'conjurinc/joes-pipeline'],
-  [repo: 'conjurinc/possum-website-app']
+  [repo: 'conjurinc/possum-website-app'],
+  [repo: 'conjurinc/release-bot', buildName: 'release-bot-pipeline'],
 
   // 'conjur-cookbooks' org
 
