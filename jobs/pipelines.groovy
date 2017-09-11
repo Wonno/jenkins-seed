@@ -6,6 +6,7 @@ def pipelines = [
   [repo: 'cyberark/conjur-cli'],
   [repo: 'cyberark/summon'],
   [repo: 'cyberark/summon-conjur'],
+  [repo: 'cyberark/summon-file'],
 
   // - Integrations
   [repo: 'cyberark/conjur-puppet'],
