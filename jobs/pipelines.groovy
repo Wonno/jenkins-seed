@@ -35,6 +35,7 @@ def pipelines = [
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
+  [repo: 'conjurinc/rotation'],
 
   // 'conjur' org
 
