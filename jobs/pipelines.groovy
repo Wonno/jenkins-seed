@@ -36,6 +36,7 @@ def pipelines = [
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
   [repo: 'conjurinc/rotation'],
+  [repo: 'conjurinc/publish-rubygem'],
 
   // 'conjur' org
 
