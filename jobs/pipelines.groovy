@@ -30,6 +30,7 @@ def pipelines = [
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn'],
+  [repo: 'conjurinc/authn-k8s'],
   [repo: 'conjurinc/conjurops-policies'],
   [repo: 'conjurinc/conjur-ce-ami'],
   [repo: 'conjurinc/joes-pipeline'],
