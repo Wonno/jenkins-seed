@@ -1,6 +1,7 @@
 def pipelines = [
   // 'cyberark' org
   [repo: 'cyberark/conjur'],  // Conjur 5 ->
+  [repo: 'cyberark/conjur-ami'],
 
   // - CLIs
   [repo: 'cyberark/conjur-cli'],
@@ -32,7 +33,6 @@ def pipelines = [
   [repo: 'conjurinc/authn'],
   [repo: 'conjurinc/authn-k8s'],
   [repo: 'conjurinc/conjurops-policies'],
-  [repo: 'conjurinc/conjur-ce-ami'],
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
