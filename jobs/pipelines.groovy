@@ -39,6 +39,7 @@ def pipelines = [
   [repo: 'conjurinc/rotation'],
   [repo: 'conjurinc/publish-rubygem'],
   [repo: 'conjurinc/developer-www'],
+  [repo: 'conjurinc/ami-promoter'],
 
   // 'conjur' org
 

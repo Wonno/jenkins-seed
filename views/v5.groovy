@@ -1,5 +1,6 @@
 def pipelines = [
   'cyberark--conjur',  // Conjur 5 ->
+  'cyberark--conjur-ami',
 
   // - CLIs
   'cyberark--conjur-cli',
