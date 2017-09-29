@@ -19,6 +19,8 @@ def pipelines = [
   [repo: 'cyberark/conjur-api-java'],
   [repo: 'cyberark/conjur-api-ruby'],
 
+  [repo: 'cyberark/seal'],
+
   // 'conjurinc' org
   [repo: 'conjurinc/appliance'],  // Docker distribution
   [repo: 'conjurinc/conjur-ui'],  // Integrated UI
