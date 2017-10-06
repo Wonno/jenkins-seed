@@ -43,6 +43,7 @@ def pipelines = [
   [repo: 'conjurinc/developer-www'],
   [repo: 'conjurinc/ami-promoter'],
   [repo: 'conjurinc/debify'],
+  [repo: 'conjurinc/ldap-sync'],
 
   // 'conjur' org
 
