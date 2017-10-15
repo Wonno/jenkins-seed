@@ -22,28 +22,48 @@ def pipelines = [
   [repo: 'cyberark/seal'],
 
   // 'conjurinc' org
-  [repo: 'conjurinc/appliance'],  // Docker distribution
-  [repo: 'conjurinc/conjur-ui'],  // Integrated UI
+
+  // - Docker appliance distribution of Conjur
+  [repo: 'conjurinc/appliance'],
+
+  // - Services packaged into appliance
+  [repo: 'conjurinc/audit',       buildName: 'audit-pipeline'],
+  [repo: 'conjurinc/authn'],
+  [repo: 'conjurinc/authn-ldap',  buildName: 'auth-ldap-pipeline'],
+  [repo: 'conjurinc/authn-local', buildName: 'auth-local-pipeline'],
+  [repo: 'conjurinc/authn-tv',    buildName: 'authn-tv-pipeline'],
+  [repo: 'conjurinc/authz',       buildName: 'authz-pipeline'],
+  [repo: 'conjurinc/core',        buildName: 'core-pipeline'],
+  [repo: 'conjurinc/expiration',  buildName: 'expiration-pipeline'],
+  [repo: 'conjurinc/host-factory',buildName: 'host-factory-pipeline'],
+  [repo: 'conjurinc/ldap-server', buildName: 'ldap-server-pipeline'],
+  [repo: 'conjurinc/ldap-sync'],
+  [repo: 'conjurinc/pubkeys',     buildName: 'pubkeys-pipeline'],
+  [repo: 'conjurinc/rotation'],
+
+  [repo: 'conjurinc/conjur-ui'],  // v4 Integrated UI
   [repo: 'conjurinc/appliance-uml'],  // UML/RPM distribution
   [repo: 'conjurinc/appliance-docker-ami'],  // AWS EC2 AMI
+
+
+  // - Internal tooling
   [repo: 'conjurinc/jenkins-seed'],
+  [repo: 'conjurinc/conjurops-policies'],
+  [repo: 'conjurinc/github_hooks'],
+  [repo: 'conjurinc/publish-rubygem'],
+
+  // - TODO order these
   [repo: 'conjurinc/apidocs'],
   [repo: 'conjurinc/possum-cpanel'],
   [repo: 'conjurinc/nginx'],
-  [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/java-example'],
-  [repo: 'conjurinc/authn'],
   [repo: 'conjurinc/authn-k8s'],
-  [repo: 'conjurinc/conjurops-policies'],
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
-  [repo: 'conjurinc/rotation'],
-  [repo: 'conjurinc/publish-rubygem'],
   [repo: 'conjurinc/developer-www'],
   [repo: 'conjurinc/ami-promoter'],
   [repo: 'conjurinc/debify'],
-  [repo: 'conjurinc/ldap-sync'],
   [repo: 'conjurinc/cluster'],
 
   // 'conjur' org

@@ -17,10 +17,10 @@ class Appliance {
       // 'glider',
       'host-factory',
       'ldap-server',
-      'ldap-sync',
+      // 'ldap-sync',
       'policy-loader',
       'pubkeys',
-      'rotation',
+      // 'rotation',
       'cyberark'
     ]
   }
