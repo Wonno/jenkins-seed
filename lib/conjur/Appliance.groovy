@@ -11,7 +11,7 @@ class Appliance {
       'authn-local',
       'authn-tv',
       'authz',
-      'core',
+      // 'core',
       'expiration',
       'evoke',
       // 'glider',
