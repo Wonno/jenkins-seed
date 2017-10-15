@@ -5,7 +5,7 @@ package conjur
 class Appliance {
   static List getServices() {
     return [
-      'audit',
+      // 'audit',
       // 'authn',  // pipelined
       'authn-ldap',
       'authn-local',
