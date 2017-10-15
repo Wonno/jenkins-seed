@@ -27,18 +27,18 @@ def pipelines = [
   [repo: 'conjurinc/appliance'],
 
   // - Services packaged into appliance
-  [repo: 'conjurinc/audit',       buildName: 'audit-pipeline'],
+  [repo: 'conjurinc/audit'],
   [repo: 'conjurinc/authn'],
-  [repo: 'conjurinc/authn-ldap',  buildName: 'auth-ldap-pipeline'],
-  [repo: 'conjurinc/authn-local', buildName: 'auth-local-pipeline'],
-  [repo: 'conjurinc/authn-tv',    buildName: 'authn-tv-pipeline'],
-  [repo: 'conjurinc/authz',       buildName: 'authz-pipeline'],
+  [repo: 'conjurinc/authn-ldap'],
+  [repo: 'conjurinc/authn-local'],
+  [repo: 'conjurinc/authn-tv',],
+  [repo: 'conjurinc/authz',],
   [repo: 'conjurinc/core'],
-  [repo: 'conjurinc/expiration',  buildName: 'expiration-pipeline'],
-  [repo: 'conjurinc/host-factory',buildName: 'host-factory-pipeline'],
-  [repo: 'conjurinc/ldap-server', buildName: 'ldap-server-pipeline'],
+  [repo: 'conjurinc/expiration'],
+  [repo: 'conjurinc/host-factory'],
+  [repo: 'conjurinc/ldap-server'],
   [repo: 'conjurinc/ldap-sync'],
-  [repo: 'conjurinc/pubkeys',     buildName: 'pubkeys-pipeline'],
+  [repo: 'conjurinc/pubkeys'],
   [repo: 'conjurinc/rotation'],
 
   [repo: 'conjurinc/conjur-ui'],  // v4 Integrated UI
