@@ -33,7 +33,7 @@ def pipelines = [
   [repo: 'conjurinc/authn-local', buildName: 'auth-local-pipeline'],
   [repo: 'conjurinc/authn-tv',    buildName: 'authn-tv-pipeline'],
   [repo: 'conjurinc/authz',       buildName: 'authz-pipeline'],
-  [repo: 'conjurinc/core',        buildName: 'core-pipeline'],
+  [repo: 'conjurinc/core'],
   [repo: 'conjurinc/expiration',  buildName: 'expiration-pipeline'],
   [repo: 'conjurinc/host-factory',buildName: 'host-factory-pipeline'],
   [repo: 'conjurinc/ldap-server', buildName: 'ldap-server-pipeline'],
