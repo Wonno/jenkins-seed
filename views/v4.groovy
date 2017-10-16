@@ -1,9 +1,9 @@
 def pipelines = [
   'conjurinc/appliance',
 
-  'conjurinc/authn-ldap',
   'conjurinc/authn',
   'conjurinc/audit',
+  'conjurinc/authn-ldap',
   'conjurinc/authn-local',
   'conjurinc/authn-tv',
   'conjurinc/authz',
