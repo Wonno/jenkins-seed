@@ -1,5 +1,6 @@
 use(conjur.Conventions) {
   def job = matrixJob('cli-ruby') {
+    disabled()
     description('''
       Builds the ruby conjur CLI.
       <hr>

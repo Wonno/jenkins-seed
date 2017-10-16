@@ -1,6 +1,4 @@
 def pipelines = [
-
-
   'conjurinc--audit',
   'conjurinc--authn',
   'conjurinc--authn-ldap',

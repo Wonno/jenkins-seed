@@ -1,6 +1,7 @@
 // Build flow runs the following jobs in parallel
 use(conjur.Conventions) {
   def flowJob = job('cli-ruby-omnibus') {
+    disabled()
     description('Builds deb, rpm and pkg packages for the Conjur CLI.')
 
     parameters {
@@ -31,6 +32,7 @@ use(conjur.Conventions) {
   // centos and ubuntu jobs
   ['centos', 'ubuntu'].each { platform ->
     def j = job("cli-ruby-${platform}") {
+      disabled()
       description("Builds the Conjur CLI package for ${platform}")
 
       parameters {
