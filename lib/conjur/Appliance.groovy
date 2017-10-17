@@ -10,7 +10,7 @@ class Appliance {
       // 'authn',  // pipelined
       // 'authn-ldap',
       // 'authn-local',
-      'authn-tv',
+      // 'authn-tv',
       'authz',
       // 'core',
       'expiration',
