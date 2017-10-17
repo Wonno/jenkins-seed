@@ -96,6 +96,21 @@ pipelines.each { pipeline ->
       }
     }
 
+    configure {
+      def libraries = it / 'properties' / 'org.jenkinsci.plugins.workflow.libs.FolderLibraries' / 'libraries'
+
+      libraries << 'org.jenkinsci.plugins.workflow.libs.LibraryConfiguration' {
+        name('conjur')
+        retriever(class: 'org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever') {
+          scm(class: 'jenkins.plugins.git.GitSCMSource')
+          remote('git@github.com:conjurinc/jenkins-pipeline-library.git')
+        }
+        defaultVersion('master')
+        implicit('true')
+
+      }
+    }
+
     orphanedItemStrategy {
       discardOldItems {
         daysToKeep(3)  // remove merged pipelines every 3 days
