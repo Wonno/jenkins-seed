@@ -19,6 +19,10 @@ def pipelines = [
   [repo: 'cyberark/conjur-api-java'],
   [repo: 'cyberark/conjur-api-ruby'],
 
+  // - Libraries
+  [repo: 'cyberark/slosilo'],
+
+  // - Internal tooling
   [repo: 'cyberark/seal'],
 
   // 'conjurinc' org
