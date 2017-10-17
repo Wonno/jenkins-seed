@@ -9,7 +9,7 @@ class Appliance {
       // 'audit',
       // 'authn',  // pipelined
       // 'authn-ldap',
-      'authn-local',
+      // 'authn-local',
       'authn-tv',
       'authz',
       // 'core',
