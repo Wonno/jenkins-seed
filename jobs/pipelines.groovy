@@ -73,7 +73,8 @@ def pipelines = [
   // 'conjur' org
 
   // 'conjur-cookbooks' org
-
+  [repo: 'conjur-cookbooks/conjur'],
+  [repo: 'conjur-cookbooks/sshd-service'],
 ]
 
 pipelines.each { pipeline ->
