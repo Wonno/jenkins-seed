@@ -40,6 +40,7 @@ def pipelines = [
   [repo: 'conjurinc/authz',],
   [repo: 'conjurinc/core'],
   [repo: 'conjurinc/expiration'],
+  [repo: 'conjurinc/evoke'],
   [repo: 'conjurinc/host-factory'],
   [repo: 'conjurinc/ldap-server'],
   [repo: 'conjurinc/ldap-sync'],
