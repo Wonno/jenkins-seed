@@ -25,6 +25,7 @@ def pipelines = [
 
   // - Internal tooling
   [repo: 'cyberark/seal'],
+  [repo: 'cyberark/conjur-policy-generator'],
 
   // 'conjurinc' org
 
