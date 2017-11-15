@@ -14,7 +14,7 @@ class Appliance {
       'authz',
       // 'core',
       'expiration',
-      'evoke',
+      // 'evoke',
       // 'glider',
       'host-factory',
       'ldap-server',
