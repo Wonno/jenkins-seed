@@ -102,7 +102,7 @@ pipelines.each { pipeline ->
 
     orphanedItemStrategy {
       discardOldItems {
-        daysToKeep(3)  // remove merged pipelines every 3 days
+        daysToKeep(1)  // remove merged pipelines every day
       }
     }
   }
