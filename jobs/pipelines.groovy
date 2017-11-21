@@ -13,6 +13,7 @@ def pipelines = [
   // - Integrations
   [repo: 'cyberark/conjur-puppet'],
   [repo: 'cyberark/ansible-role-conjur'],
+  [repo: 'conjurinc/conjur-service-broker'],
 
   // - API clients
   [repo: 'cyberark/conjur-api-dotnet'],
