@@ -14,6 +14,7 @@ def pipelines = [
   [repo: 'cyberark/conjur-puppet'],
   [repo: 'cyberark/ansible-role-conjur'],
   [repo: 'conjurinc/conjur-service-broker'],
+  [repo: 'conjurinc/cloudfoundry-conjur-buildpack'],
 
   // - API clients
   [repo: 'cyberark/conjur-api-dotnet'],
