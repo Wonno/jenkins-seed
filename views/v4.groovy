@@ -4,7 +4,7 @@ def pipelines = [
   'conjurinc--authn-ldap',
   'conjurinc--authn-local',
   'conjurinc--authn-tv',
-  'conjurinc---authz',
+  'conjurinc--authz',
   'conjurinc--core',
   'conjurinc--expiration',
   'conjurinc--evoke',
