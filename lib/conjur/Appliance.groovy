@@ -11,7 +11,7 @@ class Appliance {
       // 'authn-ldap',
       // 'authn-local',
       // 'authn-tv',
-      'authz',
+      // 'authz',
       // 'core',
       'expiration',
       // 'evoke',
