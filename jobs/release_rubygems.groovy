@@ -16,11 +16,11 @@ use(conjur.Conventions) {
           data="$data&branch=$GEM_BRANCH"
         fi
 
-        auth_header=`/opt/conjur/bin/conjur authn authenticate -H`
+        auth_header=`conjur authn authenticate -H`
         curl -f -H "$auth_header" -X POST "https://releasebot-conjur.herokuapp.com/rubygems/releases" --data "$data"
       '''.stripIndent())
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
   job.setBuildName('#${BUILD_NUMBER} ${ENV,var="GEM_NAME"}')
 }

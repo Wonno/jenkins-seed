@@ -10,11 +10,11 @@ use(conjur.Conventions) {
       shell('''
         set -e
 
-        auth_header=`/opt/conjur/bin/conjur authn authenticate -H`
+        auth_header=`conjur authn authenticate -H`
         curl -f -H "$auth_header" -X POST "https://releasebot-conjur.herokuapp.com/heroku/releases" --data "name=$APP_NAME"
       '''.stripIndent())
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
   job.setBuildName('#${BUILD_NUMBER} ${ENV,var="APP_NAME"}')
 }
