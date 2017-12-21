@@ -17,7 +17,7 @@ class Appliance {
       // 'evoke',
       // 'glider',
       // 'host-factory',
-      'ldap-server',
+      // 'ldap-server',
       // 'ldap-sync',
       'policy-loader',
       // 'pubkeys',
