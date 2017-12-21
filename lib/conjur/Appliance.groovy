@@ -20,7 +20,7 @@ class Appliance {
       'ldap-server',
       // 'ldap-sync',
       'policy-loader',
-      'pubkeys',
+      // 'pubkeys',
       // 'rotation',
       'cyberark'
     ]
