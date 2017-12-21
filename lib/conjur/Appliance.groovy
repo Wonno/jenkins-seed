@@ -13,7 +13,7 @@ class Appliance {
       // 'authn-tv',
       // 'authz',
       // 'core',
-      'expiration',
+      // 'expiration',
       // 'evoke',
       // 'glider',
       'host-factory',
