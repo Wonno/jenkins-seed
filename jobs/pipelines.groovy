@@ -75,6 +75,7 @@ def pipelines = [
   [repo: 'conjurinc/ami-promoter'],
   [repo: 'conjurinc/debify'],
   [repo: 'conjurinc/cluster'],
+  [repo: 'conjurinc/api-python'],
 
   // 'conjur' org
 
