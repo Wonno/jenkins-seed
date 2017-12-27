@@ -24,6 +24,6 @@ use(conjur.Conventions) {
       }
     }
   }
-  job.applyCommonConfig()
+  job.applyCommonConfig(label: 'executor-v2')
   job.addGitRepo('git@github.com:conjurinc/api-python.git')
 }
