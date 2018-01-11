@@ -17,6 +17,7 @@ use(conjur.Conventions) {
       cron('H 6 * * *') // 6am UTC, 1am EST
     }
     steps {
+      shell('sudo systemctl restart docker')
       shell('docker system prune --all --force')
     }
   }
