@@ -61,6 +61,7 @@ def pipelines = [
   [repo: 'conjurinc/conjurops-policies'],
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/publish-rubygem'],
+  [repo: 'conjurinc/informative-narwhal'],
 
   // - TODO order these
   [repo: 'conjurinc/apidocs'],
