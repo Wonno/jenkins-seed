@@ -52,6 +52,7 @@ def pipelines = [
   [repo: 'conjurinc/rotation'],
 
   [repo: 'conjurinc/conjur-ui'],  // v4 Integrated UI
+  [repo: 'conjurinc/conjur-asset-ui'],  // builds deb for conjur/ui-backend service
   // [repo: 'conjurinc/appliance-uml'],  // UML/RPM distribution
   [repo: 'conjurinc/appliance-docker-ami'],  // AWS EC2 AMI
 
