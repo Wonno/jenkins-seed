@@ -101,6 +101,7 @@ pipelines.each { pipeline ->
 
     branchSources {
       git {
+        id("owner-${githubOrg}:repo-${githubRepoName}")
         remote("git@github.com:${githubOrg}/${githubRepoName}.git")
         credentialsId('conjur-jenkins')
       }
