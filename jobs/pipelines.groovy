@@ -27,6 +27,7 @@ def pipelines = [
 
   // - Libraries
   [repo: 'cyberark/slosilo'],
+  [repo: 'cyberark/conjur-rack'],
 
   // - Internal tooling
   [repo: 'cyberark/seal'],
