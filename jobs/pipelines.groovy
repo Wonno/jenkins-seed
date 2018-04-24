@@ -81,6 +81,7 @@ def pipelines = [
   [repo: 'conjurinc/debify'],
   [repo: 'conjurinc/cluster'],
   [repo: 'conjurinc/api-python'],
+  [repo: 'conjurinc/rack-heartbeat'],
 
   // 'conjur' org
 
