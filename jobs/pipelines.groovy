@@ -58,8 +58,11 @@ def pipelines = [
   [repo: 'conjurinc/conjur-asset-ui'],  // builds deb for conjur/ui-backend service
   // [repo: 'conjurinc/appliance-uml'],  // UML/RPM distribution
   [repo: 'conjurinc/appliance-docker-ami'],  // AWS EC2 AMI
-
-
+  
+  // Secretless
+  [repo: 'conjurinc/secretless']
+  [repo: 'conjurinc/secretless-server']
+  
   // - Internal tooling
   [repo: 'conjurinc/jenkins-seed'],
   [repo: 'conjurinc/conjurops-policies'],
