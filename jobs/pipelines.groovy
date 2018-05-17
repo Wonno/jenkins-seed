@@ -69,7 +69,7 @@ def pipelines = [
   [repo: 'conjurinc/github_hooks'],
   [repo: 'conjurinc/publish-rubygem'],
   [repo: 'conjurinc/informative-narwhal'],
-  [repo: 'conjurinc/pet-store'],
+  [repo: 'conjurinc/pet-store-demo'],
 
   // - TODO order these
   [repo: 'conjurinc/apidocs'],
