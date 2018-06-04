@@ -77,6 +77,7 @@ def pipelines = [
   [repo: 'conjurinc/nginx'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn-k8s'],
+  [repo: 'conjurinc/conjur-authn-k8s-client'],
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
