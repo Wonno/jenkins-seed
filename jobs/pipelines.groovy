@@ -88,6 +88,8 @@ def pipelines = [
   [repo: 'conjurinc/cluster'],
   [repo: 'conjurinc/api-python'],
   [repo: 'conjurinc/rack-heartbeat'],
+  [repo: 'conjurinc/rack-heartbeat'],
+  [repo: 'conjurinc/conjur-policy-parser'],
 
   // 'conjur' org
 
