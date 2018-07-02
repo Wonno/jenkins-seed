@@ -110,7 +110,7 @@ pipelines.each { pipeline ->
     description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
 
     triggers {
-      periodic(2160)  // scan sources every 36hr, as a fallback - unit is minutes
+      cron('@daily')  // scan sources every 36hr, as a fallback - unit is minutes
     }
 
     branchSources {
