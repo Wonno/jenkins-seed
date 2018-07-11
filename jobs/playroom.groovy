@@ -15,8 +15,8 @@ multibranchPipelineJob(buildName) {
       id("owner-${githubOrg}:repo-${githubRepoName}")
       repoOwner(githubOrg)
       repository(githubRepoName)
-      scanCredentialsId('dustinmm80')
-      checkoutCredentialsId('conjur-jenkins')
+      scanCredentialsId('conjur-jenkins')
+      // checkoutCredentialsId('conjur-jenkins')
     }
   }
 
