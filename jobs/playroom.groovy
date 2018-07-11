@@ -4,7 +4,7 @@ def githubOrg = 'conjurinc'
 def githubRepoName = 'playroom'
 
 multibranchPipelineJob(buildName) {
-  description("on GitHub: <a href=\"${gitHubUrl}\">${gitHubUrl}</a>")
+  description("on GitHub: <a href=\"${githubUrl}\">${githubUrl}</a>")
 
   triggers {
     cron('@daily')  // scan sources every 36hr, as a fallback - unit is minutes
