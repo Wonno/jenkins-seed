@@ -100,6 +100,8 @@ def pipelines = [
   [repo: 'conjur-cookbooks/sshd-service'],
 ]
 
+def scanCredentialsIdVal = 'conjur-jenkins-api'
+
 pipelines.each { pipeline ->
   def (githubOrg, githubRepoName) = pipeline.repo.split('/')
   def gitHubUrl = "https://github.com/${githubOrg}/${githubRepoName}"
@@ -114,10 +116,11 @@ pipelines.each { pipeline ->
     }
 
     branchSources {
-      git {
+      github {
         id("owner-${githubOrg}:repo-${githubRepoName}")
-        remote("git@github.com:${githubOrg}/${githubRepoName}.git")
-        credentialsId('conjur-jenkins')
+        repoOwner(githubOrg)
+        repository(githubRepoName)
+        scanCredentialsId(scanCredentialsIdVal)
       }
     }
 
