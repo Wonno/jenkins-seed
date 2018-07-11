@@ -11,10 +11,12 @@ multibranchPipelineJob(buildName) {
   }
 
   branchSources {
-    git {
+    github {
       id("owner-${githubOrg}:repo-${githubRepoName}")
-      remote("git@github.com:${githubOrg}/${githubRepoName}.git")
-      credentialsId('conjur-jenkins')
+      repoOwner(githubOrg)
+      repository(githubRepoName)
+      scanCredentialsId('conjur-jenkins')
+      checkoutCredentialsId('conjur-jenkins')
     }
   }
 
