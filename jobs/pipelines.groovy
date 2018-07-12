@@ -19,6 +19,7 @@ def pipelines = [
   [repo: 'cyberark/conjur-service-broker'],
   [repo: 'cyberark/cloudfoundry-conjur-buildpack'],
   [repo: 'cyberark/kubernetes-conjur-deploy'],
+  [repo: 'cyberark/conjur-authn-k8s-client'],
   [repo: 'conjurinc/ha-ansible'],
   [repo: 'conjurinc/conjurops-dev'],
 
@@ -80,7 +81,6 @@ def pipelines = [
   [repo: 'conjurinc/nginx'],
   [repo: 'conjurinc/java-example'],
   [repo: 'conjurinc/authn-k8s'],
-  [repo: 'conjurinc/conjur-authn-k8s-client'],
   [repo: 'conjurinc/joes-pipeline'],
   [repo: 'conjurinc/possum-website-app'],
   [repo: 'conjurinc/release-bot'],
