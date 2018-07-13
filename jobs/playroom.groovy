@@ -22,13 +22,6 @@ multibranchPipelineJob(buildName) {
     }
   }
 
-  // fetch tags - TODO: currently broken
-   configure {
-     def traits = it / sources / data / 'jenkins.branch.BranchSource' / source / traits
-     traits << 'org.jenkinsci.plugins.github_branch_source.BranchDiscoveryTrait'()
-     traits << 'org.jenkinsci.plugins.github_branch_source.TagDiscoveryTrait'()
-   }
-
   orphanedItemStrategy {
     discardOldItems {
       daysToKeep(1)  // remove merged pipelines every day
