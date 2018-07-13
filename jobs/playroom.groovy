@@ -20,10 +20,10 @@ multibranchPipelineJob(buildName) {
   }
 
   // fetch tags - TODO: currently broken
-  // configure {
-  //   def traits = it / sources / data / 'jenkins.branch.BranchSource' / source / traits
-  //   traits << 'org.jenkinsci.plugins.github__branch__source.TagDiscoveryTrait'
-  // }
+   configure {
+     def traits = it / sources / data / 'jenkins.branch.BranchSource' / source / traits
+     traits << 'org.jenkinsci.plugins.github__branch__source.TagDiscoveryTrait'
+   }
 
   orphanedItemStrategy {
     discardOldItems {
