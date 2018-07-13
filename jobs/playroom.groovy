@@ -23,6 +23,7 @@ multibranchPipelineJob(buildName) {
    configure {
      def traits = it / sources / data / 'jenkins.branch.BranchSource' / source / traits
      traits << 'jenkins.plugins.git.traits.BranchDiscoveryTrait'()
+     traits << 'jenkins.plugins.git.traits.TagDiscoveryTrait'()
    }
 
   orphanedItemStrategy {
