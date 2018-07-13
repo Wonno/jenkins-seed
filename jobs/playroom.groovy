@@ -17,8 +17,8 @@ multibranchPipelineJob(buildName) {
       repository(githubRepoName)
       scanCredentialsId('conjur-jenkins-api')
       traits {
-        gitHubBranchDiscovery()
-        gitHubTagDiscovery()
+      //  gitHubBranchDiscovery()
+      //  gitHubTagDiscovery()
       }
     }
   }
