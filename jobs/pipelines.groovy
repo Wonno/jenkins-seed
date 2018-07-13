@@ -20,8 +20,7 @@ def pipelines = [
   [repo: 'cyberark/cloudfoundry-conjur-buildpack'],
   [repo: 'cyberark/kubernetes-conjur-deploy'],
   [repo: 'cyberark/conjur-authn-k8s-client'],
-  [repo: 'conjurinc/ha-ansible'],
-  [repo: 'conjurinc/conjurops-dev'],
+  [repo: 'cyberark/conjur-google-cloud-launcher'],
 
   // - API clients
   [repo: 'cyberark/conjur-api-dotnet'],
@@ -36,6 +35,8 @@ def pipelines = [
   // - Internal tooling
   [repo: 'cyberark/seal'],
   [repo: 'cyberark/conjur-policy-generator'],
+  [repo: 'conjurinc/conjurops-dev'],
+  [repo: 'conjurinc/ha-ansible'],
 
   // 'conjurinc' org
 
