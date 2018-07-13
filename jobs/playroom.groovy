@@ -16,10 +16,10 @@ multibranchPipelineJob(buildName) {
       repoOwner(githubOrg)
       repository(githubRepoName)
       scanCredentialsId('conjur-jenkins-api')
-      traits {
+      //traits {
       //  gitHubBranchDiscovery()
       //  gitHubTagDiscovery()
-      }
+      //}
     }
   }
 
