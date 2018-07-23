@@ -6,6 +6,7 @@ def pipelines = [
 
   // - CLIs
   [repo: 'cyberark/conjur-cli'],
+  [repo: 'cyberark/conjur-cli-go'],
   [repo: 'cyberark/summon'],
   [repo: 'cyberark/summon-conjur'],
   [repo: 'cyberark/summon-file'],
