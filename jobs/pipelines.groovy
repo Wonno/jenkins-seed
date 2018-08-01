@@ -38,6 +38,7 @@ def pipelines = [
   [repo: 'cyberark/conjur-policy-generator'],
   [repo: 'conjurinc/conjurops-dev'],
   [repo: 'conjurinc/ha-ansible'],
+  [repo: 'conjurinc/gitops'],
 
   // 'conjurinc' org
 
