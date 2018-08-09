@@ -68,7 +68,7 @@ def pipelines = [
   [repo: 'conjurinc/appliance-docker-ami'],  // AWS EC2 AMI
 
   // Secretless
-  [repo: 'conjurinc/secretless-broker'],
+  [repo: 'cyberark/secretless-broker'],
   [repo: 'conjurinc/secretless-server'],
 
   // - Internal tooling
