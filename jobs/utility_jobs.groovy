@@ -18,7 +18,7 @@ use(conjur.Conventions) {
     }
     steps {
       shell('sudo systemctl restart docker')
-      shell('docker system prune --all --force')
+      shell('docker system prune --all --force --volumes')
     }
   }
   j.applyCommonConfig(label: 'executor-v2')
