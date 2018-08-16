@@ -22,6 +22,7 @@ def pipelines = [
   [repo: 'cyberark/kubernetes-conjur-deploy'],
   [repo: 'cyberark/conjur-authn-k8s-client'],
   [repo: 'cyberark/conjur-google-cloud-marketplace'],
+  [repo: 'cyberark/terraform-provider-conjur'],
 
   // - API clients
   [repo: 'cyberark/conjur-api-dotnet'],
