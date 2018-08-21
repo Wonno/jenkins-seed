@@ -11,7 +11,6 @@ def pipelines = [
   [repo: 'cyberark/summon-conjur'],
   [repo: 'cyberark/summon-file'],
   [repo: 'conjurinc/summon-s3'],  // TODO: move this to cyberark org
-  [repo: 'conjurinc/summon-windows-installer'],
   [repo: 'cyberark/summon-aws-secrets'],
 
   // - Integrations
