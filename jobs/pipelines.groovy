@@ -40,6 +40,7 @@ def pipelines = [
   [repo: 'conjurinc/conjurops-dev'],
   [repo: 'conjurinc/ha-ansible'],
   [repo: 'conjurinc/gitops'],
+  [repo: 'conjurinc/vault-uploader'],
   [repo: 'cyberark/goreleaser-docker'],
 
   // 'conjurinc' org
